@@ -4,12 +4,10 @@ import SetKeywords from "../screens/SetKeywords";
 import styled from 'styled-components/native';
 import { color } from '../themes/colors';
 import { image } from '../themes/images';
-import { Image, Pressable, Text } from 'react-native';
-import { Animated, View, TouchableOpacity } from 'react-native';
-import { useState } from 'react';
+import { Pressable } from 'react-native';
 
 
-const Top = styled.View.attrs({
+const Container = styled.View.attrs({
     borderBottomColor: color.gray2,
     borderBottomWidth: 1
 })`
@@ -34,12 +32,12 @@ const TitleBox = styled.View.attrs(({ focused }) => ({
 
 const TitleText = styled.Text`
     font-size: 16px;
-    font-weight: 600;
+    font-weight: bold;
     line-height: 24px;
     color: ${({ focused }) => (focused ? color.primary : color.gray3)};
 `;
 
-const Title = ({ focused, onPress, children, add }) => {
+const Title = ({ focused, onPress, children }) => {
     return (
         <Pressable onPress={onPress} hitSlop={20}>
             <TitleBox focused={focused}>
@@ -70,19 +68,12 @@ const AddButton = () => {
 };
 
 
-const TabBar = ({ descriptors, navigation, position, state }) => {
+const TabBar = ({ navigation, state }) => {
     return (
-        <Top>
+        <Container>
             {state.routes.map((route, index) => {
-                const { options } = descriptors[route.key];
-                const label = options.tabBarLabel !== undefined
-                    ? options.tabBarLabel
-                    : options.title !== undefined
-                        ? options.title
-                        : route.name;
 
                 const isFocused = state.index === index;
-
                 const onPress = () => {
                     const event = navigation.emit({
                         type: 'tabPress',
@@ -96,14 +87,6 @@ const TabBar = ({ descriptors, navigation, position, state }) => {
                     }
                 };
 
-                const onLongPress = () => {
-                    navigation.emit({
-                        type: 'tabLongPress',
-                        target: route.key,
-                    });
-                };
-
-                const inputRange = state.routes.map((_, i) => i);
                 return (
                     <Title key={index} focused={isFocused} onPress={onPress}>
                         {index === 0 ? '게시판' : '키워드'}
@@ -113,7 +96,7 @@ const TabBar = ({ descriptors, navigation, position, state }) => {
             {state.index === 1 ||
                 <AddButtonBox><AddButton /></AddButtonBox>
             }
-        </Top>
+        </Container>
     );
 
 };
@@ -129,8 +112,8 @@ const BoardTopTabNavigator = () => {
                 return (<TabBar {...props} />);
             }}
         >
-            <Tab.Screen name='setBoards' component={SetKeywords} />
-            <Tab.Screen name='setKeywords' component={SetBoards} />
+            <Tab.Screen name='setBoards' component={SetBoards} />
+            <Tab.Screen name='setKeywords' component={SetKeywords} />
         </Tab.Navigator>
     );
 };

@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 import { color } from '../../themes/colors';
-import { Text, View } from 'react-native';
 import { image } from '../../themes/images';
 import { Pressable } from 'react-native';
+import { useRef, useState } from 'react';
 
 
 const Container = styled.View`
@@ -10,11 +10,13 @@ const Container = styled.View`
     border-radius: 12px;
     align-items: center;
     flex-direction: row;
-    border: 1px solid ${color.gray3};
+    border: 1px solid ${({ focused }) => focused ? color.primary : color.gray3};
     padding: 16px;
-`
+`;
 
-const Icon = styled.Image.attrs({ source: image.common.search.black })`
+const Icon = styled.Image.attrs(({ focused }) => ({
+    source: image.common.search[focused ? 'primary' : 'black']
+}))`
     margin-right: 24px;
     margin-bottom: 18px;
     margin-top: 18px;   
@@ -22,7 +24,11 @@ const Icon = styled.Image.attrs({ source: image.common.search.black })`
     width: 20px;
 `;
 
-const Input = styled.TextInput.attrs({placeholder: '키워드 입력하기', placeholderTextColor: color.gray6})`
+const Input = styled.TextInput.attrs({
+    placeholder: '키워드 입력하기',
+    placeholderTextColor: color.gray6,
+    selectionColor: color.primary,
+})`
     flex-grow: 1;
     flex-basis: 0;
     font-size: 14px;
@@ -36,18 +42,29 @@ const DeleteIcon = styled.Image`
     margin-left: 12px;
 `;
 
-const DeleteButton = () => {
+const DeleteButton = ({ pressDelete }) => {
     return (
-        <Pressable>
+        <Pressable onPress={pressDelete} hitSlop={50}>
             <DeleteIcon source={image.common.delete} />
         </Pressable>
     );
 };
 
 const InputBox = () => {
+    const [focus, setFocus] = useState(false);
+    const [input, setInput] = useState('')
+    const refInput = useRef(null);
+
     return (
-        <Container>
-            <Icon /><Input /><DeleteButton />
+        <Container focused={focus}>
+            <Icon focused={focus} />
+            <Input
+                onFocus={() => setFocus(true)}
+                onChangeText={(newInput) => setInput(newInput)}
+                value={input}
+                ref={refInput}
+                onBlur={() => refInput.current.blur()} />
+            <DeleteButton pressDelete={() => setInput('')} />
         </Container>
     )
 }

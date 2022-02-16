@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Text, TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
+import {Pressable} from 'react-native';
 import styled from "styled-components/native";
 import { color } from '../../themes/colors';
 import { image } from "../../themes/images";
@@ -78,9 +78,9 @@ const StarButton = ({ id, onPressOut, starred }) => {
     }
     
     return (
-        <TouchableWithoutFeedback onPressOut={_onPressOut}>
+        <Pressable onPressOut={_onPressOut} hitSlop={50}>
             <Star source={starred ? image.star.filled : image.star.unfilled} />
-        </TouchableWithoutFeedback>
+        </Pressable>
     )
 }
 

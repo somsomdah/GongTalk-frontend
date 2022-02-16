@@ -4,7 +4,7 @@ import BottomTabNavigation from './BottomTab';
 
 const Stack = createStackNavigator();
 
-const StackNavigation = () => {
+const OuterStackNavigation = () => {
     return (
         <Stack.Navigator
             screenOptions={{ headerShown: false }}
@@ -16,4 +16,4 @@ const StackNavigation = () => {
     );
 };
 
-export default StackNavigation;
+export default OuterStackNavigation;

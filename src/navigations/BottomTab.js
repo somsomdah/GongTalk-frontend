@@ -4,6 +4,7 @@ import {Category, Alarm, Settings } from '../screens/Main';
 import Home from '../screens/Home';import 
 styled from 'styled-components/native';
 import { image } from '../themes/images';
+import BoardTopTabNavigator from './BoardTopTab';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -28,7 +29,7 @@ const BottomTabNavigation = () => {
         >
 
             <BottomTab.Screen name='home' component={Home} />
-            <BottomTab.Screen name='category' component={Category} />
+            <BottomTab.Screen name='board' component={BoardTopTabNavigator} />
             <BottomTab.Screen name='alarm' component={Alarm} />
             <BottomTab.Screen name='settings' component={Settings} />
             
