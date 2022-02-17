@@ -1,54 +1,43 @@
-import React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { color } from '../themes/colors';
+import DraggableFlatList from 'react-native-draggable-flatlist';
+import Item from '../components/board/Item';
 
 
-const Container = styled.ScrollView.attrs({
-    showsVerticalScrollIndicator: false
-})`
+const Container = styled.View`
+    flex-direction: column;
+    padding: 10px 0px;
+    align-items: stretch;
     background-color: ${color.white};
     flex: 1;
 `;
 
-const InnerContainer = styled.View`
-    flex-direction: column;
-    padding: 10px 0px;
-    align-items: stretch;
-`;
-
-const ItemText = styled.Text`
-    font-size: 16px;
-    line-height: 24px;
-    color: ${color.black};
-`
-
-const ItemBox = styled.View`
-    padding: 16px 24px
-    flex-direction: row;
-    align-items: center;
-`;
-
-const Item = ({ children }) => {
-    return (
-        <ItemBox>
-            <Pressable hitSlop={20}>
-                <ItemText>{children}</ItemText>
-            </Pressable>
-        </ItemBox>
-    );
-};
+const data = [
+    { id: 1, name: '이화여자대학교 컴퓨터공학과' },
+    { id: 2, name: '서강대학교 컴퓨터공학과' },
+    { id: 3, name: '연세대학교 컴퓨터공학과' },
+    { id: 4, name: '이화여자대학교 엘텍공과대학' },
+]
 
 
-const SetBoards = () => {
+const SetBoards = ( ) => {
+
+    const [boards, setBoards] = useState(data);
+
+    const renderItem = ({ item, index, drag, isActive }) => {
+        return (
+            <Item name={item.name} onLongPress={drag} isActive={isActive} />
+        );
+    };
+
     return (
         <Container>
-            <InnerContainer>
-                <Item>이화여자대학교 컴퓨터공학과</Item>
-                <Item>서강대학교 컴퓨터공학과</Item>
-                <Item>연세대학교 컴퓨터공학과</Item>
-                <Item>이화여자대학교 엘텍공과대학</Item>
-            </InnerContainer>
+            <DraggableFlatList
+                keyExtractor={(board) => board.id}
+                data={boards}
+                onDragEnd={({ data }) => setBoards(data)}
+                renderItem={renderItem} />
         </Container>
 
     )

@@ -28,7 +28,8 @@ export const image = {
         },
         delete: require('../../assets/icons/delete.png'),
         add: require('../../assets/icons/add.png'),
-        moveBar: require('../../assets/icons/move_bar.png')
+        moveBar: require('../../assets/icons/move_bar.png'),
+        dropdown: {primary: require('../../assets/icons/dropdown_primary.png')}
     },
 
     school: {

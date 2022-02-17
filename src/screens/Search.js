@@ -28,7 +28,7 @@ const Search = () => {
     ];
     return (
         <Container>
-            <InputBox />
+            <InputBox placeholder={'키워드 검색하기'}/>
             <KeywordBox title='최근 검색어' keywordList={recentSearchKeywords} />
             <KeywordBox title='추천 검색어' keywordList={recommendedSearchKeywords} />
         </Container>);

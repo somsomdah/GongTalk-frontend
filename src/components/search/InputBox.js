@@ -25,7 +25,6 @@ const Icon = styled.Image.attrs(({ focused }) => ({
 `;
 
 const Input = styled.TextInput.attrs({
-    placeholder: '키워드 입력하기',
     placeholderTextColor: color.gray6,
     selectionColor: color.primary,
 })`
@@ -50,7 +49,7 @@ const DeleteButton = ({ pressDelete }) => {
     );
 };
 
-const InputBox = () => {
+const InputBox = ({placeholder}) => {
     const [focus, setFocus] = useState(false);
     const [input, setInput] = useState('')
     const refInput = useRef(null);
@@ -59,14 +58,17 @@ const InputBox = () => {
         <Container focused={focus}>
             <Icon focused={focus} />
             <Input
+            placeholder={placeholder}
                 onFocus={() => setFocus(true)}
                 onChangeText={(newInput) => setInput(newInput)}
                 value={input}
                 ref={refInput}
-                onBlur={() => refInput.current.blur()} />
+                onBlur={() => refInput.current.blur()} 
+            />
             <DeleteButton pressDelete={() => setInput('')} />
         </Container>
     )
 }
 
 export default InputBox;
+export {Container as PrimaryColorBox};

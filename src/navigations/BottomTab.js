@@ -8,7 +8,7 @@ import BoardTopTabNavigator from './BoardTopTab';
 
 const BottomTab = createBottomTabNavigator();
 
-const BottomTabNavigation = () => {
+const BottomTabNavigation = ({navigation}) => {
     return (
         <BottomTab.Navigator
             initialRouteName='home'
