@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { color } from '../../themes/colors';
+import { color } from '../../common/colors';
 
 
 const Container = styled.View`

@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { color } from '../themes/colors';
+import { color } from '../common/colors';
 import InputBox from '../components/search/InputBox'
 import KeywordBox from '../components/search/KeywordBox';
 

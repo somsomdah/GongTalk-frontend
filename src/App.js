@@ -1,9 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import styled, { ThemeProvider } from "styled-components/native";
 import OuterStackNavigation from "./navigations/OuterStack";
-import { color } from './themes/colors';
-import { image } from './themes/images';
-import { font } from './themes/fonts';
+import { color } from './common/colors';
+import { image } from './common/images';
+import { font } from './common/fonts';
 import { StatusBar } from 'react-native';
 
 const App = () => {

@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
-import { color } from '../../themes/colors';
-import { image } from '../../themes/images';
+import { color } from '../../common/colors';
+import { image } from '../../common/images';
 import { Pressable } from 'react-native';
 import { useRef, useState } from 'react';
 

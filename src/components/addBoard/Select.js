@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
-import { image } from "../../themes/images";
-import { color } from "../../themes/colors";
+import { image } from "../../common/images";
+import { color } from "../../common/colors";
 import InputBox from "../search/InputBox";
 import { PrimaryColorBox } from "../search/InputBox";
 import { Pressable } from 'react-native';

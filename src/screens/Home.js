@@ -4,7 +4,7 @@ import KeywordBox from '../components/home/KeywordBox';
 import Roundup from '../components/home/Roundup'
 import Board from '../components/home/Board';
 import styled from 'styled-components/native';
-import {color} from '../themes/colors';
+import {color} from '../common/colors';
 
 
 const Container = styled.ScrollView.attrs({

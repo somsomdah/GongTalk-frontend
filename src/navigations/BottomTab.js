@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {Category, Alarm, Settings } from '../screens/Main';
 import Home from '../screens/Home';import 
 styled from 'styled-components/native';
-import { image } from '../themes/images';
+import { image } from '../common/images';
 import BoardTopTabNavigator from './BoardTopTab';
 
 const BottomTab = createBottomTabNavigator();

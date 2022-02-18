@@ -1,6 +1,6 @@
 import { Pressable } from "react-native";
 import styled from "styled-components/native";
-import { image } from '../../themes/images'
+import { image } from '../../common/images'
 
 
 const Icon = styled.Image`

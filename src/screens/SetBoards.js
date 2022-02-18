@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
-import { color } from '../themes/colors';
+import { color } from '../common/colors';
 import DraggableFlatList from 'react-native-draggable-flatlist';
 import Item from '../components/board/Item';
 

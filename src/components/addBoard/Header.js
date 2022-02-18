@@ -1,7 +1,7 @@
 import { Pressable } from "react-native";
 import styled from "styled-components/native";
-import { color } from '../../themes/colors'
-import { image } from "../../themes/images";
+import { color } from '../../common/colors'
+import { image } from "../../common/images";
 
 // https://github.com/styled-components/styled-components/issues/709
 
