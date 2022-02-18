@@ -71,4 +71,3 @@ const InputBox = ({placeholder}) => {
 }
 
 export default InputBox;
-export {Container as PrimaryColorBox};

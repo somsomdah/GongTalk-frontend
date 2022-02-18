@@ -2,13 +2,12 @@ import styled from "styled-components/native";
 import { image } from "../../common/images";
 import { color } from "../../common/colors";
 import InputBox from "../search/InputBox";
-import { PrimaryColorBox } from "../search/InputBox";
 import { Pressable } from 'react-native';
 import { useState } from "react";
 
 
 const Container = styled.View`
-    border-bottom-color: ${color.gray3}
+    border-bottom-color: ${color.gray3};
     border-bottom-width: 0.5px;
     align-items: stretch;
     flex-direction: column;
@@ -27,18 +26,18 @@ const TitleText = styled.Text`
     line-height: 20px;
 `;
 
-const DropdownBox = ({ children }) => {
-    const _style = {
-        marginBottom: 28,
-        justifyContent: 'space-between'
-    };
-    return (<PrimaryColorBox style={_style} >{children}</PrimaryColorBox>);
-};
+const Title = ({ children }) => {
+    return (
+        <TitleBox>
+            <TitleText>{children}</TitleText>
+        </TitleBox>
+    );
+}
 
 const DropDownText = styled.Text`
     font-size: 14px;
     line-height: 20px;
-    color: ${color.black};
+    color: ${({selected}) => selected ? color.black : color.gray6};
 `;
 
 const DropDownIcon = styled.Image`
@@ -46,41 +45,40 @@ const DropDownIcon = styled.Image`
     width: 18px;
 `;
 
-// const SelectModal = styled.Modal`
-//     background-color : red;
-//     opacity: 0.5;
-// `;
+const DropdownBox = styled.View`
+    height: 54px;
+    border-radius: 12px;
+    align-items: center;
+    flex-direction: row;
+    border: 1px solid ${color.gray3};
+    padding: 16px;
+`;
 
-const Select = () => {
+const DropdownPressable = ({ onPress, selectedSchool }) => {
+    const _style = {
+        marginBottom: 28,
+        justifyContent: 'space-between'
+    };
+    return (
+        <Pressable onPress={onPress}>
+            <DropdownBox style={_style} >
+                <DropDownText selected={selectedSchool !== null}>
+                    { selectedSchool?.name || '학교 선택하기'}
+                </DropDownText>
+                <DropDownIcon source={image.common.dropdown.primary} />
+            </DropdownBox>
+        </Pressable>
+    );
+};
 
-    // const [modalVisible, setModalVisible] = useState(false);
+const Select = ({ onDropdownPress, selectedSchool }) => {
 
     return (
         <Container>
-            <TitleBox>
-                <TitleText>
-                    학교 선택하기
-                </TitleText>
-            </TitleBox>
-            <DropdownBox>
-                <DropDownText>
-                    이화여자대학교
-                </DropDownText>
-                {/* <Pressable hitSlop={50} onPress={() => setModalVisible(true)} android_ripple={{color: 'black'}}> */}
-                    <DropDownIcon source={image.common.dropdown.primary} />
-                {/* </Pressable> */}
-            </DropdownBox>
-            <TitleBox>
-                <TitleText>
-                    전공/기관 선택하기
-                </TitleText>
-            </TitleBox>
+            <Title>학교 선택하기</Title>
+            <DropdownPressable onPress={onDropdownPress} selectedSchool={selectedSchool} />
+            <Title>전공/기관 선택하기</Title>
             <InputBox placeholder={'전공/기관 검색하기'} />
-            {/* <SelectModal
-                transparent={false}
-                visible={modalVisible}
-                onRequestClose={() => { setModalVisible(false) }}
-            /> */}
         </Container>
     );
 }
