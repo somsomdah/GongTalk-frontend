@@ -16,12 +16,10 @@ const Chip = styled.TouchableOpacity`
 
 const Container = styled.ScrollView.attrs({
     horizontal: true,
-    contentContainerStyle: { paddingHorizontal: 23 },
+    contentContainerStyle: { paddingRight: 30 },
     showsHorizontalScrollIndicator: false
 })`
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-bottom: 12px;
+    padding: 20px 0px 4px 24px;
 `;
 
 const KeywordBox = ({ keywordList }) => {

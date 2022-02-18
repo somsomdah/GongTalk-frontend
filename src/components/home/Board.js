@@ -5,8 +5,6 @@ import { color } from '../../common/colors';
 import { image } from "../../common/images";
 
 const Container = styled.View`
-    margin-left: 24px;
-    margin-right: 24px;
     margin-bottom: 32px;
     flex-direction: column;
     align-items: stretch;
