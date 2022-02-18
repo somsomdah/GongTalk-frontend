@@ -5,8 +5,8 @@ import { Pressable } from 'react-native';
 
 
 const Container = styled.View.attrs({
-    borderBottomColor: color.gray2,
-    borderBottomWidth: 1
+    // borderBottomColor: color.gray2,
+    // borderBottomWidth: 1
 })`
     background-color: ${color.white};
     height: 56px;
@@ -16,11 +16,12 @@ const Container = styled.View.attrs({
     padding-right: 24px;
     padding-left: 24px;
     flex-direction: row;
+    elevation: 1;
 `;
 
 const TitleBox = styled.View.attrs(({ focused }) => ({
     borderBottomColor: focused ? color.primary : color.gray3,
-    borderBottomWidth: 3
+    borderBottomWidth: focused? 3 : 0
 }))`
     height: 38px;
     padding-bottom: 16px;

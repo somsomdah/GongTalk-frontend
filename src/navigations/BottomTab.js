@@ -20,6 +20,7 @@ const BottomTabNavigation = ({navigation}) => {
                 tabBarStyle: {
                     paddingHorizontal: 35,
                     height: 56,
+                    elevation: 1,
                 },
                 headerShown: false
             }

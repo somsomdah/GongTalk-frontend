@@ -1,7 +1,5 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import SearchBox from '../components/home/SearchBox';
-import KeywordBox from '../components/home/KeywordBox';
 
 export const Category = () => {
     return <Text>Category</Text>

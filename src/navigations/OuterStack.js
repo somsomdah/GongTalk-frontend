@@ -8,17 +8,12 @@ const Stack = createStackNavigator();
 const OuterStackNavigation = () => {
     return (
         <Stack.Navigator
-            screenOptions={{ headerShown: false }}
+            screenOptions={{ headerShown: false, animationEnabled: false}}
             initialRouteName='main'
         >
             <Stack.Screen name='main' component={BottomTabNavigation} />
             <Stack.Screen name="search" component={Search} />
-            <Stack.Screen name="addBoard" component={AddBoard} options={{
-                // headerShown: true, 
-                // // headerStatusBarHeight: 56, 
-                // headerStyle: {elevation: 20,
-                //     shadowOpacity: 1,}
-                }}/>
+            <Stack.Screen name="addBoard" component={AddBoard} />
         </Stack.Navigator>
     );
 };

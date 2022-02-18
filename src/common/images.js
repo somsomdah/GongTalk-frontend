@@ -37,5 +37,14 @@ export const image = {
         hongik: require('../../assets/schools/hongik-logo.png'),
         seogang: require('../../assets/schools/seogang-logo.png'),
 
+    },
+
+    symbol: {
+        letter: {
+            horizontal: require('../../assets/symbols/letter_horizontal_primary.png'),
+            vertical: require('../../assets/symbols/letter_vertical_primary.png'),
+        },
+        circle: require('../../assets/symbols/circle_primary.png'),
+        square: require('../../assets/symbols/square_primary.png'),
     }
 }

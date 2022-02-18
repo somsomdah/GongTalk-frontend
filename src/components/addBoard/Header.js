@@ -10,7 +10,7 @@ const Container = styled.View`
     shadow-offset: {width: 0px, height: 2px};
     shadow-opacity: 0.8;
     shadow-radius: 2px; */
-    elevation: 2;
+    elevation: 1;
     height: 56px;
     flex-direction: row;
     align-items: center;

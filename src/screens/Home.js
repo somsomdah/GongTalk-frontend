@@ -1,11 +1,10 @@
-import React from 'react';
-import SearchBox from '../components/home/SearchBox';
+import React, { useState } from 'react';
+import Header from '../components/home/Header';
 import KeywordBox from '../components/home/KeywordBox';
 import Roundup from '../components/home/Roundup'
 import Board from '../components/home/Board';
 import styled from 'styled-components/native';
 import { color } from '../common/colors';
-
 
 
 const Container = styled.View`
@@ -25,12 +24,15 @@ const BodyContainer = styled.View`
 
 
 const Home = ({ navigation }) => {
+
+    const [isOnTop, setIsOnTop] = useState(true);
+
     return (
         <Container>
-            <SearchBox navigation={navigation} />
-            <InnerContainer>
+            <Header navigation={navigation} isOnTop={isOnTop}/>
+            <InnerContainer onScroll={({nativeEvent})=>{nativeEvent.contentOffset.y < 5 ? setIsOnTop(true) : setIsOnTop(false)}}>
                 <KeywordBox keywordList={['#인턴', '#대외활동', '#해외', '#부트캠프', '#동아리']} />
-                <BodyContainer>
+                <BodyContainer >
                     <Roundup />
                     <Board />
                 </BodyContainer>
