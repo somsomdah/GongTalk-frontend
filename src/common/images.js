@@ -31,6 +31,7 @@ export const image = {
         moveBar: require('../../assets/icons/move_bar.png'),
         dropdown: {primary: require('../../assets/icons/dropdown_primary.png')},
         selected : require('../../assets/icons/selected.png'),
+        cancel: require('../../assets/icons/cancel.png'),
     },
 
     school: {

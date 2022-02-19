@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 
 
 const Container = styled.View`
-    padding: 16px 24px
+    padding: 16px 24px;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;

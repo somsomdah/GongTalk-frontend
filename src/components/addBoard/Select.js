@@ -4,6 +4,7 @@ import { color } from "../../common/colors";
 import InputBox from "../search/InputBox";
 import { Pressable } from 'react-native';
 import { useState } from "react";
+import { SemiHeadline3 } from "../Typography";
 
 
 const Container = styled.View`
@@ -71,6 +72,41 @@ const DropdownPressable = ({ onPress, selectedSchool }) => {
     );
 };
 
+
+const SearchBox = styled.View`
+    height: 54px;
+    border-radius: 12px;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    border: 1px solid ${({ focused }) => focused ? color.primary : color.gray3};
+    padding: 16px;
+`;
+
+const SearchIcon = styled.Image`
+    margin-right: 24px;
+    margin-bottom: 18px;
+    margin-top: 18px;   
+    height: 20px;
+    width: 20px;
+`;
+
+const SearchPressable = () => {
+    const [focused, setFocused] = useState(false)
+    const _onPressIn = () => setFocused(true);
+    const _onPressOut = () => setFocused(false);
+
+    return(
+        <Pressable onPressIn={_onPressIn} onPressOut={_onPressOut}>
+            <SearchBox focused={focused}>
+                <SearchIcon source={image.common.search[focused ? 'primary' : 'black']}/>
+                <SemiHeadline3 style={{color: color.gray6}}>전공/기관 검색하기</SemiHeadline3>
+            </SearchBox>
+        </Pressable>
+    );
+}
+
+
 const Select = ({ onDropdownPress, selectedSchool }) => {
 
     return (
@@ -78,7 +114,7 @@ const Select = ({ onDropdownPress, selectedSchool }) => {
             <Title>학교 선택하기</Title>
             <DropdownPressable onPress={onDropdownPress} selectedSchool={selectedSchool} />
             <Title>전공/기관 선택하기</Title>
-            <InputBox placeholder={'전공/기관 검색하기'} />
+            <SearchPressable />
         </Container>
     );
 }
