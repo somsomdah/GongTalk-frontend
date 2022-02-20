@@ -7,7 +7,7 @@ import { Pressable } from 'react-native';
 const Container = styled.View.attrs({
 })`
     background-color: ${color.white};
-    height: 56px;
+    
     justify-content: flex-start;
     align-items: center;
     padding-top: 18px;

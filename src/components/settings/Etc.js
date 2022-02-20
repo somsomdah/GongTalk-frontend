@@ -2,7 +2,7 @@ import { Pressable } from "react-native";
 import styled from "styled-components/native";
 import { color } from "../../common/colors";
 import { image } from "../../common/images";
-import { SemiHeadline2, SemiHeadline4 } from "../Typography";
+import { SemiHeadline2, SemiHeadline4 } from "../_common/Typography";
 
 const Container = styled.View`
     padding: 20px 24px 28px 20px;
@@ -30,28 +30,27 @@ const NextImage = styled.Image.attrs({
     width: 16px;
 `;
 
-const Item = ({ value, onPress }) => {
+const Item = ({ value, onNextPress }) => {
 
     return (
-
-        <ItemBox>
-            <SemiHeadline2 >{value}</SemiHeadline2>
-            <Pressable onPress={onPress}>
+        <Pressable onPress={onNextPress}>
+            <ItemBox>
+                <SemiHeadline2 >{value}</SemiHeadline2>
                 <NextImage />
-            </Pressable>
-        </ItemBox>
+            </ItemBox>
+        </Pressable>
 
 
     );
 }
 
-const Etc = () => {
+const Etc = ({ navigation }) => {
     return (
         <Container>
             <TitleBox>
                 <SemiHeadline4>기타</SemiHeadline4>
             </TitleBox>
-            <Item value={'공지사항'} />
+            <Item value={'공지사항'} onNextPress={() => navigation.navigate('noticeList')} />
             <Item value={'팀소개'} />
             <Item value={'오픈소스'} />
         </Container>

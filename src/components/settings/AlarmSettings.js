@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components/native";
 import { color } from "../../common/colors";
-import { SemiHeadline2, SemiHeadline4 } from "../Typography";
+import { SemiHeadline2, SemiHeadline4 } from "../_common/Typography";
 import { Switch } from "react-native";
 
 

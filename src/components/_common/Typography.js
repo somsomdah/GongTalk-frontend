@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { color } from "../common/colors";
+import { color } from "../../common/colors";
 
 
 export const Headline4 = styled.Text`

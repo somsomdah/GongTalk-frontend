@@ -5,7 +5,6 @@ import { color } from '../common/colors'
 import { image } from '../common/images';
 import Item from '../components/alarm/AlarmItem';
 
-
 const Container = styled.View`
     flex: 1;
     flex-direction: column;
@@ -17,7 +16,7 @@ const Container = styled.View`
 const postList = [
     {
         id: 1,
-        title: '제목제목제목 제목제목제목 제목제목제목 제목제목제목 제목제목제목 제목제목제목',
+        title: '제목제목제목 제목제목제목 제목제목제목 제목제목제목 제목제목제목 제목제목제목 제목제목제목 제목제목제목 제목제목제목 제목제목제목 제목제목제목 제목제목제목',
         content: '내용 내용내용 내용 내용냉냉냉냉냉냉 내용내용 내용입니다. 내용 내용내용 내용 내용냉냉냉냉냉냉 내용내용 내용입니다. 내용 내용내용 내용 내용냉냉냉냉냉냉 내용내용 내용입니다. 내용 내용내용 내용 내용냉냉냉냉냉냉 내용내용 내용입니다.',
         writer: '산학협력관',
         date: '2022.01.04',

@@ -4,7 +4,7 @@ import { color } from "../../common/colors";
 import InputBox from "../search/InputBox";
 import { Pressable } from 'react-native';
 import { useState } from "react";
-import { SemiHeadline3 } from "../Typography";
+import { SemiHeadline3 } from "../_common/Typography";
 
 
 const Container = styled.View`

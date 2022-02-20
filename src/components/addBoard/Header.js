@@ -11,11 +11,11 @@ const Container = styled.View`
     shadow-opacity: 0.8;
     shadow-radius: 2px; */
     elevation: 1;
-    height: 56px;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     background-color: ${color.white};
+    padding: 16px 24px;
 `
 
 
@@ -39,9 +39,7 @@ const ReturnButtonIconBox = styled.View`
 const ReturnButton = ({ navigation }) => (
 
     <Pressable hitSlop={50} onPress={() => navigation.goBack()}>
-        
             <ReturnButtonIcon source={image.common.return} />
-        
     </Pressable>
 
 );

@@ -18,12 +18,12 @@ const BodyContainer = styled.ScrollView.attrs({
 })``;
 
 
-const Settings = () => {
+const Settings = ({navigation}) => {
     return(
         <Container>
             <Header />
             <AlarmSettings />
-            <Etc />
+            <Etc navigation={navigation}/>
         </Container>
     );
 }

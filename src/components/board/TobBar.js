@@ -9,7 +9,7 @@ const Container = styled.View.attrs({
     // borderBottomWidth: 1
 })`
     background-color: ${color.white};
-    height: 56px;
+    
     justify-content: flex-start;
     align-items: center;
     padding-top: 18px;

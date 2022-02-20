@@ -1,15 +1,15 @@
 import styled from "styled-components/native";
 import { color } from "../../common/colors";
-import { SemiHeadline2_1 } from "../Typography";
+import { SemiHeadline2_1 } from "../_common/Typography";
 
 const Container = styled.View`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    padding: 0px 24px;
+    padding: 16px 24px;
     elevation: 1;
     background-color: ${color.white};
-    height: 56px;
+    
 `;
 
 const Header = () => {

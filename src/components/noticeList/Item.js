@@ -20,14 +20,6 @@ const ItemInfoContainer = styled.View`
     align-items: center;
 `;
 
-const ItemInfoDivider = styled.View`
-    width: 4px;
-    height: 8px;
-    margin-left: 4px;
-    border-left-color: ${color.gray3};
-    border-left-width: 1px;
-`;
-
 const Item = ({ post }) => {
     return (
         <ItemBox>
@@ -36,10 +28,6 @@ const Item = ({ post }) => {
                 numberOfLines={2}
                 style={{ marginBottom: 6 }}>{post.title}</SemiHeadline3>
             <ItemInfoContainer>
-                <SemiHeadline5>{`${post.board.school.name} ${post.board.name}`}</SemiHeadline5>
-                <ItemInfoDivider />
-                <SemiHeadline5>{post.writer}</SemiHeadline5>
-                <ItemInfoDivider />
                 <SemiHeadline5 style={{ color: color.gray5 }}>{post.date}</SemiHeadline5>
             </ItemInfoContainer>
 

@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { image } from "../../common/images";
 import { color } from "../../common/colors";
-import { ButtonLargeW, SemiHeadline2 } from "../Typography";
+import { ButtonLargeW, SemiHeadline2 } from "../_common/Typography";
 import { View, Pressable } from "react-native";
 import { useState } from "react";
 

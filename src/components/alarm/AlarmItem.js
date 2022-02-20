@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { color } from '../../common/colors'
-import { SemiHeadline3, SmallBody1, SemiHeadline5 } from '../Typography'
+import { SemiHeadline3, SmallBody1, SemiHeadline5 } from '../_common/Typography'
 
 
 const ItemBox = styled.View`
     background-color: ${color.white};
     align-items: center;
     flex-direction: row;
-    padding: 13px 24px;
+    padding:16px 14px;
     border-bottom-color: ${color.gray2};
     border-bottom-width: 0.5px;
 

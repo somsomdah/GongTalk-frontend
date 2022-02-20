@@ -4,7 +4,7 @@ import { image } from '../../common/images';
 import { color } from "../../common/colors";
 
 const Container = styled.View`
-    height: 56px;
+    
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
