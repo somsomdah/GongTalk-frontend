@@ -8,7 +8,7 @@ import { SemiHeadline3 } from "../Typography";
 
 
 const Container = styled.View`
-    border-bottom-color: ${color.gray3};
+    border-bottom-color: ${color.gray2};
     border-bottom-width: 0.5px;
     align-items: stretch;
     flex-direction: column;

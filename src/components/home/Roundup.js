@@ -35,6 +35,8 @@ const Symbol = styled.Image`
     margin-top: 2px;
     margin-bottom: 9px;
     margin-right: 12px;
+    width: 28px;
+    height: 28px;
 `;
 
 const TextBox = styled.View`
@@ -76,7 +78,7 @@ const Roundup = () => {
     return (
         <Container>
             <TitleContainer>
-                <Title>모든 공지사항</Title>
+                <Title>모아보기</Title>
             </TitleContainer>
             <ContentContainer>
                 <ItemBox>

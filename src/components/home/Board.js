@@ -76,7 +76,7 @@ const StarButton = ({ id, onPressOut, starred }) => {
     }
     
     return (
-        <Pressable onPressOut={_onPressOut} hitSlop={50}>
+        <Pressable onPressOut={_onPressOut} hitSlop={10}>
             <Star source={starred ? image.star.filled : image.star.unfilled} />
         </Pressable>
     )
@@ -88,7 +88,7 @@ const ItemTitleBox = styled.TouchableOpacity`
 `;
 
 const ItemTitle = styled.Text.attrs({ ellipsizeMode: 'tail', numberOfLines: 2 })`
-    color: ${color.black}
+    color: ${color.black};
     font-size: 14px;
     font-weight: 400;
     line-height: 20.8px;

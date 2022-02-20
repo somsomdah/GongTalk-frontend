@@ -5,8 +5,6 @@ import { Pressable } from 'react-native';
 
 
 const Container = styled.View.attrs({
-    // borderBottomColor: color.gray2,
-    // borderBottomWidth: 1
 })`
     background-color: ${color.white};
     height: 56px;
@@ -45,27 +43,6 @@ const Title = ({ focused, onPress, children }) => {
     );
 };
 
-const AddButtonBox = styled.View`
-    flex-grow: 1;
-    justify-content: flex-end;
-    flex-direction: row;
-    padding-bottom: 18px;
-`;
-
-const AddIcon = styled.Image`
-    width: 20px;
-    height: 20px;
-`;
-
-const AddButton = ({navigation}) => {
-    return (
-        <Pressable hitSlop={50} onPress={() => navigation.navigate('addBoard') }>
-            <AddIcon source={image.common.add} />
-        </Pressable>
-    );
-};
-
-
 const TobBar = ({ navigation, state }) => {
     return (
         <Container>
@@ -87,13 +64,10 @@ const TobBar = ({ navigation, state }) => {
 
                 return (
                     <Title key={index} focused={isFocused} onPress={onPress}>
-                        {index === 0 ? '게시판' : '키워드'}
+                        {index === 0 ? '알림' : '스크랩'}
                     </Title>
                 );
             })}
-            {state.index === 1 ||
-                <AddButtonBox ><AddButton navigation={navigation}/></AddButtonBox>
-            }
         </Container>
     );
 

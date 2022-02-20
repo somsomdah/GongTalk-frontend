@@ -32,6 +32,12 @@ export const image = {
         dropdown: {primary: require('../../assets/icons/dropdown_primary.png')},
         selected : require('../../assets/icons/selected.png'),
         cancel: require('../../assets/icons/cancel.png'),
+        next: require('../../assets/icons/next.png'),
+    },
+
+    toggle : {
+        on: require('../../assets/icons/toggle_on.png'),
+        off: require('../../assets/icons/toggle_off.png'),
     },
 
     school: {
@@ -48,5 +54,5 @@ export const image = {
         },
         circle: require('../../assets/symbols/circle_primary.png'),
         square: require('../../assets/symbols/square_primary.png'),
-    }
+    },
 }

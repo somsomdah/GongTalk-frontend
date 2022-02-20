@@ -5,7 +5,7 @@ import { color } from "../common/colors";
 export const Headline4 = styled.Text`
     font-family: 'pretendard-regular';
     font-size: 22px;
-    line-height: 32px;
+    line-height: 20px;
     color: ${color.black};
     /* letter-spacing: -0.4%; */
 `;
@@ -85,7 +85,7 @@ export const SmallBody2 = styled.Text`
 export const ButtonSmall = styled.Text`
     font-family: 'pretendard-medium';
     font-size: 12px;
-    line-height: 21px;
+    line-height: 20px;
     /* letter-spacing: 0%; */
     color: ${color.black};
 `;
@@ -93,7 +93,7 @@ export const ButtonSmall = styled.Text`
 export const ButtonMedium = styled.Text`
     font-family: 'pretendard-regular';
     font-size: 14px;
-    line-height: 21px;
+    line-height: 20px;
     /* letter-spacing: 0%; */
     color: ${color.black};
 `;
@@ -101,7 +101,7 @@ export const ButtonMedium = styled.Text`
 export const ButtonMediumW = styled.Text`
     font-family: 'pretendard-medium';
     font-size: 14px;
-    line-height: 21px;
+    line-height: 20px;
     /* letter-spacing: 0%; */
     color: ${color.white};
 `;
@@ -109,7 +109,7 @@ export const ButtonMediumW = styled.Text`
 export const ButtonLarge = styled.Text`
     font-family: 'pretendard-regular';
     font-size: 16px;
-    line-height: 21px;
+    line-height: 20px;
     /* letter-spacing: 0%; */
     color: ${color.black};
 `;
@@ -117,7 +117,7 @@ export const ButtonLarge = styled.Text`
 export const ButtonLargeW = styled.Text`
     font-family: 'pretendard-medium';
     font-size: 16px;
-    line-height: 21px;
+    line-height: 20px;
     /* letter-spacing: 0%; */
     color: ${color.white};
 `;
