@@ -1,7 +1,7 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import SetBoards from "../screens/SetBoards";
 import SetKeywords from "../screens/SetKeywords";
-import TabBar from '../components/board/TobBar'
+import TobBar from '../components/board/TobBar'
 
 
 const Tab = createMaterialTopTabNavigator();
@@ -12,7 +12,7 @@ const BoardTopTabNavigator = () => {
             initialRouteName='setBoard'
             tabBarPosition='top'
             tabBar={(props) => {
-                return (<TabBar {...props} />);
+                return (<TobBar {...props} />);
             }}
         >
             <Tab.Screen name='setBoards' component={SetBoards} />
