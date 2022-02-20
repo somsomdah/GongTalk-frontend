@@ -35,11 +35,6 @@ export const image = {
         next: require('../../assets/icons/next.png'),
     },
 
-    toggle : {
-        on: require('../../assets/icons/toggle_on.png'),
-        off: require('../../assets/icons/toggle_off.png'),
-    },
-
     school: {
         ewha: require('../../assets/schools/ewha-logo.png'),
         hongik: require('../../assets/schools/hongik-logo.png'),
