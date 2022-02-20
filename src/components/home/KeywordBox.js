@@ -22,11 +22,11 @@ const Container = styled.ScrollView.attrs({
     padding: 20px 0px 4px 24px;
 `;
 
-const KeywordBox = ({ keywordList }) => {
+const KeywordBox = ({ navigation, keywordList }) => {
     return (
         <Container>
             {Object.values(keywordList).map(keyword => (
-                <Chip key={keyword}>
+                <Chip key={keyword} onPress={() => navigation.navigate('postList', {headerValue: keyword})}>
                     <Text>{keyword}</Text>
                 </Chip>
             ))}

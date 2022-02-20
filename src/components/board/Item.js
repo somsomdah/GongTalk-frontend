@@ -45,7 +45,7 @@ const Item = ({ name, onLongPress, isActive }) => {
             <Pressable hitSlop={20}>
                 <ItemText>{name}</ItemText>
             </Pressable>
-            <Pressable hitSlop={50} onLongPress={onLongPress}>
+            <Pressable hitSlop={20} onLongPress={onLongPress}>
                 <DragIconImage />
             </Pressable>
         </Container>

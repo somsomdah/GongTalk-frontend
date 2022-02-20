@@ -59,7 +59,7 @@ const AddIcon = styled.Image`
 
 const AddButton = ({navigation}) => {
     return (
-        <Pressable hitSlop={50} onPress={() => navigation.navigate('addBoard') }>
+        <Pressable hitSlop={20} onPress={() => navigation.navigate('addBoard') }>
             <AddIcon source={image.common.add} />
         </Pressable>
     );

@@ -43,7 +43,7 @@ const DeleteIcon = styled.Image`
 
 const DeleteButton = ({ pressDelete }) => {
     return (
-        <Pressable onPress={pressDelete} hitSlop={50}>
+        <Pressable onPress={pressDelete} hitSlop={10}>
             <DeleteIcon source={image.common.delete} />
         </Pressable>
     );

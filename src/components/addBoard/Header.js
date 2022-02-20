@@ -38,7 +38,7 @@ const ReturnButtonIconBox = styled.View`
 
 const ReturnButton = ({ navigation }) => (
 
-    <Pressable hitSlop={50} onPress={() => navigation.goBack()}>
+    <Pressable hitSlop={10} onPress={() => navigation.goBack()}>
             <ReturnButtonIcon source={image.common.return} />
     </Pressable>
 
