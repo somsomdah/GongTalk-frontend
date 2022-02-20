@@ -4,6 +4,7 @@ import BottomTabNavigation from './BottomTab';
 import AddBoard from '../screens/AddBoard';
 import NoticeList from '../screens/NoticeList';
 import PostList from '../screens/PostList';
+import PostDetail from '../screens/PostDetail';
 
 const Stack = createStackNavigator();
 
@@ -18,7 +19,8 @@ const OuterStackNavigation = () => {
             <Stack.Screen name="addBoard" component={AddBoard} />
             <Stack.Screen name='noticeList' component={NoticeList} />
             <Stack.Screen name='postList' component={PostList} />
-            
+            <Stack.Screen name='postDetail' component={PostDetail} />
+
         </Stack.Navigator>
     );
 };

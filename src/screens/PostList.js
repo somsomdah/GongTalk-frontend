@@ -1,5 +1,6 @@
+import { NavigationHelpersContext } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Pressable } from 'react-native';
 import styled from 'styled-components/native';
 import { color } from '../common/colors'
 import { image } from '../common/images';
@@ -47,7 +48,11 @@ const PostList = ({ route, navigation }) => {
             <ItemContainer>
                 <FlatList showsVerticalScrollIndicator={false}
                     data={items}
-                    renderItem={({ item }) => <Item key={item.id} post={item} toggleStar={_toggleStar} starred={item.starred}/>}
+                    renderItem={({ item }) => (
+                        <Pressable onPress={() => navigation.navigate('postDetail', {headerValue: headerValue})}>
+                            <Item key={item.id} post={item} toggleStar={_toggleStar} starred={item.starred} />
+                        </Pressable>
+                    )}
                 />
             </ItemContainer>
         </Container>

@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\DASOM\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add react-native-reanimated@~2.3.1
+  C:\Program Files\nodejs\node.exe C:\Users\DASOM\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add react-native-elements
 
 PATH: 
-  C:\Program Files\Tesseract-OCR;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\libnvvp;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\libnvvp;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Brackets\command;C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\MongoDB\Server\4.2\bin;C:\Program Files\NVIDIA Corporation\Nsight Compute 2019.4.0\;C:\Program Files\MiKTeX\miktex\bin\x64\;"C:\Program Files\Java\jdk-13.0.1\bin;";C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\MySQL\MySQL Server 8.0\bin\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\APM_Setup\Server\Apache\bin;C:\APM_Setup\Server\MySQL5\bin;C:\APM_Setup\Server\PHP5;C:\apache-maven-3.8.4\bin;C:\spring-2.6.3\bin\;C:\Users\DASOM\AppData\Local\Android\Sdk\platform-tools\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\DASOM\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\DASOM\AppData\Local\Programs\Python\Python36\;C:\Users\DASOM\AppData\Local\Microsoft\WindowsApps;C:\Users\DASOM\AppData\Local\GitHubDesktop\bin;C:\Users\DASOM\AppData\Roaming\npm;C:\Users\DASOM\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.3\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.3\bin;C:\Program Files\MySQL\MySQL Server 8.0\bin\;C:\spring-2.6.3\bin\;C:\Users\DASOM\AppData\Local\Programs\Fiddler;%ANDORID_HOME%\platform-tools;
+  C:\Program Files\Tesseract-OCR;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\libnvvp;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\libnvvp;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Brackets\command;C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\MongoDB\Server\4.2\bin;C:\Program Files\NVIDIA Corporation\Nsight Compute 2019.4.0\;C:\Program Files\MiKTeX\miktex\bin\x64\;"C:\Program Files\Java\jdk-13.0.1\bin;";C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\MySQL\MySQL Server 8.0\bin\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\APM_Setup\Server\Apache\bin;C:\APM_Setup\Server\MySQL5\bin;C:\APM_Setup\Server\PHP5;C:\apache-maven-3.8.4\bin;%SPRING_HOME%\bin\;%ANDROID_HOME%\platform-tools\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\DASOM\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\DASOM\AppData\Local\Programs\Python\Python36\;C:\Users\DASOM\AppData\Local\Microsoft\WindowsApps;C:\Users\DASOM\AppData\Local\GitHubDesktop\bin;C:\Users\DASOM\AppData\Roaming\npm;C:\Users\DASOM\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.3\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.3\bin;C:\Program Files\MySQL\MySQL Server 8.0\bin\;C:\spring-2.6.3\bin\;C:\Users\DASOM\AppData\Local\Programs\Fiddler;%ANDORID_HOME%\platform-tools;
 
 Yarn version: 
   1.22.17
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\Users\DASOM\Desktop\gongtalk-app\node_modules\@babel\generator\node_modules\.bin'
+  Error: EPERM: operation not permitted, unlink 'C:\Users\DASOM\Desktop\gongtalk-app\node_modules\@babel\helper-compilation-targets\node_modules\.bin'
 
 npm manifest: 
   {
@@ -35,6 +35,7 @@ npm manifest:
       "@react-navigation/native": "^6.0.8",
       "@react-navigation/stack": "^6.1.1",
       "expo": "~44.0.0",
+      "expo-font": "~10.0.4",
       "expo-status-bar": "~1.2.0",
       "react": "^17.0.2",
       "react-dom": "17.0.1",
@@ -42,8 +43,9 @@ npm manifest:
       "react-native-components": "^0.0.1",
       "react-native-draggable-flatlist": "^3.0.5",
       "react-native-gesture-handler": "~2.1.0",
+      "react-native-modal": "^13.0.0",
       "react-native-pager-view": "5.4.9",
-      "react-native-reanimated": "^2.4.1",
+      "react-native-reanimated": "~2.3.1",
       "react-native-safe-area-context": "3.3.2",
       "react-native-screens": "~3.10.1",
       "react-native-tab-view": "^3.1.1",
@@ -2695,7 +2697,7 @@ Lockfile:
       "@expo/config-plugins" "^4.0.2"
       uuid "^3.4.0"
   
-  expo-font@~10.0.5:
+  expo-font@~10.0.4, expo-font@~10.0.5:
     version "10.0.5"
     resolved "https://registry.yarnpkg.com/expo-font/-/expo-font-10.0.5.tgz#8010060ec5326b3b462f7a1ac6b232dc4d1a7317"
     integrity sha512-x9YwM0xLkDdSvFjeNbyuh33Q1Hk3uc2jbMuuAN5W2ZVcUZqG0M8GCX/KV/D/7rYqdXKbliQA5r44MyDwZe/XRw==
@@ -4579,7 +4581,7 @@ Lockfile:
       kleur "^3.0.3"
       sisteransi "^1.0.5"
   
-  prop-types@^15.6.0, prop-types@^15.7.2:
+  prop-types@^15.6.0, prop-types@^15.6.2, prop-types@^15.7.2:
     version "15.8.1"
     resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
     integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -4653,6 +4655,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
     integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
   
+  react-native-animatable@1.3.3:
+    version "1.3.3"
+    resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.3.tgz#a13a4af8258e3bb14d0a9d839917e9bb9274ec8a"
+    integrity sha512-2ckIxZQAsvWn25Ho+DK3d1mXIgj7tITkrS4pYDvx96WyOttSvzzFeQnM2od0+FUMzILbdHDsDEqZvnz1DYNQ1w==
+    dependencies:
+      prop-types "^15.7.2"
+  
   react-native-codegen@^0.0.6:
     version "0.0.6"
     resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.0.6.tgz#b3173faa879cf71bfade8d030f9c4698388f6909"
@@ -4683,15 +4692,23 @@ Lockfile:
       lodash "^4.17.21"
       prop-types "^15.7.2"
   
+  react-native-modal@^13.0.0:
+    version "13.0.0"
+    resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-13.0.0.tgz#b7117400cae8548e713eed760077dee44f78628e"
+    integrity sha512-k6r9T31mc7HIDFj1V53ceAAN1dwc8052c4JLtDVEmEQ19Bbq9yiLXoDsQuNb+hB8A+2tVOXmo5Gq4IQfb11upw==
+    dependencies:
+      prop-types "^15.6.2"
+      react-native-animatable "1.3.3"
+  
   react-native-pager-view@5.4.9:
     version "5.4.9"
     resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.4.9.tgz#c0d40847cfeda5a4e729b53271b0ee0fedff3eb5"
     integrity sha512-D6tzxpwMGdl6CXgtskGWhKRc5cJakCazESRGt7PkqnpyiH3N35ft1KmR82pCSQetAFlytFiToeu3a/dG5CELvA==
   
-  react-native-reanimated@^2.4.1:
-    version "2.4.1"
-    resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.4.1.tgz#4e33876fba525ce60ac13ab3c81fc3a9f8b132fe"
-    integrity sha512-kvf7ylGlwa5hxMQ+wpPFjQrI2c6eexf53/xRo+dvXBNefGmSYaYR5sFtD0XMMzIPQlkCB9tJ0Pu9+2WCQUY7Cg==
+  react-native-reanimated@~2.3.1:
+    version "2.3.2"
+    resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.3.2.tgz#3b132db186dac04a5ed710f5e4ed5733c89020c5"
+    integrity sha512-iJwnxroNhECGIB+XRLjQhLKJp3iVxuUtnRTGh6WYvPMZHRft0Mf/HvsKiqz2fEFuZgQgGBB9N26Og85cb1HjTA==
     dependencies:
       "@babel/plugin-transform-object-assign" "^7.10.4"
       "@types/invariant" "^2.2.35"

@@ -33,7 +33,9 @@ export const image = {
         selected : require('../../assets/icons/selected.png'),
         cancel: require('../../assets/icons/cancel.png'),
         next: require('../../assets/icons/next.png'),
-        more: require('../../assets/icons/more.png')
+        more: require('../../assets/icons/more.png'),
+        share: require('../../assets/icons/share.png'),
+        link: require('../../assets/icons/link.png'),
     },
 
     school: {
