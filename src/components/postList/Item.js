@@ -53,7 +53,7 @@ const StarButton = ({ id, onPressOut, starred }) => {
     )
 }
 
-const Item = ({ post, toggleStar, starred}) => {
+const Item = ({ post, toggleStar}) => {
     return (
         <ItemBox>
             <SemiHeadline3
@@ -66,7 +66,7 @@ const Item = ({ post, toggleStar, starred}) => {
                     <SemiHeadline5>{post.writer}</SemiHeadline5>
                     <ItemInfoDivider />
                     <SemiHeadline5 style={{ color: color.gray5 }}>{post.date}</SemiHeadline5>
-                    <StarButtonBox><StarButton StarButton id={post.id} onPressOut={toggleStar} starred={starred} /></StarButtonBox>
+                    <StarButtonBox><StarButton StarButton id={post.id} onPressOut={toggleStar} starred={post.starred} /></StarButtonBox>
             </ItemInfoContainer>
         </ItemBox>
     )

@@ -2,8 +2,9 @@ import styled from "styled-components/native";
 import { color } from "../../common/colors";
 import { image } from "../../common/images";
 import { SemiHeadline2_1, SemiHeadline4 } from "../_common/Typography";
-import { Image, Pressable } from "react-native";
-import { Tooltip } from 'react-native-elements';
+import { Pressable, Linking } from "react-native";
+import Modal from 'react-native-modal';
+
 
 const Container = styled.View`
     flex-direction: row;
@@ -28,6 +29,9 @@ const ReturnButton = ({ navigation }) => (
 );
 
 const PopOverBox = styled.View`
+    position: absolute; 
+    top: 16px; 
+    right: 20px; 
     background-color: ${color.white};
     border-radius: 16px;
     flex-direction: column;
@@ -41,55 +45,73 @@ const PopOverDivider = styled.View`
     align-self: stretch;
 `
 
-const PopOverIcon = styled.View`
+const PopOverIcon = styled.Image`
     width: 16px;
     height: 16px;
 `
 
-const PopOver = () => {
-    _style = {
-        padding: 14
+const PopOver = ({ isVisible, setIsVisible, postUrl }) => {
+    const _style = {
+        padding: 12,
+        flexDirection: 'row',
+        alignItems: 'center'
+    }
+
+    const _textStyle = {
+        marginLeft: 5
     }
 
     return (
-        <PopOverBox>
-            <Pressable style={_style}>
-                <PopOverIcon source={image.common.share} />
-                <SemiHeadline4>
-                    {'공유하기'}
-                </SemiHeadline4>
-            </Pressable>
-            <PopOverDivider />
-            <Pressable style={_style}>
-                <PopOverIcon source={image.common.link} />
-                <SemiHeadline4>
-                    {'웹으로 이동하기'}
-                </SemiHeadline4>
-            </Pressable>
-        </PopOverBox>
+        <Modal
+            backdropOpacity={0.1}
+            isVisible={isVisible}
+            onBackButtonPress={() => setIsVisible(false)}
+            onBackdropPress={() => setIsVisible(false)}
+            animationInTiming={1}
+            animationOutTiming={1}
+            >
+            <PopOverBox>
+                <Pressable style={_style}>
+                    <PopOverIcon source={image.common.share} />
+                    <SemiHeadline4 style={_textStyle}>
+                        {'공유하기'}
+                    </SemiHeadline4>
+                </Pressable>
+                <PopOverDivider />
+                <Pressable style={_style} onPress={() => Linking.openURL(postUrl)}>
+                    <PopOverIcon source={image.common.link} />
+                    <SemiHeadline4 style={_textStyle}>
+                        {'웹으로 이동하기'}
+                    </SemiHeadline4>
+                </Pressable>
+            </PopOverBox>
+        </Modal>
+
     );
 }
 
 
+const MoreButton = ({setModalVisible }) => {
 
-const MoreButton = () => {
     return (
-        <Tooltip popover={<PopOver />} withPointer={false}>
+        <Pressable onPress={() => setModalVisible(true)}>
             <ButtonIcon source={image.common.more} />
-        </Tooltip>
+        </Pressable>
+
     );
 
 }
 
 
-const Header = ({ value, navigation }) => {
+const Header = ({ value, navigation, setModalVisible }) => {
     return (
         <Container>
             <ReturnButton navigation={navigation} />
             <SemiHeadline2_1>{value}</SemiHeadline2_1>
-            <MoreButton />
+            <MoreButton setModalVisible={setModalVisible}/>
         </Container>
     );
 };
 
 export default Header;
+export {PopOver}

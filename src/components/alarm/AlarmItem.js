@@ -48,7 +48,7 @@ const Item = ({ post }) => {
             <ItemTextContainer>
                 <SemiHeadline3
                     ellipsizeMode='tail'
-                    numberOfLines={2}
+                    numberOfs={2}
                     style={{ marginBottom: 6 }}>{post.title}</SemiHeadline3>
                 <ItemInfoContainer>
                     <SemiHeadline5>{`${post.board.school.name} ${post.board.name}`}</SemiHeadline5>
