@@ -17,7 +17,6 @@ const Container = styled.View`
 const SymbolImage = styled.Image`
     width: 44px;
     height: 20px;
-    margin-top: 5px;
     margin-left: 10px;
     /* width: 66px;
     height: 30px; */
