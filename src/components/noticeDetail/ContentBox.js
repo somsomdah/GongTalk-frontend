@@ -6,9 +6,8 @@ import Markdown from 'react-native-markdown-display';
 const Container = styled.View`
     flex-basis: 0;
     flex-grow: 1;
-    padding: 12px;
+    padding: 16px;
     align-items: stretch;
-    /* background-color: ${color.gray2}; */
 `;
 
 const ScrollContainer = styled.ScrollView.attrs({
