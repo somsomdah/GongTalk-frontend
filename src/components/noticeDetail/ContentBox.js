@@ -1,20 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { color } from '../../common/colors'
-import { WebView } from 'react-native-webview';
+import Markdown from 'react-native-markdown-display';
 
 const Container = styled.View`
     flex-basis: 0;
     flex-grow: 1;
     padding: 12px;
     align-items: stretch;
-    /* background-color: ${color.gray1}; */
+    /* background-color: ${color.gray2}; */
 `;
 
+const ScrollContainer = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false,
+  contentContainerStyle: { paddingBottom: 30 },
+})``;
+
 const ContentBox = ({ notice }) => {
+  const [rawMd, setRawMd] = useState('')
+
+  fetch("https://raw.githubusercontent.com/somsomdah/test/main/Vivace%204e91a.md").then((response) => { response.text().then((raw) => { setRawMd(raw) }) })
   return (
     <Container>
-      <WebView source={{uri: notice.url}} />
+      <ScrollContainer>
+        <Markdown>
+          {rawMd}
+        </Markdown>
+      </ScrollContainer>
     </Container>
   );
 }
