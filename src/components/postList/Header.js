@@ -13,12 +13,12 @@ const Container = styled.View`
     background-color: ${color.white};
 `;
 
-const ReturnButtonIcon = styled.Image`
+const ButtonIcon = styled.Image`
     width: 20px;
     height: 20px;
 `;
 
-const ReturnButtonIconBox = styled.View`
+const ReturnButtonBox = styled.View`
     position: absolute;
     left: 24px;
 `;
@@ -26,7 +26,21 @@ const ReturnButtonIconBox = styled.View`
 const ReturnButton = ({ navigation }) => (
 
     <Pressable hitSlop={10} onPress={() => navigation.goBack()}>
-            <ReturnButtonIcon source={image.common.return} />
+            <ButtonIcon source={image.common.return} />
+    </Pressable>
+
+);
+
+
+const SearchButtonBox = styled.View`
+    position: absolute;
+    right: 24px;
+`;
+
+const SearchButton = ({ navigation }) => (
+
+    <Pressable hitSlop={10} onPress={() => navigation.navigate('search')}>
+            <ButtonIcon source={image.common.search.black} />
     </Pressable>
 
 );
@@ -34,8 +48,9 @@ const ReturnButton = ({ navigation }) => (
 const Header = ({value, navigation}) => {
     return (
         <Container>
-            <ReturnButtonIconBox><ReturnButton navigation={navigation}/></ReturnButtonIconBox>
+            <ReturnButtonBox><ReturnButton navigation={navigation}/></ReturnButtonBox>
             <SemiHeadline2_1>{value}</SemiHeadline2_1>
+            <SearchButtonBox><SearchButton navigation={navigation}></SearchButton></SearchButtonBox>
         </Container>
     );
 };

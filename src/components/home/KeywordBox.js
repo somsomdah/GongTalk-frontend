@@ -19,7 +19,7 @@ const Container = styled.ScrollView.attrs({
     contentContainerStyle: { paddingRight: 30 },
     showsHorizontalScrollIndicator: false
 })`
-    padding: 20px 0px 4px 24px;
+    padding: 16px 0px 4px 24px;
 `;
 
 const KeywordBox = ({ navigation, keywordList }) => {

@@ -10,7 +10,8 @@ const Container = styled.View`
     align-items: center;
     background-color: ${color.white};
     elevation: ${({isOnTop}) => isOnTop ? 0 : 1};
-    padding: 12px 24px;
+    padding: 19px 24px;
+    height: 56px;
 `;
 
 const SymbolImage = styled.Image`
@@ -20,6 +21,11 @@ const SymbolImage = styled.Image`
     margin-left: 10px;
     /* width: 66px;
     height: 30px; */
+`;
+
+const SymbolImageBox = styled.View`
+    position: absolute;
+    left: 24px;
 `;
 
 const SearchIcon = styled.Image`
@@ -36,12 +42,16 @@ const SearchButton = ({navigation}) => {
 
 }
 
+const SearchButtonBox = styled.View`
+    position: absolute;
+    right: 24px;
+`;
 
 const Header = ({navigation, isOnTop}) => {
     return (
         <Container isOnTop={isOnTop}>
-            <SymbolImage source={image.symbol.letter.horizontal}/>
-            <SearchButton navigation={navigation} />
+            <SymbolImageBox><SymbolImage source={image.symbol.letter.horizontal}/></SymbolImageBox>
+            <SearchButtonBox><SearchButton navigation={navigation} /></SearchButtonBox>
         </Container>
     );
 };
