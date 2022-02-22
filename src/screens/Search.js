@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import styled from 'styled-components/native';
 import { color } from '../common/colors';
 import InputBox from '../components/search/InputBox'
@@ -11,7 +12,9 @@ const Container = styled.View`
 `;
 
 const Search = ({ navigation, route }) => {
+
     const { value, type } = route.params;
+
     const recentSearchKeywords = [
         { id: 1, content: '개발' },
         { id: 2, content: '부트캠프' }
@@ -27,15 +30,17 @@ const Search = ({ navigation, route }) => {
         { id: 8, content: '해외' },
     ];
     return (
-
         <Container>
             <InputBox
                 placeholder={'키워드 검색하기'}
                 navigation={navigation}
-                onSearchButtonPress={() => navigation.navigate('searchList', {value: value, type:type})} />
+                onSearchButtonPress={() => navigation.navigate('searchList', {value: value, type:type})} 
+                autoFocus={true}
+            />
             <KeywordBox title='최근 검색어' keywordList={recentSearchKeywords} />
             <KeywordBox title='추천 검색어' keywordList={recommendedSearchKeywords} />
-        </Container>);
+        </Container>
+        );
 }
 
 export default Search;

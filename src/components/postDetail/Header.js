@@ -23,7 +23,7 @@ const ButtonIcon = styled.Image`
 const ReturnButton = ({ navigation }) => (
 
     <Pressable hitSlop={10} onPress={() => navigation.goBack()}>
-        <ButtonIcon source={image.common.return} />
+        <ButtonIcon source={image.common.return.black} />
     </Pressable>
 
 );

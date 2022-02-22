@@ -21,7 +21,10 @@ export const image = {
         unfilled: require('../../assets/icons/star_unfilled.png')
     },
     common: {
-        return: require('../../assets/icons/return.png'),
+        return: {
+            black: require('../../assets/icons/return.png'),
+            primary: require('../../assets/icons/return_primary.png')
+        },
         search: {
             black: require('../../assets/icons/search_black.png'),
             primary: require('../../assets/icons/search.png')
@@ -29,8 +32,8 @@ export const image = {
         delete: require('../../assets/icons/delete.png'),
         add: require('../../assets/icons/add.png'),
         moveBar: require('../../assets/icons/move_bar.png'),
-        dropdown: {primary: require('../../assets/icons/dropdown_primary.png')},
-        selected : require('../../assets/icons/selected.png'),
+        dropdown: { primary: require('../../assets/icons/dropdown_primary.png') },
+        selected: require('../../assets/icons/selected.png'),
         cancel: require('../../assets/icons/cancel.png'),
         next: require('../../assets/icons/next.png'),
         more: require('../../assets/icons/more.png'),

@@ -51,9 +51,10 @@ const SearchList = ({ route, navigation }) => {
 
     return (
         <Container>
-            <SearchBoxContainer><InputBox navigation={navigation}
+            <SearchBoxContainer><InputBox 
+            navigation={navigation}
             onSearchButtonPress={() => navigation.navigate('searchList', {value: value, type: type})}
-            
+            autoFocus={false}
             /></SearchBoxContainer>
             <ItemContainer>
                 <FlatList showsVerticalScrollIndicator={false}

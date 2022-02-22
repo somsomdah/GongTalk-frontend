@@ -43,7 +43,7 @@ const Star = styled.Image`
 
 const StarButton = ({ id, onPress, starred }) => {
     const _onPress = () => {
-        onPressOut(id);
+        onPress(id);
     }
     
     return (
