@@ -10,13 +10,13 @@ const Container = styled.View`
     align-items: stretch;
 `;
 
-const Search = () => {
-
-    recentSearchKeywords = [
+const Search = ({ navigation, route }) => {
+    const { value, type } = route.params;
+    const recentSearchKeywords = [
         { id: 1, content: '개발' },
         { id: 2, content: '부트캠프' }
     ];
-    recommendedSearchKeywords = [
+    const recommendedSearchKeywords = [
         { id: 1, content: '인턴' },
         { id: 2, content: '채용' },
         { id: 3, content: '취업' },
@@ -27,8 +27,12 @@ const Search = () => {
         { id: 8, content: '해외' },
     ];
     return (
+
         <Container>
-            <InputBox placeholder={'키워드 검색하기'}/>
+            <InputBox
+                placeholder={'키워드 검색하기'}
+                navigation={navigation}
+                onSearchButtonPress={() => navigation.navigate('searchList', {value: value, type:type})} />
             <KeywordBox title='최근 검색어' keywordList={recentSearchKeywords} />
             <KeywordBox title='추천 검색어' keywordList={recommendedSearchKeywords} />
         </Container>);

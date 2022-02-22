@@ -1,3 +1,5 @@
+import InputBox from "../components/search/InputBox";
+import Item from "../components/postList/Item";
 import { NavigationHelpersContext } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { FlatList, Pressable } from 'react-native';
@@ -5,7 +7,6 @@ import styled from 'styled-components/native';
 import { color } from '../common/colors'
 import { image } from '../common/images';
 import Header from '../components/postList/Header';
-import Item from '../components/postList/Item';
 import { postList } from '../common/data';
 
 const Container = styled.View`
@@ -14,6 +15,12 @@ const Container = styled.View`
     justify-content: flex-start;
     align-items: stretch;
     background-color: ${color.white};
+`;
+
+const SearchBoxContainer = styled.View`
+    background-color: ${color.white};
+    padding: 26px 24px 10px 24px;
+    align-items: center;
 `;
 
 const ItemContainer = styled.View`
@@ -26,9 +33,9 @@ const ItemContainer = styled.View`
 
 
 
-const PostList = ({ route, navigation }) => {
+const SearchList = ({ route, navigation }) => {
 
-    const { headerValue, searchType } = route.params;
+    const { value, type } = route.params;
 
     const [items, setItems] = useState(postList)
 
@@ -44,12 +51,15 @@ const PostList = ({ route, navigation }) => {
 
     return (
         <Container>
-            <Header value={headerValue} navigation={navigation} searchType={searchType}/>
+            <SearchBoxContainer><InputBox navigation={navigation}
+            onSearchButtonPress={() => navigation.navigate('searchList', {value: value, type: type})}
+            
+            /></SearchBoxContainer>
             <ItemContainer>
                 <FlatList showsVerticalScrollIndicator={false}
                     data={items}
                     renderItem={({ item }) => (
-                        <Pressable hitSlop={20} onPress={() => navigation.navigate('postDetail', {headerValue: headerValue, post: item})}>
+                        <Pressable hitSlop={20} onPress={() => navigation.navigate('postDetail', {headerValue: value, post: item})}>
                             <Item key={item.id} post={item} toggleStar={_toggleStar} />
                         </Pressable>
                     )}
@@ -59,4 +69,4 @@ const PostList = ({ route, navigation }) => {
     )
 }
 
-export default PostList;
+export default SearchList;

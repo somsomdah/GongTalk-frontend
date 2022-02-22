@@ -41,13 +41,13 @@ const Star = styled.Image`
     width: 18px;
 `;
 
-const StarButton = ({ id, onPressOut, starred }) => {
-    const _onPressOut = () => {
+const StarButton = ({ id, onPress, starred }) => {
+    const _onPress = () => {
         onPressOut(id);
     }
     
     return (
-        <Pressable onPressOut={_onPressOut} hitSlop={10}>
+        <Pressable onPressOut={_onPress} hitSlop={10}>
             <Star source={starred ? image.star.filled : image.star.unfilled} />
         </Pressable>
     )
@@ -66,7 +66,7 @@ const Item = ({ post, toggleStar}) => {
                     <SemiHeadline5>{post.writer}</SemiHeadline5>
                     <ItemInfoDivider />
                     <SemiHeadline5 style={{ color: color.gray5 }}>{post.date}</SemiHeadline5>
-                    <StarButtonBox><StarButton StarButton id={post.id} onPressOut={toggleStar} starred={post.starred} /></StarButtonBox>
+                    <StarButtonBox><StarButton id={post.id} onPress={toggleStar} starred={post.starred} /></StarButtonBox>
             </ItemInfoContainer>
         </ItemBox>
     )
