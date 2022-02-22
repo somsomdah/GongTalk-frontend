@@ -21,7 +21,7 @@ const BodyContainer = styled.ScrollView.attrs({
 const Settings = ({navigation}) => {
     return(
         <Container>
-            <Header />
+            <Header value={'설정'} />
             <AlarmSettings />
             <Etc navigation={navigation}/>
         </Container>

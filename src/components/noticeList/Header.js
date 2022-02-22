@@ -31,11 +31,11 @@ const ReturnButton = ({ navigation }) => (
 
 );
 
-const Header = ({navigation}) => {
+const Header = ({navigation, value}) => {
     return (
         <Container>
             <ReturnButtonIconBox><ReturnButton navigation={navigation}/></ReturnButtonIconBox>
-            <SemiHeadline2_1>{'공지사항'}</SemiHeadline2_1>
+            <SemiHeadline2_1>{value}</SemiHeadline2_1>
         </Container>
     );
 };

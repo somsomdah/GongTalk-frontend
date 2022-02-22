@@ -12,10 +12,10 @@ const Container = styled.View`
     
 `;
 
-const Header = () => {
+const Header = ({value}) => {
     return (
         <Container>
-            <SemiHeadline2_1 style={{color: color.primary}}>설정</SemiHeadline2_1>
+            <SemiHeadline2_1 style={{color: color.primary}}>{value}</SemiHeadline2_1>
         </Container>
     );
 };

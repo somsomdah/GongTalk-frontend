@@ -7,6 +7,7 @@ import NoticeDetail from '../screens/NoticeDetail';
 import PostList from '../screens/PostList';
 import PostDetail from '../screens/PostDetail';
 import SearchList from '../screens/SearchList';
+import TeamInfo from '../screens/TeamInfo';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,7 @@ const OuterStackNavigation = () => {
             <Stack.Screen name='postList' component={PostList} />
             <Stack.Screen name='postDetail' component={PostDetail} />
             <Stack.Screen name='searchList' component={SearchList} />
+            <Stack.Screen name='teamInfo' component={TeamInfo} />
         </Stack.Navigator>
     );
 };

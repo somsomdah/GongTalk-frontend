@@ -26,11 +26,11 @@ const ItemContainer = styled.View`
 
 
 
-const NoticeList = ({navigation }) => {
+const NoticeList = ({navigation}) => {
 
     return (
         <Container>
-            <Header navigation={navigation} />
+            <Header navigation={navigation} value={'공지사항'} />
             <ItemContainer>
                 <FlatList showsVerticalScrollIndicator={false}
                     data={postList}
