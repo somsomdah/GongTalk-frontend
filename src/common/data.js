@@ -78,7 +78,7 @@ export const postList = [
         title: '제목제목제목 제목제목제목 제목제목제목 제목제목제목 제목제목제목 제목제목제목',
         writer: '산학협력관',
         date: '2022.01.04',
-        url: 'http://ewha.ac.kr/ewha/news/notice.do?mode=view&articleNo=332720&article.offset=0&articleLimit=10&srCategoryId1=25',
+        url: 'http://cms.ewha.ac.kr/user/boardList.action?boardId=1631514&command=view2&boardSeq=52984466',
         board: { name: '컴퓨터공학과', school: { id: 2, name: '서강대학교', image: image.school.seogang } },
         starred: false,
         content: contentData.html,

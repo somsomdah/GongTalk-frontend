@@ -20,15 +20,15 @@ const ItemInfoContainer = styled.View`
     align-items: center;
 `;
 
-const Item = ({ post }) => {
+const Item = ({ notice }) => {
     return (
         <ItemBox>
             <SemiHeadline3
                 ellipsizeMode='tail'
                 numberOfLines={2}
-                style={{ marginBottom: 6 }}>{post.title}</SemiHeadline3>
+                style={{ marginBottom: 6 }}>{notice.title}</SemiHeadline3>
             <ItemInfoContainer>
-                <SemiHeadline5 style={{ color: color.gray5 }}>{post.date}</SemiHeadline5>
+                <SemiHeadline5 style={{ color: color.gray5 }}>{notice.date}</SemiHeadline5>
             </ItemInfoContainer>
 
         </ItemBox>

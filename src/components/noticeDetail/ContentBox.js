@@ -8,13 +8,13 @@ const Container = styled.View`
     flex-grow: 1;
     padding: 12px;
     align-items: stretch;
-    background-color: ${color.gray1};
+    /* background-color: ${color.gray1}; */
 `;
 
-const ContentBox = ({ post }) => {
+const ContentBox = ({ notice }) => {
   return (
     <Container>
-            <WebView source={{uri: post.url}} />
+      <WebView source={{uri: notice.url}} />
     </Container>
   );
 }

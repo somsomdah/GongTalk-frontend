@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, Pressable } from 'react-native';
 import styled from 'styled-components/native';
 import { color } from '../common/colors'
 import { image } from '../common/images';
@@ -26,14 +26,18 @@ const ItemContainer = styled.View`
 
 
 
-const NoticeList = ({navigation}) => {
+const NoticeList = ({navigation }) => {
+
     return (
         <Container>
-            <Header navigation={navigation}/>
+            <Header navigation={navigation} />
             <ItemContainer>
                 <FlatList showsVerticalScrollIndicator={false}
                     data={postList}
-                    renderItem={({ item }) => <Item key={item.id} post={item} />}
+                    renderItem={({ item }) =>
+                        <Pressable hitSlop={20} onPress={() => navigation.navigate('noticeDetail', { headerValue: '공지사항', notice: item })}>
+                            <Item key={item.id} notice={item} />
+                        </Pressable>}
                 />
             </ItemContainer>
         </Container>
