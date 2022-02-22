@@ -6,7 +6,7 @@ import Markdown from 'react-native-markdown-display';
 const Container = styled.View`
     flex-basis: 0;
     flex-grow: 1;
-    padding: 16px;
+    padding: 24px 20px;
     align-items: stretch;
 `;
 
