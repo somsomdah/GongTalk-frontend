@@ -5,7 +5,7 @@ import { color } from "../../common/colors";
 export const Headline4 = styled.Text`
     font-family: 'pretendard-regular';
     font-size: 22px;
-    line-height: 20px;
+    line-height: 32px;
     color: ${color.black};
     /* letter-spacing: -0.4%; */
 `;

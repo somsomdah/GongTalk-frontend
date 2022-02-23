@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import { Text } from "react-native";
 import Header from "../components/addBoard/Header";
 import { color } from "../common/colors";
 import Select from "../components/addBoard/Select";
