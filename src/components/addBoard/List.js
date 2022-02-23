@@ -30,7 +30,7 @@ const ItemBox = styled.View`
 `;
 
 const ItemCancelImage = styled.Image.attrs({
-    source: image.common.cancel
+    source: image.common.cancel.black
 })`
     height: 16px;
     width: 16px;
@@ -59,17 +59,17 @@ const CompleteButton = styled.View`
     
 `;
 
-const CompleteButtonPressable = () => {
-    return (
-        <Pressable>
-            <CompleteButton>
-                <ButtonLargeW>
-                    완료하기
-                </ButtonLargeW>
-            </CompleteButton>
-        </Pressable>
-    );
-};
+// const CompleteButtonPressable = () => {
+//     return (
+//         <Pressable>
+//             <CompleteButton>
+//                 <ButtonLargeW>
+//                     완료하기
+//                 </ButtonLargeW>
+//             </CompleteButton>
+//         </Pressable>
+//     );
+// };
 
 
 const List = ({ boardList, setBoardList }) => {
@@ -91,7 +91,7 @@ const List = ({ boardList, setBoardList }) => {
 
                 })}
             </Container>
-            <CompleteButtonPressable />
+            {/* <CompleteButtonPressable /> */}
         </View>
 
 

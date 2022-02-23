@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
-const SetKeywords = () => {
-    return <Text>SetKeywords</Text>
+const SetKeywords = ({navigation}) => {
+    return <Pressable onPress={() => navigation.navigate('addKeyword')}><Text>addKeyword</Text></Pressable>
 }
 
 export default SetKeywords;

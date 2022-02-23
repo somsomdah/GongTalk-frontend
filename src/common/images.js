@@ -34,7 +34,10 @@ export const image = {
         moveBar: require('../../assets/icons/move_bar.png'),
         dropdown: { primary: require('../../assets/icons/dropdown_primary.png') },
         selected: require('../../assets/icons/selected.png'),
-        cancel: require('../../assets/icons/cancel.png'),
+        cancel: {
+            black: require('../../assets/icons/cancel.png'),
+            white: require('../../assets/icons/cancel_white.png'),
+        },
         next: require('../../assets/icons/next.png'),
         more: require('../../assets/icons/more.png'),
         share: require('../../assets/icons/share.png'),
