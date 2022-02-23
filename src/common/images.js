@@ -42,6 +42,9 @@ export const image = {
         more: require('../../assets/icons/more.png'),
         share: require('../../assets/icons/share.png'),
         link: require('../../assets/icons/link.png'),
+        proceed: {
+            primary: require('../../assets/icons/proceed_primary.png'),
+        }
     },
 
     school: {
