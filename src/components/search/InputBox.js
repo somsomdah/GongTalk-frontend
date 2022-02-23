@@ -49,9 +49,9 @@ const DeleteButton = ({ pressDelete }) => {
     );
 };
 
-const InputBox = ({ placeholder, navigation, onSearchButtonPress, autoFocus}) => {
+const InputBox = ({ placeholder, navigation, onSearchButtonPress, autoFocus, inputValue, setInputValue}) => {
+    
     const [focus, setFocus] = useState(false);
-    const [input, setInput] = useState('')
 
     return (
         <Container focused={focus} >
@@ -62,14 +62,13 @@ const InputBox = ({ placeholder, navigation, onSearchButtonPress, autoFocus}) =>
             <Input
                 placeholder={placeholder}
                 onFocus={() => setFocus(true)}
-                onChangeText={(newInput) => setInput(newInput)}
-                value={input}
+                onChangeText={(newInput) => setInputValue(newInput)}
+                value={inputValue}
                 onSubmitEditing={onSearchButtonPress}
                 returnKeyType={'search'}
                 autoFocus={autoFocus}
             />
-            {/* {refInput.current.focus()} */}
-            <DeleteButton pressDelete={() => setInput('')} />
+            <DeleteButton pressDelete={() => setInputValue('')} />
         </Container>
     )
 }

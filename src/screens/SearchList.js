@@ -51,16 +51,19 @@ const SearchList = ({ route, navigation }) => {
 
     return (
         <Container>
-            <SearchBoxContainer><InputBox 
-            navigation={navigation}
-            onSearchButtonPress={() => navigation.navigate('searchList', {value: value, type: type})}
-            autoFocus={false}
-            /></SearchBoxContainer>
+            <SearchBoxContainer>
+                <InputBox
+                    navigation={navigation}
+                    onSearchButtonPress={() => navigation.navigate('searchList', { value: value, type: type })}
+                    autoFocus={false}
+                    inputValue={value}
+                />
+            </SearchBoxContainer>
             <ItemContainer>
                 <FlatList showsVerticalScrollIndicator={false}
                     data={items}
                     renderItem={({ item }) => (
-                        <Pressable hitSlop={20} onPress={() => navigation.navigate('postDetail', {headerValue: value, post: item})}>
+                        <Pressable hitSlop={20} onPress={() => navigation.navigate('postDetail', { headerValue: value, post: item })}>
                             <Item key={item.id} post={item} toggleStar={_toggleStar} />
                         </Pressable>
                     )}
