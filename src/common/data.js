@@ -9,6 +9,7 @@ export const postList = [
         url: 'http://ewha.ac.kr/ewha/news/notice.do?mode=view&articleNo=332872&article.offset=0&articleLimit=10&srCategoryId1=25',
         board: { name: '컴퓨터공학과', school: { id: 1, name: '이화여자대학교', image: image.school.ewha } },
         starred: false,
+        tags: [{id: 1, content: '장학'}, {id: 2, content: '인턴'}, {id: 3, content: '교육' }]
 
     },
     {
@@ -19,6 +20,8 @@ export const postList = [
         url: 'http://ewha.ac.kr/ewha/news/notice.do?mode=view&articleNo=332847&article.offset=0&articleLimit=10&srCategoryId1=25',
         board: { name: '컴퓨터공학과', school: { id: 1, name: '이화여자대학교', image: image.school.ewha } },
         starred: false,
+        tags: [{id: 1, content: '장학'}, {id: 2, content: '인턴'}, {id: 3, content: '교육' }]
+
 
     },
     {
@@ -30,6 +33,8 @@ export const postList = [
         url: 'http://ewha.ac.kr/ewha/news/notice.do?mode=view&articleNo=332813&article.offset=0&articleLimit=10&srCategoryId1=25',
         board: { name: '컴퓨터공학과', school: { id: 1, name: '이화여자대학교', image: image.school.ewha } },
         starred: false,
+        tags: [{id: 1, content: '장학'}, {id: 2, content: '인턴'}, {id: 3, content: '교육' }]
+
 
     },
     {
@@ -42,6 +47,8 @@ export const postList = [
         url: 'http://ewha.ac.kr/ewha/news/notice.do?mode=view&articleNo=332703&article.offset=0&articleLimit=10&srCategoryId1=25',
         board: { name: '컴퓨터공학과', school: { id: 1, name: '이화여자대학교', image: image.school.ewha } },
         starred: false,
+        tags: [{id: 1, content: '장학'}, {id: 2, content: '인턴'}, {id: 3, content: '교육' }]
+
 
     },
     {
@@ -52,6 +59,8 @@ export const postList = [
         url: 'http://ewha.ac.kr/ewha/news/notice.do?mode=view&articleNo=332780&article.offset=0&articleLimit=10&srCategoryId1=25',
         board: { name: '컴퓨터공학과', school: { id: 3, name: '홍익대학교', image: image.school.hongik } },
         starred: false,
+        tags: [{id: 1, content: '장학'}, {id: 2, content: '인턴'}, {id: 3, content: '교육' }]
+
 
     },
     {
@@ -63,6 +72,8 @@ export const postList = [
         url: 'http://ewha.ac.kr/ewha/news/notice.do?mode=view&articleNo=332720&article.offset=0&articleLimit=10&srCategoryId1=25',
         board: { name: '컴퓨터공학과', school: { id: 1, name: '이화여자대학교', image: image.school.ewha } },
         starred: false,
+        tags: [{id: 1, content: '장학'}, {id: 2, content: '인턴'}, {id: 3, content: '교육' }]
+
 
     },
     {
@@ -73,6 +84,8 @@ export const postList = [
         url: 'http://cms.ewha.ac.kr/user/boardList.action?boardId=1631514&command=view2&boardSeq=52984466',
         board: { name: '컴퓨터공학과', school: { id: 2, name: '서강대학교', image: image.school.seogang } },
         starred: false,
+        tags: [{id: 1, content: '장학'}, {id: 2, content: '인턴'}, {id: 3, content: '교육' }]
+
 
     },
     {
@@ -84,6 +97,8 @@ export const postList = [
         url: 'http://ewha.ac.kr/ewha/news/notice.do?mode=view&articleNo=332720&article.offset=0&articleLimit=10&srCategoryId1=25',
         board: { name: '컴퓨터공학과', school: { id: 1, name: '이화여자대학교', image: image.school.ewha } },
         starred: false,
+        tags: [{id: 1, content: '장학'}, {id: 2, content: '인턴'}, {id: 3, content: '교육' }]
+
 
     },
     {
@@ -95,6 +110,7 @@ export const postList = [
         url: 'http://ewha.ac.kr/ewha/news/notice.do?mode=view&articleNo=332720&article.offset=0&articleLimit=10&srCategoryId1=25',
         board: { name: '컴퓨터공학과', school: { id: 1, name: '이화여자대학교', image: image.school.ewha } },
         starred: false,
+        tags: [{id: 1, content: '장학'}, {id: 2, content: '인턴'}, {id: 3, content: '교육' }]
 
     },
     {
@@ -106,6 +122,7 @@ export const postList = [
         url: 'http://ewha.ac.kr/ewha/news/notice.do?mode=view&articleNo=332720&article.offset=0&articleLimit=10&srCategoryId1=25',
         board: { name: '컴퓨터공학과', school: { id: 1, name: '이화여자대학교', image: image.school.ewha } },
         starred: false,
+        tags: [{id: 1, content: '장학'}, {id: 2, content: '인턴'}, {id: 3, content: '교육' }]
 
     },
     {
@@ -117,6 +134,7 @@ export const postList = [
         url: 'http://ewha.ac.kr/ewha/news/notice.do?mode=view&articleNo=332720&article.offset=0&articleLimit=10&srCategoryId1=25',
         board: { name: '컴퓨터공학과', school: { id: 1, name: '이화여자대학교', image: image.school.ewha } },
         starred: false,
+        tags: [{id: 1, content: '장학'}, {id: 2, content: '인턴'}, {id: 3, content: '교육' }]
 
     },
     {
@@ -127,6 +145,7 @@ export const postList = [
         url: 'http://ewha.ac.kr/ewha/news/notice.do?mode=view&articleNo=332720&article.offset=0&articleLimit=10&srCategoryId1=25',
         board: { name: '컴퓨터공학과', school: { id: 3, name: '홍익대학교', image: image.school.hongik } },
         starred: false,
+        tags: [{id: 1, content: '장학'}, {id: 2, content: '인턴'}, {id: 3, content: '교육' }]
 
     },
 ]

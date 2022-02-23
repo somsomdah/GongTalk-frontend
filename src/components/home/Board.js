@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import {Pressable} from 'react-native';
+import { Pressable } from 'react-native';
 import styled from "styled-components/native";
 import { color } from '../../common/colors';
 import { image } from "../../common/images";
+import { SemiHeadline3, SemiHeadline4, SemiHeadline5, SemiHeadline2_1 } from '../_common/Typography';
+import { postList } from '../../common/data';
 
 const Container = styled.View`
     margin-bottom: 32px;
@@ -13,13 +15,6 @@ const Container = styled.View`
 const TitleContainer = styled.View`
     padding-bottom: 16px;
     justify-content: flex-start;
-`;
-
-const Title = styled.Text`
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 24px;
-    text-align: left;
 `;
 
 const ContentContainer = styled.View``;
@@ -39,24 +34,12 @@ const TopBox = styled.View`
     align-items: center;
 `;
 
-const Writer = styled.Text`
-    font-size: 10px;
-    font-weight: 400;
-    color: ${color.black};
-`;
-
 const DateBox = styled.View.attrs({
     borderLeftColor: color.gray3,
     borderLeftWidth: 1,
 })`
     padding-left: 8px;
     margin-left: 8px;
-`;
-
-const Date = styled.Text`
-    font-size: 10px;
-    font-weight: 400;
-    color: ${color.gray6};
 `;
 
 const StarButtonBox = styled.View`
@@ -74,7 +57,7 @@ const StarButton = ({ id, onPressOut, starred }) => {
     const _onPressOut = () => {
         onPressOut(id);
     }
-    
+
     return (
         <Pressable onPressOut={_onPressOut} hitSlop={10}>
             <Star source={starred ? image.star.filled : image.star.unfilled} />
@@ -87,40 +70,26 @@ const ItemTitleBox = styled.TouchableOpacity`
     margin: 6px 0px 8px 0px;
 `;
 
-const ItemTitle = styled.Text.attrs({ ellipsizeMode: 'tail', numberOfLines: 2 })`
-    color: ${color.black};
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20.8px;
-`;
 
 const TagBox = styled.View`
     justify-content: flex-start;
     flex-direction: row;
 `;
 
-const Tag = styled.Text`
-    margin-right: 4px;
-    color: ${color.primary};
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 20px;
-`;
-
-const Item = ({ id, writer, date, title, tagList, toggleStar, starred }) => {
+const Item = ({ post, starred, toggleStar }) => {
     return (
         <ItemBox>
             <TopBox>
-                <Writer>{writer}</Writer>
-                <DateBox><Date>{date}</Date></DateBox>
-                <StarButtonBox><StarButton id={id} onPressOut={toggleStar} starred={starred} /></StarButtonBox>
+                <SemiHeadline5>{post.writer}</SemiHeadline5>
+                <DateBox><SemiHeadline5 style={{ color: color.gray3 }}>{post.date}</SemiHeadline5></DateBox>
+                <StarButtonBox><StarButton id={post.id} onPressOut={toggleStar} starred={starred} /></StarButtonBox>
             </TopBox>
             <ItemTitleBox>
-                <ItemTitle>{title}</ItemTitle>
+                <SemiHeadline3 ellipsizeMode='tail' numberOfLines={2}>{post.title}</SemiHeadline3>
             </ItemTitleBox>
             <TagBox>
-                {Object.values(tagList).map(tag => (
-                    <Tag key={tag.id}>{tag.content}</Tag>
+                {Object.values(post.tags).map(tag => (
+                    <SemiHeadline4 key={tag.id} style={{color: color.primary}}>{`#${tag.content} `}</SemiHeadline4>
                 ))}
             </TagBox>
         </ItemBox>
@@ -130,32 +99,7 @@ const Item = ({ id, writer, date, title, tagList, toggleStar, starred }) => {
 
 const Board = () => {
 
-    const [items, setItems] = useState([
-        {
-            id: 1,
-            writer: '산학협력관',
-            date: '2022.01.04',
-            title: '공지사항의 제목을 적는 구간입니다. 2줄까지 화면에 노출시킬 수 있습니다. 공지사항의 제목을 적는 구간입니다. 공지사항의 제목을 적는 구간입니다',
-            tagList: [{ id: 1, content: '#인턴' }, { id: 2, content: '#학회' }, { id: 3, content: '#교내' }],
-            starred: false
-        },
-        {
-            id: 2,
-            writer: '산학협력관',
-            date: '2022.01.04',
-            title: '공지사항의 제목을 적는 구간입니다. 2줄까지 화면에 노출시킬 수 있습니다. 공지사항의 제목을 적는 구간입니다. 공지사항의 제목을 적는 구간입니다',
-            tagList: [{ id: 1, content: '#인턴' }, { id: 2, content: '#학회' }, { id: 3, content: '#교내' }],
-            starred: false
-        },
-        {
-            id: 3,
-            writer: '산학협력관',
-            date: '2022.01.04',
-            title: '공지사항의 제목을 적는 구간입니다. 2줄까지 화면에 노출시킬 수 있습니다. 공지사항의 제목을 적는 구간입니다.',
-            tagList: [{ id: 1, content: '#인턴' }, { id: 2, content: '#학회' }, { id: 3, content: '#교내' }],
-            starred: false
-        },
-    ]);
+    const [items, setItems] = useState(postList);
 
     const _toggleStar = id => {
         const currentItems = items.map(item => {
@@ -170,19 +114,15 @@ const Board = () => {
     return (
         <Container>
             <TitleContainer>
-                <Title>이화여대 컴퓨터공학과</Title>
+                <SemiHeadline2_1>이화여대 컴퓨터공학과</SemiHeadline2_1>
             </TitleContainer>
 
             <ContentContainer>
-                {Object.values(items).map(item =>
+                {Object.values(items).map((item, idx) =>
+                    idx < 3 &&
                     <Item
                         key={item.id}
-                        id={item.id}
-                        writer={item.writer}
-                        date={item.date}
-                        title={item.title}
-                        tagList={item.tagList}
-                        starred={item.starred}
+                        post={item}
                         toggleStar={_toggleStar} />
                 )}
             </ContentContainer>

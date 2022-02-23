@@ -4,6 +4,8 @@ import { color } from "../../common/colors";
 import { Pressable } from 'react-native';
 import { useState } from "react";
 import Modal from 'react-native-modal';
+import { SemiHeadline3 } from "../_common/Typography";
+
 
 const Container = styled.View`
     position: absolute; 
@@ -24,12 +26,6 @@ const ItemBox = styled.View`
     justify-content: ${({ selected }) => selected ? 'space-between' : 'flex-start'};
 `;
 
-const ItemText = styled.Text`
-    font-size: 14px;
-    line-height: 20px;
-    color: ${({ selected }) => selected ? color.primary : color.black};
-`
-
 const ItemCheckIcon = styled.Image`
     width: 18px;
     height: 18px;
@@ -39,14 +35,13 @@ const Item = ({ value, selected, onPress }) => {
     return (
         <Pressable onPress={onPress}>
             <ItemBox selected={selected}>
-                <ItemText selected={selected}>{value}</ItemText>
+                <SemiHeadline3 style={{color: selected? color.primary : color.black}}>{value}</SemiHeadline3>
                 {!selected || <ItemCheckIcon source={image.common.selected} />}
             </ItemBox>
         </Pressable>
 
     )
 }
-
 
 const SelectModal = ({ isVisible, setIsVisible, schoolList, selectedSchool, select }) => {
 

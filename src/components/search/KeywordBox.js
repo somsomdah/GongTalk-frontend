@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { color } from '../../common/colors';
+import { ButtonMedium, SemiHeadline4 } from '../_common/Typography';
 
 
 const Container = styled.View`
@@ -18,13 +19,6 @@ const BodyContainer = styled.View`
     padding-bottom: 8px;
 `;
 
-const TitleText = styled.Text`
-    color: ${color.black};
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-`;
-
 const ChipBox = styled.Pressable`
     padding: 6.5px 14px;
     margin-bottom: 10px;
@@ -33,17 +27,10 @@ const ChipBox = styled.Pressable`
     border-radius: 12px;
 `;
 
-const ChipText = styled.Text`
-    color: ${color.black};
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-`;
-
 const Chip = ({ text }) => {
     return (
         <ChipBox>
-            <ChipText>{text}</ChipText>
+            <ButtonMedium>{text}</ButtonMedium>
         </ChipBox>
     );
 
@@ -55,7 +42,7 @@ const KeywordBox = ({title, keywordList}) => {
     return(
         <Container>
             <TitleContainer>
-                <TitleText>{title}</TitleText>
+                <SemiHeadline4>{title}</SemiHeadline4>
             </TitleContainer>
             <BodyContainer>
                 {Object.values(keywordList).map(keyword => (<Chip key={keyword.id} text={keyword.content}/>))}

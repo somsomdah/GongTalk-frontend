@@ -2,14 +2,10 @@ import { Pressable } from "react-native";
 import styled from "styled-components/native";
 import { color } from '../../common/colors'
 import { image } from "../../common/images";
+import {SemiHeadline2_1} from '../_common/Typography'
 
-// https://github.com/styled-components/styled-components/issues/709
 
 const Container = styled.View`
-    /* shadow-color: #000;
-    shadow-offset: {width: 0px, height: 2px};
-    shadow-opacity: 0.8;
-    shadow-radius: 2px; */
     elevation: 1;
     flex-direction: row;
     align-items: center;
@@ -17,14 +13,6 @@ const Container = styled.View`
     background-color: ${color.white};
     padding: 16px 24px;
 `
-
-
-const Title = styled.Text`
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 24px;
-    color: ${color.black};
-`;
 
 const ReturnButtonIcon = styled.Image`
     width: 20px;
@@ -48,11 +36,9 @@ const ReturnButton = ({ navigation }) => (
 const Header = ({ navigation }) => (
     <Container>
         <ReturnButtonIconBox><ReturnButton navigation={navigation} /></ReturnButtonIconBox>
-        {/* <TitleBox> */}
-        <Title>
+        <SemiHeadline2_1>
             게시판 추가하기
-        </Title>
-        {/* </TitleBox> */}
+        </SemiHeadline2_1>
     </Container>
 )
 

@@ -1,12 +1,8 @@
 
 import styled from "styled-components/native";
 import { color } from '../../common/colors';
+import { ButtonMediumW } from "../_common/Typography";
 
-
-const Text = styled.Text`
-    color: ${color.white};
-    font-size: 14px;
-`
 const Chip = styled.TouchableOpacity`
     padding: 7px 14px;
     margin-right: 8px;
@@ -27,7 +23,7 @@ const KeywordBox = ({ navigation, keywordList }) => {
         <Container>
             {Object.values(keywordList).map(keyword => (
                 <Chip key={keyword} onPress={() => navigation.navigate('postList', {headerValue: keyword, searchType: 'keyword'})}>
-                    <Text>{`#${keyword}`}</Text>
+                    <ButtonMediumW>{`#${keyword}`}</ButtonMediumW>
                 </Chip>
             ))}
         </Container>

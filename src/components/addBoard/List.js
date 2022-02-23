@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { image } from "../../common/images";
 import { color } from "../../common/colors";
-import { ButtonLargeW, SemiHeadline2 } from "../_common/Typography";
+import { ButtonLargeW, SemiHeadline2, SemiHeadline4 } from "../_common/Typography";
 import { View, Pressable } from "react-native";
 import { useState } from "react";
 
@@ -17,12 +17,6 @@ const TitleBox = styled.View`
     flex-direction: row;
     justify-content: flex-start;
 `
-
-const TitleText = styled.Text`
-    font-size: 12px;
-    color: ${color.black};
-    line-height: 20px;
-`;
 
 
 const ItemBox = styled.View`
@@ -89,7 +83,7 @@ const List = ({ boardList, setBoardList }) => {
         <View style={{flex: 1, flexDirection: 'column'}}>
             <Container>
                 <TitleBox >
-                    <TitleText>추가 목록</TitleText>
+                    <SemiHeadline4>추가 목록</SemiHeadline4>
                 </TitleBox>
                 {Object.values(boardList).map(board => {
                     const boardFullName = `${board.school.name} ${board.name}`;

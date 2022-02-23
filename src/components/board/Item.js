@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import { color } from '../../common/colors';
 import { image } from '../../common/images';
 import { Platform } from 'react-native';
+import {SemiHeadline2} from '../_common/Typography'
 
 
 const Container = styled.View`
@@ -13,12 +14,6 @@ const Container = styled.View`
     justify-content: space-between;
     background-color: ${color.white};
 `;
-
-const ItemText = styled.Text`
-    font-size: 16px;
-    line-height: 24px;
-    color: ${color.black};
-`
 
 const DragIconImage = styled.Image.attrs({
     source: image.common.moveBar
@@ -43,7 +38,7 @@ const Item = ({ name, onLongPress, isActive }) => {
     return (
         <Container style ={isActive ? _shadow : {}}>
             <Pressable hitSlop={20}>
-                <ItemText>{name}</ItemText>
+                <SemiHeadline2>{name}</SemiHeadline2>
             </Pressable>
             <Pressable hitSlop={20} onLongPress={onLongPress}>
                 <DragIconImage />

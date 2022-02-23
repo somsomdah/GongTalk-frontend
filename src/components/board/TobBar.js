@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 import { color } from '../../common/colors'
 import { image } from '../../common/images';
 import { Pressable } from 'react-native';
+import { SemiHeadline2_1 } from '../_common/Typography';
 
 
 const Container = styled.View.attrs({
@@ -28,18 +29,12 @@ const TitleBox = styled.View.attrs(({ focused }) => ({
     margin-right: 24px;
 `;
 
-const TitleText = styled.Text`
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 24px;
-    color: ${({ focused }) => (focused ? color.primary : color.gray3)};
-`;
 
 const Title = ({ focused, onPress, children }) => {
     return (
         <Pressable onPress={onPress} hitSlop={20}>
             <TitleBox focused={focused}>
-                <TitleText focused={focused}>{children}</TitleText>
+                <SemiHeadline2_1 style={{color: focused ? color.primary : color.gray3}}>{children}</SemiHeadline2_1>
             </TitleBox>
         </Pressable>
     );

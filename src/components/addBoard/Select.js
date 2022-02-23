@@ -4,7 +4,7 @@ import { color } from "../../common/colors";
 import InputBox from "../search/InputBox";
 import { Pressable } from 'react-native';
 import { useState } from "react";
-import { SemiHeadline3 } from "../_common/Typography";
+import { SemiHeadline3, SemiHeadline4 } from "../_common/Typography";
 
 
 const Container = styled.View`
@@ -21,25 +21,13 @@ const TitleBox = styled.View`
     justify-content: flex-start;
 `
 
-const TitleText = styled.Text`
-    font-size: 12px;
-    color: ${color.black};
-    line-height: 20px;
-`;
-
 const Title = ({ children }) => {
     return (
         <TitleBox>
-            <TitleText>{children}</TitleText>
+            <SemiHeadline4>{children}</SemiHeadline4>
         </TitleBox>
     );
 }
-
-const DropDownText = styled.Text`
-    font-size: 14px;
-    line-height: 20px;
-    color: ${({selected}) => selected ? color.black : color.gray6};
-`;
 
 const DropDownIcon = styled.Image`
     height: 18px;
@@ -63,9 +51,9 @@ const DropdownPressable = ({ onPress, selectedSchool }) => {
     return (
         <Pressable onPress={onPress}>
             <DropdownBox style={_style} >
-                <DropDownText selected={selectedSchool !== null}>
+                <SemiHeadline3 selected={selectedSchool !== null}>
                     { selectedSchool?.name || '학교 선택하기'}
-                </DropDownText>
+                </SemiHeadline3>
                 <DropDownIcon source={image.common.dropdown.primary} />
             </DropdownBox>
         </Pressable>
