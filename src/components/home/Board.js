@@ -81,7 +81,7 @@ const Item = ({ post, starred, toggleStar }) => {
         <ItemBox>
             <TopBox>
                 <SemiHeadline5>{post.writer}</SemiHeadline5>
-                <DateBox><SemiHeadline5 style={{ color: color.gray3 }}>{post.date}</SemiHeadline5></DateBox>
+                <DateBox><SemiHeadline5 style={{ color: color.gray5 }}>{post.date}</SemiHeadline5></DateBox>
                 <StarButtonBox><StarButton id={post.id} onPressOut={toggleStar} starred={starred} /></StarButtonBox>
             </TopBox>
             <ItemTitleBox>

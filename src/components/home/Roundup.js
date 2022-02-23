@@ -45,7 +45,7 @@ const WriterDateBox = styled.View`
 `;
 
 
-const DateBox = styled.View.attrs({ borderLeftColor: color.gray3, borderLeftWidth: 1, })`
+const DateBox = styled.View.attrs({ borderLeftColor: color.gray5, borderLeftWidth: 1, })`
     padding-left: 6px;
     margin-left: 6px;
 `;
