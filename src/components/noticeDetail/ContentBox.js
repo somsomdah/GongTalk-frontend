@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/native';
 import { color } from '../../common/colors'
 import Markdown from 'react-native-markdown-display';
@@ -18,7 +18,10 @@ const ScrollContainer = styled.ScrollView.attrs({
 const ContentBox = ({ notice }) => {
   const [rawMd, setRawMd] = useState('')
 
-  fetch("https://raw.githubusercontent.com/somsomdah/test/main/Vivace%204e91a.md").then((response) => { response.text().then((raw) => { setRawMd(raw) }) })
+  const noticeUrl = "https://raw.githubusercontent.com/somsomdah/test/main/Vivace%204e91a.md";
+
+  useEffect(async () => await fetch(noticeUrl).then((response) => response.text()).then((raw) => { setRawMd(raw) }), [])
+
   return (
     <Container>
       <ScrollContainer>

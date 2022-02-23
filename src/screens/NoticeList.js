@@ -35,7 +35,7 @@ const NoticeList = ({navigation}) => {
                 <FlatList showsVerticalScrollIndicator={false}
                     data={postList}
                     renderItem={({ item }) =>
-                        <Pressable hitSlop={20} onPress={() => navigation.navigate('noticeDetail', { headerValue: '공지사항', notice: item })}>
+                        <Pressable hitSlop={20} onPress={() => navigation.navigate('noticeDetail', {notice: item })}>
                             <Item key={item.id} notice={item} />
                         </Pressable>}
                 />

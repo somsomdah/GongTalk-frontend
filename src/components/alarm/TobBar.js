@@ -27,11 +27,31 @@ const TitleBox = styled.View.attrs(({ focused }) => ({
     margin-right: 24px;
 `;
 
+const SearchButtonBox = styled.View`
+    flex-grow: 1;
+    justify-content: flex-end;
+    flex-direction: row;
+    padding-bottom: 18px;
+`;
+
+const SearchIcon = styled.Image`
+    width: 20px;
+    height: 20px;
+`;
+
+const SearchButton = ({navigation}) => {
+    return (
+        <Pressable hitSlop={20} onPress={() => navigation.navigate('search', {type: 'scrap', value: '스크랩'})}>
+            <SearchIcon source={image.common.search.primary} />
+        </Pressable>
+    );
+};
+
 const Title = ({ focused, onPress, children }) => {
     return (
         <Pressable onPress={onPress} hitSlop={20}>
             <TitleBox focused={focused}>
-                <SemiHeadline2_1 focused={focused}>{children}</SemiHeadline2_1>
+                <SemiHeadline2_1 style={{color: focused ? color.primary : color.gray3}}>{children}</SemiHeadline2_1>
             </TitleBox>
         </Pressable>
     );
@@ -62,6 +82,9 @@ const TobBar = ({ navigation, state }) => {
                     </Title>
                 );
             })}
+            {state.index === 0 ||
+                <SearchButtonBox ><SearchButton navigation={navigation}/></SearchButtonBox>
+            }
         </Container>
     );
 

@@ -55,7 +55,7 @@ const InputBox = ({ placeholder, navigation, onSearchButtonPress, autoFocus, inp
 
     return (
         <Container focused={focus} >
-            <Pressable onPress={() => navigation.goBack()}>
+            <Pressable onPress={() => navigation.pop(2)}>
                 <ReturnImage focused={focus} />
             </Pressable>
 

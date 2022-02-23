@@ -39,7 +39,7 @@ const SearchButtonBox = styled.View`
 
 const SearchButton = ({ navigation, type, value }) => {
     return (
-        <Pressable hitSlop={10} onPress={() => navigation.navigate('search', { type: type, value: value })}>
+        <Pressable hitSlop={10} onPress={() => navigation.navigate('search', {type: type, value: value})}>
             <ButtonIcon source={image.common.search.black} />
         </Pressable>
     );
@@ -47,7 +47,7 @@ const SearchButton = ({ navigation, type, value }) => {
 };
 
 
-const Header = ({ searchType, value, navigation }) => {
+const Header = ({ value, navigation, searchType }) => {
     return (
         <Container>
             <ReturnButtonBox><ReturnButton navigation={navigation} /></ReturnButtonBox>

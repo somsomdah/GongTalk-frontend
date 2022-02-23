@@ -35,10 +35,10 @@ const ItemContainer = styled.View`
 
 const SearchList = ({ route, navigation }) => {
 
-    const { value, type } = route.params;
-
+    const { type, value, searchValue } = route.params
     const [items, setItems] = useState(postList)
-    const [inputValue, setInputValue] = useState(value)
+    const [inputValue, setInputValue] = useState(searchValue)
+
 
     const _toggleStar = id => {
         const currentItems = items.map(item => {
@@ -55,7 +55,7 @@ const SearchList = ({ route, navigation }) => {
             <SearchBoxContainer>
                 <InputBox
                     navigation={navigation}
-                    onSearchButtonPress={() => navigation.navigate('searchList', { value: value, type: type })}
+                    onSearchButtonPress={() => navigation.navigate('searchList')}
                     autoFocus={false}
                     inputValue={inputValue}
                     setInputValue={setInputValue}
@@ -65,7 +65,11 @@ const SearchList = ({ route, navigation }) => {
                 <FlatList showsVerticalScrollIndicator={false}
                     data={items}
                     renderItem={({ item }) => (
-                        <Pressable hitSlop={20} onPress={() => navigation.navigate('postDetail', { headerValue: value, post: item })}>
+                        <Pressable hitSlop={20} onPress={() => navigation.navigate('postDetail',
+                            {
+                                post: item, headerValue: value === null ? `${item.board.school.name} ${item.board.name}` : value
+                            }
+                        )}>
                             <Item key={item.id} post={item} toggleStar={_toggleStar} />
                         </Pressable>
                     )}

@@ -19,11 +19,11 @@ const Container = styled.View`
 
 const NoticeDetail = ({ route, navigation }) => {
 
-    const { notice, headerValue } = route.params;
+    const { notice } = route.params;
 
     return (
         <Container>
-            <Header value={headerValue} navigation={navigation}/>
+            <Header value={'공지사항'} navigation={navigation}/>
             <TitleBox notice={notice} />
             <ContentBox notice={notice}/>
         </Container>

@@ -28,7 +28,7 @@ const ItemContainer = styled.View`
 
 const PostList = ({ route, navigation }) => {
 
-    const { headerValue, searchType } = route.params;
+    const { value, type } = route.params;
 
     const [items, setItems] = useState(postList)
 
@@ -41,15 +41,15 @@ const PostList = ({ route, navigation }) => {
         })
         setItems(currentItems);
     };
-
+    
     return (
         <Container>
-            <Header value={headerValue} navigation={navigation} searchType={searchType}/>
+            <Header value={value} navigation={navigation} />
             <ItemContainer>
                 <FlatList showsVerticalScrollIndicator={false}
                     data={items}
                     renderItem={({ item }) => (
-                        <Pressable hitSlop={20} onPress={() => navigation.navigate('postDetail', {headerValue: headerValue, post: item})}>
+                        <Pressable hitSlop={20} onPress={() => navigation.navigate('postDetail', {post: item, headerValue: value})}>
                             <Item key={item.id} post={item} toggleStar={_toggleStar} />
                         </Pressable>
                     )}

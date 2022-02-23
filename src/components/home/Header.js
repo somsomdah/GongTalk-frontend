@@ -35,7 +35,7 @@ const SearchIcon = styled.Image`
 
 const SearchButton = ({navigation}) => {
     return (
-        <Pressable onPress={() => (navigation.navigate('search', {type: 'search', value: null}))}>
+        <Pressable onPress={() => (navigation.navigate('search', {type: 'all', value: null }))}>
             <SearchIcon source={image.common.search.primary}/>
         </Pressable>
     );
