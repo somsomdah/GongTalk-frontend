@@ -9,7 +9,8 @@ import PostDetail from '../screens/PostDetail';
 import SearchList from '../screens/SearchList';
 import TeamInfo from '../screens/TeamInfo';
 import AddKeyword from '../screens/AddKeyword';
-import Start from '../screens/Start';
+import Start from '../screens/onBoarding/Start';
+import OnboardingAddKeyword from '../screens/onBoarding/AddKeyword';
 
 
 const Stack = createStackNavigator();
@@ -18,9 +19,9 @@ const OuterStackNavigation = () => {
     return (
         <Stack.Navigator
             screenOptions={{ headerShown: false, animationEnabled: false}}
-            initialRouteName='start'
+            initialRouteName='onboarding-start'
         >
-            <Stack.Screen name='start' component={Start} />
+            <Stack.Screen name='onboarding-start' component={Start} />
             <Stack.Screen name='main' component={BottomTabNavigation} />
             <Stack.Screen name="search" component={Search} />
             <Stack.Screen name="addBoard" component={AddBoard} />
@@ -31,6 +32,7 @@ const OuterStackNavigation = () => {
             <Stack.Screen name='searchList' component={SearchList} />
             <Stack.Screen name='teamInfo' component={TeamInfo} />
             <Stack.Screen name='addKeyword' component={AddKeyword} />
+            <Stack.Screen name='onboarding-addKeyword' component={OnboardingAddKeyword} />
         </Stack.Navigator>
     );
 };

@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
-import { color } from "../common/colors";
-import { image } from "../common/images";
-import { SemiHeadline2, Headline4 } from "../components/_common/Typography";
+import { color } from "../../common/colors";
+import { image } from "../../common/images";
+import { SemiHeadline2, Headline4 } from "../../components/_common/Typography";
 import { Pressable, View } from "react-native";
 
 const Container = styled.View`
@@ -24,7 +24,6 @@ const WelcomeText = () => {
         marginTop: 20,
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        flexGrow: 1
     }
     return (
         <View style={_style}>
@@ -44,12 +43,14 @@ const NextImage = styled.Image.attrs({
     height: 24px;
 `
 
-const StartButton = ({navigation}) => {
+const NextButton = ({onPress, value}) => {
     const _style = {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingBottom: 32
+        position: 'absolute',
+        bottom: 32,
+        right: 50,
     }
 
     const _textStyle = {
@@ -57,8 +58,8 @@ const StartButton = ({navigation}) => {
     }
 
     return (
-        <Pressable style={_style} onPress={()=>navigation.navigate('main')}>
-            <Headline4 style={_textStyle}>{'시작하기 '}</Headline4>
+        <Pressable style={_style} onPress={onPress}>
+            <Headline4 style={_textStyle}>{value}</Headline4>
             <NextImage />
         </Pressable>
     );
@@ -70,9 +71,10 @@ const Start = ({navigation}) => {
         <Container>
             <SymbolImage />
             <WelcomeText />
-            <StartButton navigation={navigation}/>
+            <NextButton onPress={() => navigation.navigate('onboarding-addKeyword', )} value={'시작하기'}/>
         </Container>
     )
 }
 
 export default Start;
+export {NextButton};

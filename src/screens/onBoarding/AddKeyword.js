@@ -1,11 +1,9 @@
 import styled from "styled-components/native";
-import { color } from "../common/colors";
+import { color } from "../../common/colors";
 import { useState } from "react";
-import Header from "../components/addKeyword/Header";
-import Input from '../components/addKeyword/Input'
-import Title from '../components/addKeyword/Title'
-import Recommend from '../components/addKeyword/Recommend'
-import Added from "../components/addKeyword/Added";
+import { Header, Input, Title, Recommend, Added } from "../AddKeyword";
+import { NextButton } from "./Start";
+import { SemiHeadline1, SmallBody1 } from "../../components/_common/Typography";
 
 const Container = styled.View`
     flex: 1;
@@ -46,21 +44,23 @@ const AddKeyword = ({ navigation }) => {
         <Container>
             <Header navigation={navigation} value={'키워드 설정'} />
             <UpperContainer>
+                <SemiHeadline1>{'관심있는 학교를 추가하세요.'}</SemiHeadline1>
+                <SmallBody1 style={{marginBottom: 25}}>
+                    {'선택한 학교의 공지사항을 모두 확인할 수 있어요. 학교, 전공 (or  기관)을 추가할 수 있습니다. 최소 1개 이상 선택해주세요.'}
+                    </SmallBody1>
                 <Title value={'키워드 입력하기'} />
-                <Input keywordList={myKeywords} setKeywordList={setMyKeywords}/>
+                <Input keywordList={myKeywords} setKeywordList={setMyKeywords} />
                 <Title value={`추천 키워드`} />
-                <Recommend keywordList={keywordList} myKeywordList={myKeywords} setMyKeywordList={setMyKeywords}/>
+                <Recommend keywordList={keywordList} myKeywordList={myKeywords} setMyKeywordList={setMyKeywords} />
             </UpperContainer>
             <LowerContainer>
                 <Title value={`내 키워드`} />
-                <Added keywordList={myKeywords} setKeywordList={setMyKeywords}/>
+                <Added keywordList={myKeywords} setKeywordList={setMyKeywords} />
             </LowerContainer>
-
+            <NextButton value={'다음 '} onPress={() => navigation.navigate()} />
         </Container>
     );
 
 }
 
 export default AddKeyword;
-
-export {Header, Input, Title, Recommend, Added}
