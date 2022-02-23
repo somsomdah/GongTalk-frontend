@@ -31,7 +31,7 @@ const Recommend = ({ keywordList, myKeywordList, setMyKeywordList }) => {
                 backgroundColor: color.gray1,
                 containerStyle: { borderRadius: 12, paddingHorizontal: 12},
                 textColor: color.black,
-                textStyle: {fontFamily: 'pretendard-light'},
+                textStyle: {fontFamily: 'pretendard-light', fontSize: 14},
                 shadow: false
             });
             return
