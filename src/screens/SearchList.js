@@ -38,6 +38,7 @@ const SearchList = ({ route, navigation }) => {
     const { value, type } = route.params;
 
     const [items, setItems] = useState(postList)
+    const [inputValue, setInputValue] = useState(value)
 
     const _toggleStar = id => {
         const currentItems = items.map(item => {
@@ -56,7 +57,8 @@ const SearchList = ({ route, navigation }) => {
                     navigation={navigation}
                     onSearchButtonPress={() => navigation.navigate('searchList', { value: value, type: type })}
                     autoFocus={false}
-                    inputValue={value}
+                    inputValue={inputValue}
+                    setInputValue={setInputValue}
                 />
             </SearchBoxContainer>
             <ItemContainer>
