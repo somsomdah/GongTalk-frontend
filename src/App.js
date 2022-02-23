@@ -5,18 +5,22 @@ import { StatusBar } from 'react-native';
 import { useFonts } from "expo-font";
 import { color } from './common/colors';
 import { font } from "./common/fonts";
+import { RootSiblingParent } from 'react-native-root-siblings';
+
 
 const App = () => {
     const [loaded, error] = useFonts(font.pretendard);
 
     return (
         loaded &&
+        <RootSiblingParent>
             <Container>
                 <StatusBar backgroundColor={color.white} barStyle='dark-content' />
                 <NavigationContainer>
                     <OuterStackNavigation />
                 </NavigationContainer>
             </Container>
+        </RootSiblingParent>
     );
 };
 

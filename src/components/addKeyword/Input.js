@@ -55,6 +55,7 @@ const InputBox = ({keywordList, setKeywordList}) => {
             <Input
                 placeholder={'키워드를 입력하세요'}
                 onFocus={() => setFocus(true)}
+                onBlur={() => setFocus(false)}
                 onChangeText={(newInput) => setInput(newInput)}
                 value={input}
                 onSubmitEditing={_onInputDoneButtonPressed}

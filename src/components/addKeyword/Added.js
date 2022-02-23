@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { color } from '../../common/colors';
 import { image } from '../../common/images';
-import { Pressable } from 'react-native';
+import { Pressable, TouchableOpacity } from 'react-native';
 import { useRef, useState } from 'react';
 import { ButtonMediumW } from '../_common/Typography';
 
@@ -43,9 +43,9 @@ const  Added = ({keywordList, setKeywordList}) => {
                     <ButtonMediumW >
                         {keyword.content}
                     </ButtonMediumW>
-                    <Pressable onPress={() => onCancelButtonPress(keyword.id)}>
+                    <TouchableOpacity onPress={() => onCancelButtonPress(keyword.id)}>
                         <CancelImage source={image.common.cancel.white}/>
-                    </Pressable>
+                    </TouchableOpacity>
                 </Chip>
             )}
         </Container>
