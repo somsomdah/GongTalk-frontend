@@ -2,8 +2,10 @@ import styled from "styled-components/native";
 import { color } from "../../common/colors";
 import { image } from "../../common/images";
 import { SemiHeadline2_1, SemiHeadline4 } from "../_common/Typography";
-import { Pressable, Linking } from "react-native";
+import { Pressable, Linking, } from "react-native";
 import Modal from 'react-native-modal';
+import * as Clipboard from 'expo-clipboard';
+
 
 
 const Container = styled.View`
@@ -50,7 +52,7 @@ const PopOverIcon = styled.Image`
     height: 16px;
 `
 
-const PopOver = ({ isVisible, setIsVisible, postUrl }) => {
+const PopOver = ({ isVisible, setIsVisible, post }) => {
     const _style = {
         padding: 12,
         flexDirection: 'row',
@@ -61,6 +63,23 @@ const PopOver = ({ isVisible, setIsVisible, postUrl }) => {
         marginLeft: 5
     }
 
+    const clipBoardString =
+        `[${post.board.school.name} ${post.board.name}]\n` +
+        `${post.title} \n` +
+        `---------- \n ` +
+        `${post.url}`
+
+
+    const copyToClipboard = () => {
+        Clipboard.setString(clipBoardString);
+        setIsVisible(false);
+    }
+
+    const openBrowser = () => {
+        Linking.openURL(post.url)
+        setIsVisible(false);
+    }
+
     return (
         <Modal
             backdropOpacity={0.1}
@@ -69,16 +88,16 @@ const PopOver = ({ isVisible, setIsVisible, postUrl }) => {
             onBackdropPress={() => setIsVisible(false)}
             animationInTiming={1}
             animationOutTiming={1}
-            >
+        >
             <PopOverBox>
-                <Pressable style={_style}>
+                <Pressable style={_style} onPress={copyToClipboard} android_ripple={{ color: 'black' }}>
                     <PopOverIcon source={image.common.share} />
                     <SemiHeadline4 style={_textStyle}>
                         {'공유하기'}
                     </SemiHeadline4>
                 </Pressable>
                 <PopOverDivider />
-                <Pressable style={_style} onPress={() => Linking.openURL(postUrl)}>
+                <Pressable style={_style} onPress={openBrowser}>
                     <PopOverIcon source={image.common.link} />
                     <SemiHeadline4 style={_textStyle}>
                         {'웹으로 이동하기'}
@@ -91,7 +110,7 @@ const PopOver = ({ isVisible, setIsVisible, postUrl }) => {
 }
 
 
-const MoreButton = ({setModalVisible }) => {
+const MoreButton = ({ setModalVisible }) => {
 
     return (
         <Pressable onPress={() => setModalVisible(true)}>
@@ -108,10 +127,10 @@ const Header = ({ value, navigation, setModalVisible }) => {
         <Container>
             <ReturnButton navigation={navigation} />
             <SemiHeadline2_1>{value}</SemiHeadline2_1>
-            <MoreButton setModalVisible={setModalVisible}/>
+            <MoreButton setModalVisible={setModalVisible} />
         </Container>
     );
 };
 
 export default Header;
-export {PopOver}
+export { PopOver }

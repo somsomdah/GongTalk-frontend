@@ -28,7 +28,7 @@ const PostDetail = ({ route, navigation }) => {
     return (
         <Container>
             <Header value={newHeaderVal} navigation={navigation} setModalVisible={setModalVisible}/>
-            <PopOver isVisible={modalVisible} setIsVisible={setModalVisible} postUrl={post.url}/>
+            <PopOver isVisible={modalVisible} setIsVisible={setModalVisible} post={post}/>
             <TitleBox post={post} />
             <ContentBox post={post}/>
         </Container>
