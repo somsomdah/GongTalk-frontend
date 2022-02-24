@@ -32,7 +32,7 @@ const ItemContainer = styled.View`
 
 const SearchList = ({ route, navigation }) => {
 
-    const { type, value, searchValue } = route.params
+    const { searchValue } = route.params
     const [items, setItems] = useState(postList)
     const [inputValue, setInputValue] = useState(searchValue)
 
@@ -41,7 +41,7 @@ const SearchList = ({ route, navigation }) => {
             <SearchBoxContainer>
                 <InputBox
                     navigation={navigation}
-                    onSearchButtonPress={() => navigation.navigate('searchList', {type: type, value: value, searchValue: searchValue})}
+                    onSearchButtonPress={() => navigation.navigate('searchList', { searchValue: searchValue })}
                     autoFocus={false}
                     inputValue={inputValue}
                     setInputValue={setInputValue}
@@ -52,10 +52,7 @@ const SearchList = ({ route, navigation }) => {
                 <FlatList showsVerticalScrollIndicator={false}
                     data={items}
                     renderItem={({ item }) => (
-                        <Pressable hitSlop={20} onPress={() => navigation.navigate('postDetail',
-                            {
-                                post: item, headerValue: value === null ? `${item.board.school.name} ${item.board.name}` : value
-                            }
+                        <Pressable hitSlop={20} onPress={() => navigation.navigate('postDetail', { post: item }
                         )}>
                             <Item key={item.id} post={item} />
                         </Pressable>

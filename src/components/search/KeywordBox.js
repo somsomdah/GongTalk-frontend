@@ -27,9 +27,9 @@ const ChipBox = styled.Pressable`
     border-radius: 12px;
 `;
 
-const Chip = ({ text }) => {
+const Chip = ({ text, onPress }) => {
     return (
-        <ChipBox>
+        <ChipBox onPress={onPress}>
             <ButtonMedium>{text}</ButtonMedium>
         </ChipBox>
     );
@@ -37,15 +37,22 @@ const Chip = ({ text }) => {
 };
 
 
-const KeywordBox = ({title, keywordList}) => {
-
-    return(
+const KeywordBox = ({ navigation, title, keywordList }) => {
+    
+    
+    return (
         <Container>
             <TitleContainer>
                 <SemiHeadline4>{title}</SemiHeadline4>
             </TitleContainer>
             <BodyContainer>
-                {Object.values(keywordList).map(keyword => (<Chip key={keyword.id} text={keyword.content}/>))}
+                {Object.values(keywordList).map(keyword => (
+                    <Chip
+                        key={keyword.id}
+                        text={keyword.content}
+                        onPress={() => { navigation.navigate('searchList', { searchValue: keyword.content })}}
+                    />
+                ))}
             </BodyContainer>
         </Container>
     );

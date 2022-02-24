@@ -14,7 +14,7 @@ const Container = styled.View`
 const Search = ({ navigation, route }) => {
 
     const [inputValue, setInputValue] = useState('')
-    const {type, value} = route.params
+    const { type, value } = route.params
 
     const recentSearchKeywords = [
         { id: 1, content: '개발' },
@@ -35,16 +35,24 @@ const Search = ({ navigation, route }) => {
             <InputBox
                 placeholder={'키워드 검색하기'}
                 navigation={navigation}
-                onSearchButtonPress={() => navigation.navigate('searchList', {type: type, value: value, searchValue: inputValue} )} 
+                onSearchButtonPress={() => navigation.navigate('searchList', { searchValue: inputValue })}
                 autoFocus={true}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
                 isFromSearchList={false}
             />
-            <KeywordBox title='최근 검색어' keywordList={recentSearchKeywords} />
-            <KeywordBox title='추천 검색어' keywordList={recommendedSearchKeywords} />
+            <KeywordBox
+                navigation={navigation}
+                title='최근 검색어'
+                keywordList={recentSearchKeywords}
+                setInputValue={setInputValue} />
+            <KeywordBox
+                navigation={navigation}
+                title='추천 검색어'
+                keywordList={recommendedSearchKeywords}
+                setInputValue={setInputValue} />
         </Container>
-        );
+    );
 }
 
 export default Search;

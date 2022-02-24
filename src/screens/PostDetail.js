@@ -19,15 +19,15 @@ const Container = styled.View`
 
 const PostDetail = ({ route, navigation }) => {
 
-    const { post, headerValue } = route.params; 
-    const newHeaderVal = headerValue !== null ? headerValue : `${item.board.school.name} ${item.board.name}`
+    const { post } = route.params; 
+    const headerValue =`${post.board.school.name} ${post.board.name}`
 
     const [modalVisible, setModalVisible] = useState(false);
 
 
     return (
         <Container>
-            <Header value={newHeaderVal} navigation={navigation} setModalVisible={setModalVisible}/>
+            <Header value={''} navigation={navigation} setModalVisible={setModalVisible}/>
             <PopOver isVisible={modalVisible} setIsVisible={setModalVisible} post={post}/>
             <TitleBox post={post} />
             <ContentBox post={post}/>
