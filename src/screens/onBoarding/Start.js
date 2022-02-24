@@ -7,6 +7,12 @@ import { Pressable, View } from "react-native";
 const Container = styled.View`
     flex: 1;
     background-color: ${color.white};
+    align-items: stretch;
+`;
+
+const Box = styled.View`
+    flex-direction: row;
+    justify-content: flex-start;
     padding: 0px 50px;
 `;
 
@@ -16,24 +22,26 @@ const SymbolImage = styled.Image.attrs({
     margin-top: 120px;
     width: 80px;
     height: 140px;
-`
+`;
+
+const TextBox = styled.View`
+    margin-top: 20px;
+    flex-direction: column;
+    justify-content: flex-start;
+`;
 
 const WelcomeText = () => {
     const _textStyle = { color: color.primary }
-    const _style = {
-        marginTop: 20,
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-    }
+
     return (
-        <View style={_style}>
+        <TextBox >
             <SemiHeadline2 style={_textStyle}>{'학교의'}</SemiHeadline2>
             <SemiHeadline2 style={_textStyle}>{'모든 공지사항을'}</SemiHeadline2>
             <SemiHeadline2 style={_textStyle}>{'똑똑!'}</SemiHeadline2>
-        </View>
+        </TextBox>
 
     );
-}
+};
 
 
 const NextImage = styled.Image.attrs({
@@ -41,40 +49,48 @@ const NextImage = styled.Image.attrs({
 })`
     width: 24px;
     height: 24px;
-`
+    margin-left: 10px;
+`;
 
-const NextButton = ({onPress, value}) => {
-    const _style = {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        position: 'absolute',
-        bottom: 32,
-        right: 50,
-    }
+const NextButtonBox = styled.View`
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 40px;
+        padding: 0px 50px;
+
+`;
+
+const NextButton = ({ onPress, value }) => {
 
     const _textStyle = {
         color: color.primary
     }
 
     return (
-        <Pressable style={_style} onPress={onPress}>
+        
+        <Pressable onPress={onPress}>
+            <NextButtonBox>
             <Headline4 style={_textStyle}>{value}</Headline4>
             <NextImage />
+            </NextButtonBox>
         </Pressable>
+        
+
     );
-}
+};
 
 
 const Start = ({navigation}) => {
     return (
         <Container>
-            <SymbolImage />
-            <WelcomeText />
-            <NextButton onPress={() => navigation.navigate('onboarding-addKeyword', )} value={'시작하기'}/>
+            <Box><SymbolImage /></Box>
+            <Box><WelcomeText /></Box>
+            <View style={{flexGrow: 1}}/>
+            <NextButton onPress={() => navigation.navigate('onboarding-addBoard' )} value={'시작하기'}/>
         </Container>
     )
-}
+}    
 
 export default Start;
 export {NextButton};

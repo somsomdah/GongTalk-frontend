@@ -40,6 +40,7 @@ const Search = ({ navigation, route }) => {
                 autoFocus={true}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
+                route={route}
             />
             <KeywordBox title='최근 검색어' keywordList={recentSearchKeywords} />
             <KeywordBox title='추천 검색어' keywordList={recommendedSearchKeywords} />

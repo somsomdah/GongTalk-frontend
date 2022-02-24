@@ -6,6 +6,7 @@ import Input from '../components/addKeyword/Input'
 import Title from '../components/addKeyword/Title'
 import Recommend from '../components/addKeyword/Recommend'
 import Added from "../components/addKeyword/Added";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Container = styled.View`
     flex: 1;
@@ -29,6 +30,7 @@ const LowerContainer = styled.View`
     justify-content: flex-start;
     align-items: stretch;
     padding: 20px 24px;
+    flex: 1;
 `
 
 const AddKeyword = ({ navigation }) => {
@@ -47,15 +49,16 @@ const AddKeyword = ({ navigation }) => {
             <Header navigation={navigation} value={'키워드 설정'} />
             <UpperContainer>
                 <Title value={'키워드 입력하기'} />
-                <Input keywordList={myKeywords} setKeywordList={setMyKeywords}/>
+                <Input keywordList={myKeywords} setKeywordList={setMyKeywords} />
                 <Title value={`추천 키워드`} />
-                <Recommend keywordList={keywordList} myKeywordList={myKeywords} setMyKeywordList={setMyKeywords}/>
+                <Recommend keywordList={keywordList} myKeywordList={myKeywords} setMyKeywordList={setMyKeywords} />
             </UpperContainer>
             <LowerContainer>
                 <Title value={`내 키워드`} />
-                <Added keywordList={myKeywords} setKeywordList={setMyKeywords}/>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <Added keywordList={myKeywords} setKeywordList={setMyKeywords} />
+                </ScrollView>
             </LowerContainer>
-
         </Container>
     );
 
@@ -63,4 +66,4 @@ const AddKeyword = ({ navigation }) => {
 
 export default AddKeyword;
 
-export {Header, Input, Title, Recommend, Added}
+export { Header, Input, Title, Recommend, Added, Container, UpperContainer, LowerContainer }

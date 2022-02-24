@@ -1,15 +1,15 @@
 import styled from "styled-components/native";
 import { image } from "../../common/images";
 import { color } from "../../common/colors";
-import { ButtonLargeW, SemiHeadline2, SemiHeadline4 } from "../_common/Typography";
-import { View, Pressable } from "react-native";
-import { useState } from "react";
+import { SemiHeadline2, SemiHeadline4 } from "../_common/Typography";
+import { Pressable, ScrollView } from "react-native";
 
 const Container = styled.View`
     padding: 24px;
     flex-direction: column;
     align-items: stretch;
     flex: 1;
+    flex-direction: column;
 `
 
 const TitleBox = styled.View`
@@ -17,7 +17,6 @@ const TitleBox = styled.View`
     flex-direction: row;
     justify-content: flex-start;
 `
-
 
 const ItemBox = styled.View`
     flex-direction: row;
@@ -49,28 +48,6 @@ const Item = ({ value, onCancel }) => {
 
 };
 
-const CompleteButton = styled.View`
-    margin: 0px 24px 24px 24px;
-    padding: 15px;
-    justify-content: center;
-    align-items: center;
-    background-color: ${color.primary};
-    border-radius: 8px;
-    
-`;
-
-// const CompleteButtonPressable = () => {
-//     return (
-//         <Pressable>
-//             <CompleteButton>
-//                 <ButtonLargeW>
-//                     완료하기
-//                 </ButtonLargeW>
-//             </CompleteButton>
-//         </Pressable>
-//     );
-// };
-
 
 const List = ({ boardList, setBoardList }) => {
 
@@ -80,20 +57,18 @@ const List = ({ boardList, setBoardList }) => {
     }
 
     return (
-        <View style={{flex: 1, flexDirection: 'column'}}>
             <Container>
                 <TitleBox >
                     <SemiHeadline4>추가 목록</SemiHeadline4>
                 </TitleBox>
+                <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1}}>
                 {Object.values(boardList).map(board => {
                     const boardFullName = `${board.school.name} ${board.name}`;
                     return (<Item key={board.id} value={boardFullName} onCancel={() => _onBoardCancel(board.id)} />);
 
                 })}
+                </ScrollView>
             </Container>
-            {/* <CompleteButtonPressable /> */}
-        </View>
-
 
     )
 }

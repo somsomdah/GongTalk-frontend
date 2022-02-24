@@ -1,12 +1,9 @@
 import InputBox from "../components/search/InputBox";
 import Item from "../components/postList/Item";
-import { NavigationHelpersContext } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { FlatList, Pressable } from 'react-native';
 import styled from 'styled-components/native';
 import { color } from '../common/colors'
-import { image } from '../common/images';
-import Header from '../components/postList/Header';
 import { postList } from '../common/data';
 
 const Container = styled.View`
