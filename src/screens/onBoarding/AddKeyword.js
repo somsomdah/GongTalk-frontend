@@ -33,7 +33,7 @@ const AddKeyword = ({ navigation }) => {
             </LowerContainer>
             <ButtonContainer>
                 <ReturnButton value={'이전'} onPress={() => navigation.navigate('onboarding-addBoard')} />
-                <NextButton value={'다음'} onPress={() => navigation.navigate('main')} />
+                <NextButton value={'다음'} onPress={() => navigation.navigate('onboarding-complete')} />
             </ButtonContainer>
         </Container>
     )

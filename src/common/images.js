@@ -44,6 +44,9 @@ export const image = {
         link: require('../../assets/icons/link.png'),
         proceed: {
             primary: require('../../assets/icons/proceed_primary.png'),
+        },
+        roundCheck: {
+            primary: require('../../assets/icons/check_round.png')
         }
     },
 

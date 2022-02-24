@@ -113,6 +113,7 @@ const ButtonContainer = styled.View`
     justify-content: space-between;
     align-items: center;
     padding: 40px 32px;
+    align-self: stretch;
 `;
 
 
@@ -124,7 +125,7 @@ const Start = ({navigation}) => {
             <View style={{flexGrow: 1}}/>
             <ButtonContainer>
             <View />
-            <NextButton onPress={() => navigation.navigate('onboarding-addBoard' )} value={'시작하기'}/>
+            <NextButton onPress={() => navigation.navigate('onboarding-addBoard' )} value={'다음'}/>
             </ButtonContainer>
         </Container>
     )

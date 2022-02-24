@@ -39,13 +39,16 @@ const Content = () => {
             <Symbol />
             <TextBox>
                 <Line>
-                    <SemiHeadline2_1 style={_style}>{'Prod. Dev. '}</SemiHeadline2_1><SemiHeadline2_1>{'장다솜'}</SemiHeadline2_1>
+                    <SemiHeadline2_1 style={_style}>{'Prod. Dev. '}</SemiHeadline2_1>
+                    <SemiHeadline2_1 style={{color: color.gray6}}>{'장다솜'}</SemiHeadline2_1>
                 </Line>
                 <Line>
-                    <SemiHeadline2_1 style={_style}>{'UX. BX. '}</SemiHeadline2_1><SemiHeadline2_1>{'오채윤'}</SemiHeadline2_1>
+                    <SemiHeadline2_1 style={_style}>{'UX. BX. '}</SemiHeadline2_1>
+                    <SemiHeadline2_1 style={{color: color.gray6}}>{'오채윤'}</SemiHeadline2_1>
                 </Line>
                 <Line>
-                    <SemiHeadline2_1 style={_style}>{'Contact. '}</SemiHeadline2_1><SemiHeadline2_1>{'gongtalk.contact@gmail.com'}</SemiHeadline2_1>
+                    <SemiHeadline2_1 style={_style}>{'Contact. '}</SemiHeadline2_1>
+                    <SemiHeadline2_1 style={{color: color.gray6}}>{'gongtalk.contact@gmail.com'}</SemiHeadline2_1>
                 </Line>
             </TextBox>
         </Container>

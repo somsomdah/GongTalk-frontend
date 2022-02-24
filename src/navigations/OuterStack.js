@@ -12,6 +12,7 @@ import AddKeyword from '../screens/AddKeyword';
 import Start from '../screens/onboarding/Start';
 import OnboardingAddKeyword from '../screens/onboarding/AddKeyword';
 import OnboardingAddBoard from '../screens/onboarding/AddBoard'
+import Complete from '../screens/onboarding/Complete';
 
 
 const Stack = createStackNavigator();
@@ -35,6 +36,7 @@ const OuterStackNavigation = () => {
             <Stack.Screen name='onboarding-start' component={Start} />
             <Stack.Screen name='onboarding-addBoard' component={OnboardingAddBoard} />
             <Stack.Screen name='onboarding-addKeyword' component={OnboardingAddKeyword} />
+            <Stack.Screen name='onboarding-complete' component={Complete} />
         </Stack.Navigator>
     );
 };
