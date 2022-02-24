@@ -30,7 +30,7 @@ const ToggleButton = ({disabled, onValueChange, on}) => {
 
     return (
         <Switch 
-            trackColor={{false: color.gray3, true: disabled? color.primaryLight : color.primary}}
+            trackColor={{false: color.gray3, true: disabled ? color.primary+'7F' : color.primary}}
             thumbColor={disabled ? color.gray1 : color.white}
             onValueChange={onValueChange}
             value={on}
