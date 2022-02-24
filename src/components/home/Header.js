@@ -10,17 +10,14 @@ const Container = styled.View`
     align-items: center;
     background-color: ${color.white};
     elevation: ${({isOnTop}) => isOnTop ? 0 : 1};
-    padding: 19px 24px;
+    padding: 11px 24px;
     height: 56px;
 `;
 
 const SymbolImage = styled.Image`
-    width: 44px;
-    height: 20px;
-    margin-top: 5px;
-    margin-left: 10px;
-    /* width: 66px;
-    height: 30px; */
+    margin-left: 5px;
+    width: 55px;
+    height: 25px;
 `;
 
 const SymbolImageBox = styled.View`
