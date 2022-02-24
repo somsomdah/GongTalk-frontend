@@ -14,7 +14,6 @@ const Container = styled.View`
 const Search = ({ navigation, route }) => {
 
     const [inputValue, setInputValue] = useState('')
-
     const {type, value} = route.params
 
     const recentSearchKeywords = [
@@ -40,7 +39,7 @@ const Search = ({ navigation, route }) => {
                 autoFocus={true}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
-                route={route}
+                isFromSearchList={false}
             />
             <KeywordBox title='최근 검색어' keywordList={recentSearchKeywords} />
             <KeywordBox title='추천 검색어' keywordList={recommendedSearchKeywords} />

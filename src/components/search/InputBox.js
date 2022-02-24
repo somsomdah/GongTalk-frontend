@@ -49,15 +49,14 @@ const DeleteButton = ({ pressDelete }) => {
     );
 };
 
-const InputBox = ({ placeholder, navigation, onSearchButtonPress, autoFocus, inputValue, setInputValue, route}) => {
+const InputBox = ({ placeholder, navigation, onSearchButtonPress, autoFocus, inputValue, setInputValue, isFromSearchList}) => {
 
     const [focus, setFocus] = useState(false);
-
+    
     return (
 
-
         <Container focused={focus} >
-            <Pressable onPress={() => route.params?.type === 'all'? navigation.pop(1) : navigation.pop(2)}>
+            <Pressable onPress={() => isFromSearchList ? navigation.pop(2) : navigation.goBack()}>
                 <ReturnImage focused={focus} />
             </Pressable>
 

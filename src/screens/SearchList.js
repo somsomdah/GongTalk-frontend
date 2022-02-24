@@ -52,10 +52,11 @@ const SearchList = ({ route, navigation }) => {
             <SearchBoxContainer>
                 <InputBox
                     navigation={navigation}
-                    onSearchButtonPress={() => navigation.navigate('searchList')}
+                    onSearchButtonPress={() => navigation.navigate('searchList', {type: type, value: value, searchValue: searchValue})}
                     autoFocus={false}
                     inputValue={inputValue}
                     setInputValue={setInputValue}
+                    isFromSearchList={true}
                 />
             </SearchBoxContainer>
             <ItemContainer>
