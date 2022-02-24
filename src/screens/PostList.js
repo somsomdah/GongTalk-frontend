@@ -1,9 +1,7 @@
-import { NavigationHelpersContext } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { FlatList, Pressable } from 'react-native';
 import styled from 'styled-components/native';
 import { color } from '../common/colors'
-import { image } from '../common/images';
 import Header from '../components/postList/Header';
 import Item from '../components/postList/Item';
 import { postList } from '../common/data';
@@ -29,18 +27,7 @@ const ItemContainer = styled.View`
 const PostList = ({ route, navigation }) => {
 
     const { value, type } = route.params;
-
     const [items, setItems] = useState(postList)
-
-    const _toggleStar = id => {
-        const currentItems = items.map(item => {
-            if (item.id === id) {
-                item.starred = !item.starred
-            }
-            return item
-        })
-        setItems(currentItems);
-    };
     
     return (
         <Container>
@@ -50,7 +37,7 @@ const PostList = ({ route, navigation }) => {
                     data={items}
                     renderItem={({ item }) => (
                         <Pressable hitSlop={20} onPress={() => navigation.navigate('postDetail', {post: item, headerValue: value})}>
-                            <Item key={item.id} post={item} toggleStar={_toggleStar} />
+                            <Item key={item.id} post={item}/>
                         </Pressable>
                     )}
                 />

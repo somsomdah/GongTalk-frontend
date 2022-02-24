@@ -45,13 +45,10 @@ const Star = styled.Image`
     width: 18px;
 `;
 
-const StarButton = ({ id, onPressOut, starred }) => {
-    const _onPressOut = () => {
-        onPressOut(id);
-    }
+const StarButton = ({ onPress, starred }) => {
 
     return (
-        <Pressable onPressOut={_onPressOut} hitSlop={10}>
+        <Pressable onPress={onPress} hitSlop={10}>
             <Star source={starred ? image.star.filled : image.star.unfilled} />
         </Pressable>
     )
@@ -76,14 +73,18 @@ const ItemInfoDivider = styled.View`
     border-left-width: 1px;
 `;
 
-const Item = ({ post, starred, toggleStar }) => {
+const Item = ({ post }) => {
+
+    const [starred, setStarred] = useState(false);
+    toggleStar = () => setStarred(!starred)
+
     return (
         <ItemBox>
             <TopBox>
                 <SemiHeadline5>{post.writer}</SemiHeadline5>
                 <ItemInfoDivider />
                 <SemiHeadline5 style={{ color: color.gray5 }}>{post.date}</SemiHeadline5>
-                <StarButtonBox><StarButton id={post.id} onPressOut={toggleStar} starred={starred} /></StarButtonBox>
+                <StarButtonBox><StarButton onPress={toggleStar} starred={starred} /></StarButtonBox>
             </TopBox>
             <ItemTitleBox>
                 <SemiHeadline3 ellipsizeMode='tail' numberOfLines={2}>{post.title}</SemiHeadline3>
@@ -102,16 +103,6 @@ const Board = () => {
 
     const [items, setItems] = useState(postList);
 
-    const _toggleStar = id => {
-        const currentItems = items.map(item => {
-            if (item.id === id) {
-                item.starred = !item.starred
-            }
-            return item
-        })
-        setItems(currentItems);
-    };
-
     return (
         <Container>
             <TitleContainer>
@@ -124,7 +115,7 @@ const Board = () => {
                     <Item
                         key={item.id}
                         post={item}
-                        toggleStar={_toggleStar} />
+                    />
                 )}
             </ContentContainer>
         </Container >

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { color } from '../../common/colors'
 import { image } from '../../common/images';
@@ -41,32 +41,33 @@ const Star = styled.Image`
     width: 18px;
 `;
 
-const StarButton = ({ id, onPress, starred }) => {
-    const _onPress = () => {
-        onPress(id);
-    }
-    
+const StarButton = ({ onPress, starred }) => {
     return (
-        <Pressable onPressOut={_onPress} hitSlop={10}>
+        <Pressable onPress={onPress} hitSlop={10}>
             <Star source={starred ? image.star.filled : image.star.unfilled} />
         </Pressable>
     )
 }
 
-const Item = ({ post, toggleStar}) => {
+const Item = ({ post }) => {
+
+    const [starred, setStarred] = useState(false);
+    toggleStar = () => setStarred(!starred)
+
     return (
         <ItemBox>
             <SemiHeadline3
                 ellipsizeMode='tail'
                 numberOfLines={2}
-                style={{ marginBottom: 6 }}>{post.title}</SemiHeadline3>
+                style={{ marginBottom: 6 }}>{post.title}
+            </SemiHeadline3>
             <ItemInfoContainer>
-            <SemiHeadline5>{`${post.board.school.name} ${post.board.name}`}</SemiHeadline5>
-                    <ItemInfoDivider />
-                    <SemiHeadline5>{post.writer}</SemiHeadline5>
-                    <ItemInfoDivider />
-                    <SemiHeadline5 style={{ color: color.gray5 }}>{post.date}</SemiHeadline5>
-                    <StarButtonBox><StarButton id={post.id} onPress={toggleStar} starred={post.starred} /></StarButtonBox>
+                <SemiHeadline5>{`${post.board.school.name} ${post.board.name}`}</SemiHeadline5>
+                <ItemInfoDivider />
+                <SemiHeadline5>{post.writer}</SemiHeadline5>
+                <ItemInfoDivider />
+                <SemiHeadline5 style={{ color: color.gray5 }}>{post.date}</SemiHeadline5>
+                <StarButtonBox><StarButton onPress={toggleStar} starred={starred} /></StarButtonBox>
             </ItemInfoContainer>
         </ItemBox>
     )

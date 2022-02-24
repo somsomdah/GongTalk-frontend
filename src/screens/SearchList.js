@@ -36,17 +36,6 @@ const SearchList = ({ route, navigation }) => {
     const [items, setItems] = useState(postList)
     const [inputValue, setInputValue] = useState(searchValue)
 
-
-    const _toggleStar = id => {
-        const currentItems = items.map(item => {
-            if (item.id === id) {
-                item.starred = !item.starred
-            }
-            return item
-        })
-        setItems(currentItems);
-    };
-
     return (
         <Container>
             <SearchBoxContainer>
@@ -68,7 +57,7 @@ const SearchList = ({ route, navigation }) => {
                                 post: item, headerValue: value === null ? `${item.board.school.name} ${item.board.name}` : value
                             }
                         )}>
-                            <Item key={item.id} post={item} toggleStar={_toggleStar} />
+                            <Item key={item.id} post={item} />
                         </Pressable>
                     )}
                 />

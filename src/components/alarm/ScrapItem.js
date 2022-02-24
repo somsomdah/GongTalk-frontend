@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { color } from '../../common/colors'
+import { image } from '../../common/images';
 import { SemiHeadline3, SemiHeadline5 } from '../_common/Typography'
+import { Pressable } from 'react-native';
 
 
 const ItemBox = styled.View`
@@ -28,7 +30,32 @@ const ItemInfoDivider = styled.View`
     border-left-width: 1px;
 `;
 
+const StarButtonBox = styled.View`
+    flex-grow: 1;
+    justify-content: flex-end;
+    flex-direction: row;
+`;
+
+const Star = styled.Image`    
+    height: 18px;
+    width: 18px;
+`;
+
+const StarButton = ({ onPress, starred }) => {
+
+    return (
+        <StarButtonBox>
+            <Pressable onPressOut={onPress} hitSlop={10}>
+                <Star source={starred ? image.star.filled : image.star.unfilled} />
+            </Pressable>
+        </StarButtonBox>
+    )
+}
+
 const Item = ({ post }) => {
+    const [starred, setStarred] = useState(true);
+    toggleStar = () => setStarred(!starred)
+
     return (
         <ItemBox>
             <SemiHeadline3
@@ -41,8 +68,8 @@ const Item = ({ post }) => {
                 <SemiHeadline5>{post.writer}</SemiHeadline5>
                 <ItemInfoDivider />
                 <SemiHeadline5 style={{ color: color.gray5 }}>{post.date}</SemiHeadline5>
+                <StarButton id={post.id} onPress={toggleStar} starred={starred} />
             </ItemInfoContainer>
-
         </ItemBox>
     )
 }
