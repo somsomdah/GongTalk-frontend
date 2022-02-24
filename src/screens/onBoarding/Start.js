@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { color } from "../../common/colors";
 import { image } from "../../common/images";
-import { SemiHeadline2, Headline4 } from "../../components/_common/Typography";
+import { SemiHeadline2, SemiHeadline1 } from "../../components/_common/Typography";
 import { Pressable, View } from "react-native";
 
 const Container = styled.View`
@@ -47,18 +47,15 @@ const WelcomeText = () => {
 const NextImage = styled.Image.attrs({
     source: image.common.proceed.primary
 })`
-    width: 24px;
-    height: 24px;
-    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
 `;
 
 const NextButtonBox = styled.View`
         flex-direction: row;
         align-items: center;
         justify-content: flex-end;
-        margin-bottom: 40px;
-        padding: 0px 50px;
-
 `;
 
 const NextButton = ({ onPress, value }) => {
@@ -71,7 +68,7 @@ const NextButton = ({ onPress, value }) => {
         
         <Pressable onPress={onPress}>
             <NextButtonBox>
-            <Headline4 style={_textStyle}>{value}</Headline4>
+            <SemiHeadline1 style={_textStyle}>{value}</SemiHeadline1>
             <NextImage />
             </NextButtonBox>
         </Pressable>
@@ -81,16 +78,57 @@ const NextButton = ({ onPress, value }) => {
 };
 
 
+const ReturnImage = styled.Image.attrs({
+    source: image.common.return.primary
+})`
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+`;
+
+const ReturnButtonBox = styled.View`
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+`;
+
+const ReturnButton = ({ onPress, value }) => {
+
+    const _textStyle = {
+        color: color.primary
+    }
+
+    return (
+        <Pressable onPress={onPress}>
+            <ReturnButtonBox>
+            <ReturnImage />
+            <SemiHeadline1 style={_textStyle}>{value}</SemiHeadline1>
+            </ReturnButtonBox>
+        </Pressable>
+    );
+};
+
+const ButtonContainer = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 32px;
+`;
+
+
 const Start = ({navigation}) => {
     return (
         <Container>
             <Box><SymbolImage /></Box>
             <Box><WelcomeText /></Box>
             <View style={{flexGrow: 1}}/>
+            <ButtonContainer>
+            <View />
             <NextButton onPress={() => navigation.navigate('onboarding-addBoard' )} value={'시작하기'}/>
+            </ButtonContainer>
         </Container>
     )
-}    
+};    
 
 export default Start;
-export {NextButton};
+export {NextButton, ReturnButton, ButtonContainer};

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NextButton } from "./Start";
+import { NextButton, ReturnButton, ButtonContainer } from "./Start";
 import { SemiHeadline1, SmallBody1 } from "../../components/_common/Typography";
 import { Header, Select, List, SelectModal, Container } from '../AddBoard'
 import styled from "styled-components/native";
@@ -9,7 +9,7 @@ const UpperContainer = styled.View`
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    padding: 20px 24px 0px 24px;
+    padding: 40px 24px 0px 24px;
     margin-bottom: 5px;
 `
 
@@ -41,7 +41,6 @@ const AddBoard = ({ navigation }) => {
 
     return (
         <Container>
-            <Header navigation={navigation} />
             <UpperContainer>
                 <SemiHeadline1>{'관심있는 학교를 추가하세요.'}</SemiHeadline1>
                 <SmallBody1>
@@ -59,10 +58,13 @@ const AddBoard = ({ navigation }) => {
                 selectedSchool={selectedSchool}
                 select={_select}
             />
-            <NextButton value={'다음'} onPress={() => navigation.navigate('onboarding-addKeyword')} />
+            <ButtonContainer>
+                <ReturnButton value={'이전'} onPress={() => navigation.navigate('onboarding-start')} />
+                <NextButton value={'다음'} onPress={() => navigation.navigate('onboarding-addKeyword')} />
+            </ButtonContainer>
         </Container>
-    );
-
+    )
+ 
 }
 
 export default AddBoard;

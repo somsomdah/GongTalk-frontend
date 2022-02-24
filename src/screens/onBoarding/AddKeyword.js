@@ -1,8 +1,8 @@
 import styled from "styled-components/native";
 import { color } from "../../common/colors";
 import { useState } from "react";
-import { Header, Input, Title, Recommend, Added, Container, UpperContainer, LowerContainer} from "../AddKeyword";
-import { NextButton } from "./Start";
+import { Header, Input, Title, Recommend, Added, Container, UpperContainer, LowerContainer } from "../AddKeyword";
+import { NextButton, ReturnButton, ButtonContainer } from "./Start";
 import { SemiHeadline1, SmallBody1 } from "../../components/_common/Typography";
 
 
@@ -17,9 +17,8 @@ const AddKeyword = ({ navigation }) => {
 
     return (
         <Container>
-            <Header navigation={navigation} value={'키워드 설정'} />
-            <UpperContainer>
-                <SemiHeadline1>{'관심있는 학교 공지의 키워드를 추가하세요.'}</SemiHeadline1>
+            <UpperContainer style={{paddingTop: 40}}>
+                <SemiHeadline1>{'관심있는 키워드를 추가하세요.'}</SemiHeadline1>
                 <SmallBody1 style={{ marginBottom: 25 }}>
                     {'추가한 키워드와 관련있는 모든 공지사항을 모아 확인할 수 있어요. 해당 키워드로 알림이 갑니다. 최소 1개 이상 선택해주세요. '}
                 </SmallBody1>
@@ -32,10 +31,13 @@ const AddKeyword = ({ navigation }) => {
                 <Title value={`내 키워드`} />
                 <Added keywordList={myKeywords} setKeywordList={setMyKeywords} />
             </LowerContainer>
-            <NextButton value={'다음'} onPress={() => navigation.navigate('main')} />
+            <ButtonContainer>
+                <ReturnButton value={'이전'} onPress={() => navigation.navigate('onboarding-addBoard')} />
+                <NextButton value={'다음'} onPress={() => navigation.navigate('main')} />
+            </ButtonContainer>
         </Container>
-    );
-
+    )
+ 
 }
 
 export default AddKeyword;
