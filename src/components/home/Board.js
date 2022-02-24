@@ -34,14 +34,6 @@ const TopBox = styled.View`
     align-items: center;
 `;
 
-const DateBox = styled.View.attrs({
-    borderLeftColor: color.gray3,
-    borderLeftWidth: 1,
-})`
-    padding-left: 8px;
-    margin-left: 8px;
-`;
-
 const StarButtonBox = styled.View`
     flex-grow: 1;
     justify-content: flex-end;
@@ -76,12 +68,21 @@ const TagBox = styled.View`
     flex-direction: row;
 `;
 
+const ItemInfoDivider = styled.View`
+    width: 4px;
+    height: 8px;
+    margin-left: 4px;
+    border-left-color: ${color.gray3};
+    border-left-width: 1px;
+`;
+
 const Item = ({ post, starred, toggleStar }) => {
     return (
         <ItemBox>
             <TopBox>
                 <SemiHeadline5>{post.writer}</SemiHeadline5>
-                <DateBox><SemiHeadline5 style={{ color: color.gray5 }}>{post.date}</SemiHeadline5></DateBox>
+                <ItemInfoDivider />
+                <SemiHeadline5 style={{ color: color.gray5 }}>{post.date}</SemiHeadline5>
                 <StarButtonBox><StarButton id={post.id} onPressOut={toggleStar} starred={starred} /></StarButtonBox>
             </TopBox>
             <ItemTitleBox>
@@ -89,7 +90,7 @@ const Item = ({ post, starred, toggleStar }) => {
             </ItemTitleBox>
             <TagBox>
                 {Object.values(post.tags).map(tag => (
-                    <SemiHeadline4 key={tag.id} style={{color: color.primary}}>{`#${tag.content} `}</SemiHeadline4>
+                    <SemiHeadline4 key={tag.id} style={{ color: color.primary }}>{`#${tag.content} `}</SemiHeadline4>
                 ))}
             </TagBox>
         </ItemBox>

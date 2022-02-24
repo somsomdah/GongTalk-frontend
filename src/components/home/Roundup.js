@@ -45,11 +45,13 @@ const WriterDateBox = styled.View`
 `;
 
 
-const DateBox = styled.View.attrs({ borderLeftColor: color.gray5, borderLeftWidth: 1, })`
-    padding-left: 6px;
-    margin-left: 6px;
+const ItemInfoDivider = styled.View`
+    width: 4px;
+    height: 10px;
+    margin-left: 4px;
+    border-left-color: ${color.gray3};
+    border-left-width: 1px;
 `;
-
 
 const Item = ({ post }) => {
 
@@ -60,7 +62,8 @@ const Item = ({ post }) => {
                 <SemiHeadline3 ellipsizeMode='tail' numberOfLines={1}>{post.title}</SemiHeadline3>
                 <WriterDateBox>
                     <SemiHeadline4>{`${post.board.school.name} ${post.board.name}`}</SemiHeadline4>
-                    <DateBox><SemiHeadline4 style={{ color: color.gray3 }}>{post.date}</SemiHeadline4></DateBox>
+                    <ItemInfoDivider />
+                    <SemiHeadline4 style={{ color: color.gray5 }}>{post.date}</SemiHeadline4>
                 </WriterDateBox>
             </TextBox>
         </ItemBox>);

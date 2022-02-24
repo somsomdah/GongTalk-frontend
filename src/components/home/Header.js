@@ -3,8 +3,8 @@ import styled from "styled-components/native";
 import { image } from '../../common/images';
 import { color } from "../../common/colors";
 
+
 const Container = styled.View`
-    
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -52,5 +52,6 @@ const Header = ({navigation, isOnTop}) => {
         </Container>
     );
 };
+
 
 export default Header

@@ -1,9 +1,10 @@
 
+import { BackgroundImage } from "react-native-elements/dist/config";
 import styled from "styled-components/native";
 import { color } from '../../common/colors';
 import { ButtonMediumW } from "../_common/Typography";
 
-const Chip = styled.TouchableOpacity`
+const Chip = styled.Pressable`
     padding: 7px 14px;
     margin-right: 8px;
     border-radius: 12px;
