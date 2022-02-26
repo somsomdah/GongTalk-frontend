@@ -44,9 +44,9 @@ const WelcomeText = () => {
 };
 
 
-const NextImage = styled.Image.attrs({
-    source: image.common.proceed.primary
-})`
+const NextImage = styled.Image.attrs(({ disabled }) => ({
+    source: image.common.proceed[disabled ? 'gray' : 'primary']
+}))`
     width: 20px;
     height: 20px;
     margin-left: 8px;
@@ -58,21 +58,22 @@ const NextButtonBox = styled.View`
         justify-content: flex-end;
 `;
 
-const NextButton = ({ onPress, value }) => {
+const NextButton = ({ onPress, value, disabled }) => {
 
     const _textStyle = {
-        color: color.primary
+        color: disabled ? color.gray3 : color.primary
     }
 
+
     return (
-        
-        <Pressable onPress={onPress}>
+
+        <Pressable onPress={disabled ? () => {} : onPress}>
             <NextButtonBox>
-            <SemiHeadline1 style={_textStyle}>{value}</SemiHeadline1>
-            <NextImage />
+                <SemiHeadline1 style={_textStyle}>{value}</SemiHeadline1>
+                <NextImage disabled={disabled}/>
             </NextButtonBox>
         </Pressable>
-        
+
 
     );
 };
@@ -101,8 +102,8 @@ const ReturnButton = ({ onPress, value }) => {
     return (
         <Pressable onPress={onPress}>
             <ReturnButtonBox>
-            <ReturnImage />
-            <SemiHeadline1 style={_textStyle}>{value}</SemiHeadline1>
+                <ReturnImage />
+                <SemiHeadline1 style={_textStyle}>{value}</SemiHeadline1>
             </ReturnButtonBox>
         </Pressable>
     );
@@ -117,19 +118,19 @@ const ButtonContainer = styled.View`
 `;
 
 
-const Start = ({navigation}) => {
+const Start = ({ navigation }) => {
     return (
         <Container>
             <Box><SymbolImage /></Box>
             <Box><WelcomeText /></Box>
-            <View style={{flexGrow: 1}}/>
+            <View style={{ flexGrow: 1 }} />
             <ButtonContainer>
-            <View />
-            <NextButton onPress={() => navigation.navigate('onboarding-addBoard' )} value={'다음'}/>
+                <View />
+                <NextButton onPress={() => navigation.navigate('onboarding-addBoard')} value={'다음'} />
             </ButtonContainer>
         </Container>
     )
-};    
+};
 
 export default Start;
-export {NextButton, ReturnButton, ButtonContainer};
+export { NextButton, ReturnButton, ButtonContainer };
