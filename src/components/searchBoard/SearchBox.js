@@ -14,8 +14,8 @@ const Container = styled.View`
     padding: 16px;
 `;
 
-const ReturnImage = styled.Image.attrs(({focused}) => ({
-    source: image.common.return[focused? 'primary': 'black']
+const ReturnImage = styled.Image.attrs(({ focused }) => ({
+    source: image.common.return[focused ? 'primary' : 'black']
 }))`
     margin-right: 24px;
     margin-bottom: 18px;
@@ -49,10 +49,15 @@ const DeleteButton = ({ pressDelete }) => {
     );
 };
 
-const SearchBox = ({navigation, inputValue, setInputValue, boardList, setBoardList}) => {
+const SearchBox = ({ navigation, inputValue, setInputValue, boardList, setBoardList }) => {
 
     const [focus, setFocus] = useState(false);
     
+    const _onChangeText = (newInput) => {
+        setInputValue(newInput);
+        setBoardList(boardList.filter(board => board.name.includes(newInput)))
+    }
+
     return (
 
         <Container focused={focus} >
@@ -63,7 +68,7 @@ const SearchBox = ({navigation, inputValue, setInputValue, boardList, setBoardLi
             <Input
                 placeholder={'전공/기관 검색하기'}
                 onFocus={() => setFocus(true)}
-                onChangeText={(newInput) => {setInputValue(newInput); setBoardList(boardList.filter(board => 'newInput이 board 앞만 맞는것들'))}}
+                onChangeText={_onChangeText}
                 value={inputValue}
                 onSubmitEditing={() => setFocus(false)}
                 returnKeyType={'search'}

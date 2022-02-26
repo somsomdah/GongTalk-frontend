@@ -31,11 +31,6 @@ const AddBoard = ({ navigation }) => {
         {id: 4, name: '조형예술대학', school: {id: 1, name: '이화여자대학교'} },
         {id: 7, name: '중어중문학과', school: {id: 2, name: '서강대학교'} },
         {id: 8, name: '경영학과', school: {id: 2, name: '서강대학교'} },
-        {id: 11, name: '홈', school: {id: 1, name: '이화여자대학교'} },
-        {id: 12, name: '컴퓨터공학전공', school: {id: 1, name: '이화여자대학교'} },
-        {id: 14, name: '조형예술대학', school: {id: 1, name: '이화여자대학교'} },
-        {id: 17, name: '중어중문학과', school: {id: 2, name: '서강대학교'} },
-        {id: 18, name: '경영학과', school: {id: 2, name: '서강대학교'} },
     ];
 
     const [selectedSchool, setSelectedSchool] = useState(null);
@@ -52,7 +47,8 @@ const AddBoard = ({ navigation }) => {
             <Header navigation={navigation} />
             <Select
                 onDropdownPress={() => setModalVisible(true)}
-                selectedSchool={selectedSchool} />
+                selectedSchool={selectedSchool} 
+                navigation={navigation}/>
             <List boardList={boardList} setBoardList={setBoardList}/>
             <SelectModal
                 isVisible={modalVisible}

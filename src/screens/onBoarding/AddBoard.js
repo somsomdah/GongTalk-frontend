@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { NextButton, ReturnButton, ButtonContainer } from "./Start";
 import { SemiHeadline1, SmallBody1 } from "../../components/_common/Typography";
-import { Header, Select, List, SelectModal, Container } from '../AddBoard'
+import { Select, List, SelectModal, Container } from '../AddBoard'
 import styled from "styled-components/native";
-
+import AlertModal from "../../components/_common/AlertModal";
 
 const UpperContainer = styled.View`
     flex-direction: column;
@@ -32,6 +32,7 @@ const AddBoard = ({ navigation }) => {
 
     const [selectedSchool, setSelectedSchool] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
+    const [alertModalVisible, setAlertModalVisible] = useState(false);
     const [boardList, setBoardList] = useState(boardData);
 
     const _select = school => {
@@ -49,7 +50,10 @@ const AddBoard = ({ navigation }) => {
             </UpperContainer>
             <Select
                 onDropdownPress={() => setModalVisible(true)}
-                selectedSchool={selectedSchool} />
+                selectedSchool={selectedSchool} 
+                navigation={navigation}
+                setAlertModalVisible={setAlertModalVisible}
+            />
             <List boardList={boardList} setBoardList={setBoardList} />
             <SelectModal
                 isVisible={modalVisible}
@@ -58,6 +62,12 @@ const AddBoard = ({ navigation }) => {
                 selectedSchool={selectedSchool}
                 select={_select}
             />
+
+            <AlertModal 
+            isVisible={alertModalVisible} 
+            setIsVisible={setAlertModalVisible} 
+            value={'학교를 먼저 선택해주세요.'}/>
+
             <ButtonContainer>
                 <ReturnButton value={'이전'} onPress={() => navigation.navigate('onboarding-start')} />
                 <NextButton value={'다음'} onPress={() => navigation.navigate('onboarding-addKeyword')} />

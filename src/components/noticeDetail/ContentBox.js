@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/native';
 import { color } from '../../common/colors'
 import Markdown from 'react-native-markdown-display';
+import { WebView } from 'react-native-webview';
 
 const Container = styled.View`
     flex-basis: 0;

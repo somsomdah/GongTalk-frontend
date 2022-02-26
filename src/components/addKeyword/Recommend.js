@@ -1,8 +1,6 @@
 import styled from 'styled-components/native';
 import { color } from '../../common/colors';
-import { image } from '../../common/images';
-import { Pressable, TouchableOpacity } from 'react-native';
-import { useRef, useState } from 'react';
+import { TouchableOpacity } from 'react-native';
 import { ButtonMedium } from '../_common/Typography';
 import Toast from 'react-native-root-toast';
 

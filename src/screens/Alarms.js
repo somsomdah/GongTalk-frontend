@@ -17,7 +17,8 @@ const Container = styled.View`
 const Alarms = () => {
     return (
         <Container>
-            <FlatList showsVerticalScrollIndicator={false}
+            <FlatList 
+                showsVerticalScrollIndicator={false}
                 data={postList}
                 renderItem={({ item }) => <Item key={item.id} post={item} />}
             />

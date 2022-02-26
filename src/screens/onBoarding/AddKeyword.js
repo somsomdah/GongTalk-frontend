@@ -1,7 +1,5 @@
-import styled from "styled-components/native";
-import { color } from "../../common/colors";
 import { useState } from "react";
-import { Header, Input, Title, Recommend, Added, Container, UpperContainer, LowerContainer } from "../AddKeyword";
+import { Input, Title, Recommend, Added, Container, UpperContainer, LowerContainer } from "../AddKeyword";
 import { NextButton, ReturnButton, ButtonContainer } from "./Start";
 import { SemiHeadline1, SmallBody1 } from "../../components/_common/Typography";
 
