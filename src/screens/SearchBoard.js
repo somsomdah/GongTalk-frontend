@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 import { color } from '../common/colors';
 import { FlatList } from 'react-native';
 import { useState } from 'react';
+import { OnboardingProvider } from '../contexts/Onboarding';
 
 
 const Container = styled.View`
@@ -26,34 +27,34 @@ const boardData = [
 
 const SearchBoard = ({ navigation, route }) => {
 
-    const { school, selectedBoardList, setSelectedBoardList } = route.params;
+    const { school } = route.params;
 
     const [inputValue, setInputValue] = useState('');
-    const [boardList, setBoardList] = useState(boardData.filter(board => board.school.id === school.id));
-
+    const [schoolBoardList, setSchoolBoardList] = useState(boardData.filter(board => board.school.id === school.id))
     return (
-        <Container>
-            <SearchBox
-                navigation={navigation}
-                inputValue={inputValue}
-                setInputValue={setInputValue}
-                boardList={boardList}
-                setBoardList={setBoardList}
-            />
-            <FlatList
-                showsVerticalScrollIndicator={false}
-                data={boardList}
-                style={{ paddingVertical: 16 }}
-                renderItem={({ item }) =>
-                    <Item
-                        key={item.id}
-                        board={item}
-                        navigation={navigation}
-                        selectedBoardList={selectedBoardList}
-                        setSelectedBoardList={setSelectedBoardList}
-                    />}
-            />
-        </Container>
+        <OnboardingProvider>
+            <Container>
+                <SearchBox
+                    navigation={navigation}
+                    inputValue={inputValue}
+                    setInputValue={setInputValue}
+                    boardList={schoolBoardList}
+                    setBoardList={setSchoolBoardList}
+                />
+                <FlatList
+                    showsVerticalScrollIndicator={false}
+                    data={schoolBoardList}
+                    style={{ paddingVertical: 16 }}
+                    renderItem={({ item }) =>
+                        <Item
+                            key={item.id}
+                            board={item}
+                            navigation={navigation}
+                        />
+                    }
+                />
+            </Container>
+        </OnboardingProvider>
     );
 }
 

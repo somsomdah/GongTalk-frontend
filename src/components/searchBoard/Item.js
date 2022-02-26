@@ -2,7 +2,8 @@ import styled from 'styled-components/native';
 import { SemiHeadline2 } from '../_common/Typography'
 import { color } from '../../common/colors';
 import { TouchableHighlight } from 'react-native';
-
+import OnboardingContext from '../../contexts/Onboarding';
+import { useContext, useEffect } from 'react';
 
 const ItemBox = styled.View`
     padding: 12px;
@@ -12,15 +13,15 @@ const ItemBox = styled.View`
     align-self: stretch;
 `
 
-const Item = ({ board, navigation, selectedBoardList, setSelectedBoardList }) => {
-
+const Item = ({ board, navigation
+}) => {
+    const { boardList, setBoardList } = useContext(OnboardingContext);
     const _onPress = () => {
+        setBoardList(prevBoardList => ([...prevBoardList, board]))
         navigation.goBack()
-        setSelectedBoardList([...selectedBoardList, board])
-    }
+    };
 
     return (
-
         <TouchableHighlight
             activeOpacity={1}
             underlayColor={color.primaryLight}
@@ -30,8 +31,8 @@ const Item = ({ board, navigation, selectedBoardList, setSelectedBoardList }) =>
             </ItemBox>
         </TouchableHighlight >
 
-    )
-}
+    );
+};
 
 
 export default Item;

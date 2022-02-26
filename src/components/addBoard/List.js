@@ -3,6 +3,8 @@ import { image } from "../../common/images";
 import { color } from "../../common/colors";
 import { SemiHeadline2, SemiHeadline4 } from "../_common/Typography";
 import { Pressable, ScrollView } from "react-native";
+import { useContext } from "react";
+import OnboardingContext from "../../contexts/Onboarding";
 
 const Container = styled.View`
     padding: 24px;
@@ -49,12 +51,9 @@ const Item = ({ value, onCancel }) => {
 };
 
 
-const List = ({ boardList, setBoardList }) => {
+const List = () => {
 
-    const _onBoardCancel = (boardId) => {
-        const newBoardList = boardList.filter(board => board.id !== boardId);
-        setBoardList(newBoardList);
-    }
+    const { boardList, setBoardList } = useContext(OnboardingContext);
 
     return (
         <Container>
@@ -63,8 +62,15 @@ const List = ({ boardList, setBoardList }) => {
             </TitleBox>
             <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
                 {Object.values(boardList).map(board => {
+                    const boardId = board.id;
                     const boardFullName = `${board.school.name} ${board.name}`;
-                    return (<Item key={board.id} value={boardFullName} onCancel={() => _onBoardCancel(board.id)} />);
+                    return (
+                        <Item
+                            key={boardId}
+                            value={boardFullName}
+                            onCancel={() => setBoardList(boardList.filter(board => board.id !== boardId))}
+                        />
+                    );
 
                 })}
             </ScrollView>

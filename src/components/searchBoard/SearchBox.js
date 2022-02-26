@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { color } from '../../common/colors';
 import { image } from '../../common/images';
 import { Pressable } from 'react-native';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 
 const Container = styled.View`
@@ -55,7 +55,7 @@ const SearchBox = ({ navigation, inputValue, setInputValue, boardList, setBoardL
     
     const _onChangeText = (newInput) => {
         setInputValue(newInput);
-        setBoardList(boardList.filter(board => board.name.includes(newInput)))
+        setBoardList(boardList => (boardList.filter(board => board.name.includes(newInput))))
     }
 
     return (
@@ -72,7 +72,7 @@ const SearchBox = ({ navigation, inputValue, setInputValue, boardList, setBoardL
                 value={inputValue}
                 onSubmitEditing={() => setFocus(false)}
                 returnKeyType={'search'}
-                autoFocus={true}
+                autoFocus={false}
             />
             <DeleteButton pressDelete={() => setInputValue('')} />
         </Container>

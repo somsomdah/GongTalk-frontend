@@ -26,7 +26,7 @@ const Title = ({ children }) => {
     );
 }
 
-const DropDownIcon = styled.Image`
+const DropDownIcon = styled.Image.attrs({source: image.common.dropdown.primary})`
     height: 18px;
     width: 18px;
 `;
@@ -45,14 +45,20 @@ const SearchBox = styled.View`
     border-radius: 12px;
     align-items: center;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
     border: 1px solid ${color.gray3};
     padding: 16px;
 `;
 
 
+const SearchIcon = styled.Image.attrs({source : image.common.search.primary})`
+    height: 18px;
+    width: 18px;
+`
 
-const Select = ({ onDropdownPress, selectedSchool, navigation, setAlertModalVisible, boardList, setBoardList }) => {
+
+
+const Select = ({ onDropdownPress, selectedSchool, navigation, setAlertModalVisible }) => {
 
 
     const _onPress = () => {
@@ -60,7 +66,7 @@ const Select = ({ onDropdownPress, selectedSchool, navigation, setAlertModalVisi
         if (!selectedSchool) {
             setAlertModalVisible(true);
         } else{
-            navigation.navigate('searchBoard', { school: selectedSchool, selectedBoardList: boardList, setSelectedBoardList: setBoardList })
+            navigation.navigate('searchBoard', { school: selectedSchool})
         }
     };
 
@@ -72,7 +78,7 @@ const Select = ({ onDropdownPress, selectedSchool, navigation, setAlertModalVisi
                     <SemiHeadline3 style={{color: selectedSchool ? color.black : color.gray6}}>
                         {selectedSchool?.name || '학교 선택하기'}
                     </SemiHeadline3>
-                    <DropDownIcon source={image.common.dropdown.primary} />
+                    <DropDownIcon/>
                 </DropdownBox>
             </Pressable>
 
@@ -80,6 +86,7 @@ const Select = ({ onDropdownPress, selectedSchool, navigation, setAlertModalVisi
             <Pressable onPress={_onPress} >
                 <SearchBox >
                     <SemiHeadline3 style={{ color: color.gray6 }}>전공/기관 검색하기</SemiHeadline3>
+                    <SearchIcon />
                 </SearchBox>
             </Pressable>
             
