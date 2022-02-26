@@ -52,7 +52,7 @@ const SearchBox = styled.View`
 
 
 
-const Select = ({ onDropdownPress, selectedSchool, navigation, setAlertModalVisible }) => {
+const Select = ({ onDropdownPress, selectedSchool, navigation, setAlertModalVisible, boardList, setBoardList }) => {
 
 
     const _onPress = () => {
@@ -60,7 +60,7 @@ const Select = ({ onDropdownPress, selectedSchool, navigation, setAlertModalVisi
         if (!selectedSchool) {
             setAlertModalVisible(true);
         } else{
-            navigation.navigate('searchBoard', { school: selectedSchool })
+            navigation.navigate('searchBoard', { school: selectedSchool, selectedBoardList: boardList, setSelectedBoardList: setBoardList })
         }
     };
 
@@ -82,7 +82,7 @@ const Select = ({ onDropdownPress, selectedSchool, navigation, setAlertModalVisi
                     <SemiHeadline3 style={{ color: color.gray6 }}>전공/기관 검색하기</SemiHeadline3>
                 </SearchBox>
             </Pressable>
-
+            
         </Container>
     );
 }

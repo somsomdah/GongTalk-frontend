@@ -12,19 +12,23 @@ const ItemBox = styled.View`
     align-self: stretch;
 `
 
-const Item = ({ value, navigation }) => {
+const Item = ({ board, navigation, selectedBoardList, setSelectedBoardList }) => {
+
+    const _onPress = () => {
+        navigation.goBack()
+        setSelectedBoardList([...selectedBoardList, board])
+    }
 
     return (
 
         <TouchableHighlight
             activeOpacity={1}
             underlayColor={color.primaryLight}
-            onPress={() => navigation.goBack()}>
+            onPress={_onPress}>
             < ItemBox >
-                <SemiHeadline2>{value}</SemiHeadline2>
+                <SemiHeadline2>{board.name}</SemiHeadline2>
             </ItemBox>
         </TouchableHighlight >
-
 
     )
 }

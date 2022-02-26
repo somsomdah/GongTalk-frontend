@@ -57,18 +57,18 @@ const List = ({ boardList, setBoardList }) => {
     }
 
     return (
-            <Container>
-                <TitleBox >
-                    <SemiHeadline4>추가 목록</SemiHeadline4>
-                </TitleBox>
-                <ScrollView showsVerticalScrollIndicator={false} style={{flex: 1}}>
+        <Container>
+            <TitleBox >
+                <SemiHeadline4>추가 목록</SemiHeadline4>
+            </TitleBox>
+            <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
                 {Object.values(boardList).map(board => {
                     const boardFullName = `${board.school.name} ${board.name}`;
                     return (<Item key={board.id} value={boardFullName} onCancel={() => _onBoardCancel(board.id)} />);
 
                 })}
-                </ScrollView>
-            </Container>
+            </ScrollView>
+        </Container>
 
     )
 }

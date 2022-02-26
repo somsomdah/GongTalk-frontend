@@ -26,7 +26,7 @@ const boardData = [
 
 const SearchBoard = ({ navigation, route }) => {
 
-    const { school } = route.params;
+    const { school, selectedBoardList, setSelectedBoardList } = route.params;
 
     const [inputValue, setInputValue] = useState('');
     const [boardList, setBoardList] = useState(boardData.filter(board => board.school.id === school.id));
@@ -43,8 +43,15 @@ const SearchBoard = ({ navigation, route }) => {
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={boardList}
-                style={{paddingVertical: 16}}
-                renderItem={({ item }) => <Item key={item.id} value={item.name} navigation={navigation} />}
+                style={{ paddingVertical: 16 }}
+                renderItem={({ item }) =>
+                    <Item
+                        key={item.id}
+                        board={item}
+                        navigation={navigation}
+                        selectedBoardList={selectedBoardList}
+                        setSelectedBoardList={setSelectedBoardList}
+                    />}
             />
         </Container>
     );
