@@ -5,7 +5,6 @@ import styled from 'styled-components/native';
 import { color } from '../common/colors';
 import { FlatList } from 'react-native';
 import { useState } from 'react';
-import { OnboardingProvider } from '../contexts/Onboarding';
 
 
 const Container = styled.View`
@@ -31,8 +30,8 @@ const SearchBoard = ({ navigation, route }) => {
 
     const [inputValue, setInputValue] = useState('');
     const [schoolBoardList, setSchoolBoardList] = useState(boardData.filter(board => board.school.id === school.id))
+    
     return (
-        <OnboardingProvider>
             <Container>
                 <SearchBox
                     navigation={navigation}
@@ -54,7 +53,6 @@ const SearchBoard = ({ navigation, route }) => {
                     }
                 />
             </Container>
-        </OnboardingProvider>
     );
 }
 

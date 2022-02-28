@@ -7,6 +7,7 @@ import Title from '../components/addKeyword/Title'
 import Recommend from '../components/addKeyword/Recommend'
 import Added from "../components/addKeyword/Added";
 import { ScrollView } from "react-native-gesture-handler";
+import AlertModal from "../components/_common/AlertModal";
 
 const Container = styled.View`
     flex: 1;
@@ -35,14 +36,13 @@ const LowerContainer = styled.View`
 
 const AddKeyword = ({ navigation }) => {
     const keywordList = [
-        { id: 1, content: '장학' }, { id: 2, content: '인턴' }, { id: 3, content: '교육교육교육' },
-        { id: 21, content: '장학' }, { id: 22, content: '인턴인턴인턴인턴' }, { id: 23, content: '교육' },
-        { id: 31, content: '장학' }, { id: 32, content: '인턴' }, { id: 33, content: '교육' }
+        { id: 1, content: '장학' }, { id: 2, content: '인턴' }, { id: 3, content: '교육' },
+        { id: 21, content: '세미나' }, { id: 22, content: '체험' }, { id: 23, content: '해외' },
+        { id: 31, content: '취업' }, { id: 32, content: '수강' }, { id: 33, content: '졸업' }
     ]
 
     const [myKeywords, setMyKeywords] = useState([])
-
-
+    const [alertModalVisible, setAlertModalVisible] = useState(false);
 
     return (
         <Container>
@@ -50,15 +50,29 @@ const AddKeyword = ({ navigation }) => {
             <UpperContainer>
                 <Title value={'키워드 입력하기'} />
                 <Input keywordList={myKeywords} setKeywordList={setMyKeywords} />
-                <Title value={`추천 키워드`} />
-                <Recommend keywordList={keywordList} myKeywordList={myKeywords} setMyKeywordList={setMyKeywords} />
+                <Title value={'추천 키워드'} />
+                <Recommend
+                    keywordList={keywordList}
+                    myKeywordList={myKeywords}
+                    setMyKeywordList={setMyKeywords}
+                    setAlertModalVisible={setAlertModalVisible}
+                />
             </UpperContainer>
             <LowerContainer>
-                <Title value={`내 키워드`} />
+                <Title value={'내 키워드'} />
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Added keywordList={myKeywords} setKeywordList={setMyKeywords} />
                 </ScrollView>
             </LowerContainer>
+
+
+            <AlertModal
+                isVisible={alertModalVisible}
+                setIsVisible={setAlertModalVisible}
+                value={'동일한 키워드를 여러번 추가할 수 없습니다.'}
+            />
+
+
         </Container>
     );
 

@@ -36,7 +36,7 @@ const Complete = ({navigation}) => {
             <Space />
             <ButtonContainer>
                 <ReturnButton value={'이전'} onPress={() => navigation.navigate('onboarding-addKeyword')} />
-                <NextButton value={'시작하기'} onPress={() => navigation.navigate('main')} />
+                <NextButton value={'시작하기'} onPress={() => navigation.navigate('app')} />
             </ButtonContainer>
         </Container>
     );

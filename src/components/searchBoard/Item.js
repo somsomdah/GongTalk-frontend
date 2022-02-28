@@ -13,11 +13,17 @@ const ItemBox = styled.View`
     align-self: stretch;
 `
 
-const Item = ({ board, navigation
-}) => {
-    const { boardList, setBoardList } = useContext(OnboardingContext);
+const Item = ({ board, navigation }) => {
+    
+    const { setBoardList } = useContext(OnboardingContext);
+
     const _onPress = () => {
-        setBoardList(prevBoardList => ([...prevBoardList, board]))
+        try {
+            setBoardList(prevBoardList => ([...prevBoardList, board]))
+        } catch (e) {
+            console.log(e);
+        }
+
         navigation.goBack()
     };
 

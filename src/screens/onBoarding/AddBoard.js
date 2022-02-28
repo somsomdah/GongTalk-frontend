@@ -4,7 +4,7 @@ import { SemiHeadline1, SmallBody1 } from "../../components/_common/Typography";
 import { Select, List, SelectModal, Container } from '../AddBoard'
 import styled from "styled-components/native";
 import AlertModal from "../../components/_common/AlertModal";
-import OnboardingContext, { OnboardingProvider } from "../../contexts/Onboarding";
+import OnboardingContext from "../../contexts/Onboarding";
 
 const UpperContainer = styled.View`
     flex-direction: column;
@@ -23,63 +23,56 @@ const AddBoard = ({ navigation }) => {
         { id: 4, name: '홍익대학교' },
     ];
 
-    // const boardData = [
-    //     { id: 1, name: '홈', school: { id: 1, name: '이화여자대학교' } },
-    //     { id: 2, name: '컴퓨터공학전공', school: { id: 1, name: '이화여자대학교' } },
-    //     // { id: 4, name: '조형예술대학', school: { id: 1, name: '이화여자대학교' } },
-    //     // { id: 7, name: '중어중문학과', school: { id: 2, name: '서강대학교' } },
-    //     // { id: 8, name: '경영학과', school: { id: 2, name: '서강대학교' } },
-    // ];
 
     const [selectedSchool, setSelectedSchool] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
     const [alertModalVisible, setAlertModalVisible] = useState(false);
-    const {boardList, setBoardList } = useContext(OnboardingContext);
+    const { boardList } = useContext(OnboardingContext);
 
     const _select = school => {
         setSelectedSchool(school);
         setModalVisible(false);
     }
 
+    const nextButtonDisabled = boardList.length > 0 ? false : true
+    
     return (
-        <OnboardingProvider>
-            <Container>
-                <UpperContainer>
-                    <SemiHeadline1>{'관심있는 학교를 추가하세요.'}</SemiHeadline1>
-                    <SmallBody1>
-                        {'선택한 학교의 공지사항을 모두 확인할 수 있어요. 학교, 전공 (or  기관)을 추가할 수 있습니다. 최소 1개 이상 선택해주세요.'}
-                    </SmallBody1>
-                </UpperContainer>
+        <Container>
+            <UpperContainer>
+                <SemiHeadline1>{'관심있는 학교를 추가하세요.'}</SemiHeadline1>
+                <SmallBody1>
+                    {'선택한 학교의 공지사항을 모두 확인할 수 있어요. 학교, 전공 (or 기관)을 추가할 수 있습니다. 최소 1개 이상 선택해주세요.'}
+                </SmallBody1>
+            </UpperContainer>
 
+            <Select
+                onDropdownPress={() => setModalVisible(true)}
+                selectedSchool={selectedSchool}
+                navigation={navigation}
+                setAlertModalVisible={setAlertModalVisible}
+            />
 
-                <Select
-                    onDropdownPress={() => setModalVisible(true)}
-                    selectedSchool={selectedSchool}
-                    navigation={navigation}
-                    setAlertModalVisible={setAlertModalVisible}
-                />
+            <List />
 
-                <List/>
+            <SelectModal
+                isVisible={modalVisible}
+                setIsVisible={setModalVisible}
+                schoolList={schoolData}
+                selectedSchool={selectedSchool}
+                select={_select}
+            />
 
-                <SelectModal
-                    isVisible={modalVisible}
-                    setIsVisible={setModalVisible}
-                    schoolList={schoolData}
-                    selectedSchool={selectedSchool}
-                    select={_select}
-                />
+            <AlertModal
+                isVisible={alertModalVisible}
+                setIsVisible={setAlertModalVisible}
+                value={'학교를 먼저 선택해주세요.'} />
 
-                <AlertModal
-                    isVisible={alertModalVisible}
-                    setIsVisible={setAlertModalVisible}
-                    value={'학교를 먼저 선택해주세요.'} />
+            <ButtonContainer>
+                <ReturnButton value={'이전'} onPress={() => navigation.navigate('onboarding-start')} />
+                <NextButton value={'다음'} disabled={nextButtonDisabled} onPress={() => navigation.navigate('onboarding-addKeyword')} />
+            </ButtonContainer>
 
-                <ButtonContainer>
-                    <ReturnButton value={'이전'} onPress={() => navigation.navigate('onboarding-start')} />
-                    <NextButton value={'다음'} onPress={() => navigation.navigate('onboarding-addKeyword')} />
-                </ButtonContainer>
-            </Container>
-        </OnboardingProvider>
+        </Container>
 
     )
 

@@ -66,7 +66,7 @@ const Select = ({ onDropdownPress, selectedSchool, navigation, setAlertModalVisi
         if (!selectedSchool) {
             setAlertModalVisible(true);
         } else{
-            navigation.navigate('searchBoard', { school: selectedSchool})
+            navigation.navigate('onboarding-searchBoard', { school: selectedSchool})
         }
     };
 
