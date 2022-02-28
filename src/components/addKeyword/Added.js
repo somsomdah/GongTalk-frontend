@@ -19,7 +19,7 @@ const Chip = styled.View`
 const Container = styled.View`
     flex-direction: row;
     flex-wrap: wrap;
-    margin-bottom: 22px;
+    margin-bottom: 16px;
 `;
 
 const CancelImage = styled.Image`
