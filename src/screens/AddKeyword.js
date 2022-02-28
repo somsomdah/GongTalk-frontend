@@ -6,7 +6,7 @@ import Input from '../components/addKeyword/Input'
 import Title from '../components/addKeyword/Title'
 import Recommend from '../components/addKeyword/Recommend'
 import Added from "../components/addKeyword/Added";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView } from "react-native";
 import AlertModal from "../components/_common/AlertModal";
 
 const Container = styled.View`

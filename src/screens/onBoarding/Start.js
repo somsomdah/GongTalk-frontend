@@ -113,8 +113,9 @@ const ButtonContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 40px 32px;
+    padding: 0px 28px 40px 28px;
     align-self: stretch;
+    flex-shrink: 1;
 `;
 
 
