@@ -7,7 +7,6 @@ import Modal from 'react-native-modal';
 import * as Clipboard from 'expo-clipboard';
 
 
-
 const Container = styled.View`
     flex-direction: row;
     justify-content: space-between;
@@ -37,13 +36,13 @@ const PopOverBox = styled.View`
     background-color: ${color.white};
     border-radius: 16px;
     flex-direction: column;
-    border: 1px solid ${color.gray3};
+    border: 0.5px solid ${color.gray3};
 `
 
 const PopOverDivider = styled.View`
-    height: 1px;
+    height: 0.5px;
     border-bottom-color: ${color.gray3};
-    border-bottom-width: 1px;
+    border-bottom-width: 0.5px;
     align-self: stretch;
 `
 
@@ -52,7 +51,7 @@ const PopOverIcon = styled.Image`
     height: 16px;
 `
 
-const PopOver = ({ isVisible, setIsVisible, post }) => {
+const PopOver = ({ isVisible, setIsVisible, post, setAlertModalVisible }) => {
     const _style = {
         padding: 12,
         flexDirection: 'row',
@@ -73,6 +72,7 @@ const PopOver = ({ isVisible, setIsVisible, post }) => {
     const copyToClipboard = () => {
         Clipboard.setString(clipBoardString);
         setIsVisible(false);
+        setAlertModalVisible(true)
     }
 
     const openBrowser = () => {
