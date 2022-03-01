@@ -48,6 +48,10 @@ export const image = {
         },
         roundCheck: {
             primary: require('../../assets/icons/check_round.png')
+        },
+        radio: {
+            gray: require('../../assets/icons/radio_gray.png'),
+            primary: require('../../assets/icons/radio_primary.png'),
         }
     },
 
