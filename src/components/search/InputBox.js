@@ -18,8 +18,6 @@ const ReturnImage = styled.Image.attrs(({focused}) => ({
     source: image.common.return[focused? 'primary': 'black']
 }))`
     margin-right: 24px;
-    margin-bottom: 18px;
-    margin-top: 18px;   
     height: 20px;
     width: 20px;
 `;
@@ -33,6 +31,7 @@ const Input = styled.TextInput.attrs({
     font-size: 14px;
     font-weight: 400;
     width: 100%;
+    font-family: 'pretendard-medium';
 `;
 
 const DeleteIcon = styled.Image`
@@ -49,14 +48,14 @@ const DeleteButton = ({ pressDelete }) => {
     );
 };
 
-const InputBox = ({ placeholder, navigation, onSearchButtonPress, autoFocus, inputValue, setInputValue, isFromSearchList}) => {
+const InputBox = ({ placeholder, navigation, onSearchButtonPress, autoFocus, inputValue, setInputValue}) => {
 
     const [focus, setFocus] = useState(false);
     
     return (
 
         <Container focused={focus} >
-            <Pressable onPress={() => isFromSearchList ? navigation.pop(2) : navigation.goBack()}>
+            <Pressable onPress={() => navigation.goBack()}>
                 <ReturnImage focused={focus} />
             </Pressable>
 

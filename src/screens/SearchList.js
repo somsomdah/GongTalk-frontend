@@ -1,4 +1,4 @@
-import InputBox from "../components/search/InputBox";
+import InputBoxButton from "../components/searchList/inputBoxButton";
 import Item from "../components/postList/Item";
 import React, { useState } from 'react';
 import { FlatList, Pressable } from 'react-native';
@@ -14,11 +14,6 @@ const Container = styled.View`
     background-color: ${color.white};
 `;
 
-const SearchBoxContainer = styled.View`
-    background-color: ${color.white};
-    padding: 26px 24px 10px 24px;
-    align-items: center;
-`;
 
 const ItemContainer = styled.View`
     flex: 1;
@@ -29,28 +24,19 @@ const ItemContainer = styled.View`
 `;
 
 
-
 const SearchList = ({ route, navigation }) => {
 
     const { searchValue } = route.params
-    const [items, setItems] = useState(postList)
-    const [inputValue, setInputValue] = useState(searchValue)
 
     return (
         <Container>
-            <SearchBoxContainer>
-                <InputBox
-                    navigation={navigation}
-                    onSearchButtonPress={() => navigation.navigate('searchList', { searchValue: searchValue })}
-                    autoFocus={false}
-                    inputValue={inputValue}
-                    setInputValue={setInputValue}
-                    isFromSearchList={true}
-                />
-            </SearchBoxContainer>
+            <InputBoxButton
+                navigation={navigation}
+                value={searchValue}
+            />
             <ItemContainer>
                 <FlatList showsVerticalScrollIndicator={false}
-                    data={items}
+                    data={postList}
                     renderItem={({ item }) => (
                         <Pressable hitSlop={20} onPress={() => navigation.navigate('postDetail', { post: item }
                         )}>
