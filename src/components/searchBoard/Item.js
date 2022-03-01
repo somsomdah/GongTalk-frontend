@@ -13,16 +13,18 @@ const ItemBox = styled.View`
     align-self: stretch;
 `
 
-const Item = ({ board, navigation }) => {
-    
-    const { setBoardList } = useContext(OnboardingContext);
+// 원래는 파라미터로 setBoardList 있음 : auth로 인증한 다음에 무슨 함수 쓸 지 결정하는 프로세스
+const Item = ({ board, navigation}) => {
 
+    const { setBoardList } = useContext(OnboardingContext);
+    // const {auth} = useContext
     const _onPress = () => {
-        try {
+
+        // if (auth) {
+        //     setBoardList(prevBoardList => ([...prevBoardList, board]))
+        // } else {
             setBoardList(prevBoardList => ([...prevBoardList, board]))
-        } catch (e) {
-            console.log(e);
-        }
+        // }
 
         navigation.goBack()
     };
