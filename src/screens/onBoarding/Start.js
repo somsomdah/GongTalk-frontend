@@ -67,7 +67,7 @@ const NextButton = ({ onPress, value, disabled }) => {
 
     return (
 
-        <Pressable onPress={disabled ? () => {} : onPress}>
+        <Pressable onPress={disabled ? () => {} : onPress} hitSlop={10}>
             <NextButtonBox>
                 <SemiHeadline1 style={_textStyle}>{value}</SemiHeadline1>
                 <NextImage disabled={disabled}/>
@@ -100,7 +100,7 @@ const ReturnButton = ({ onPress, value }) => {
     }
 
     return (
-        <Pressable onPress={onPress}>
+        <Pressable onPress={onPress} hitSlop={10}>
             <ReturnButtonBox>
                 <ReturnImage />
                 <SemiHeadline1 style={_textStyle}>{value}</SemiHeadline1>

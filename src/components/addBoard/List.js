@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { image } from "../../common/images";
 import { color } from "../../common/colors";
-import { SemiHeadline2, SemiHeadline4 } from "../_common/Typography";
+import { SemiHeadline3, SemiHeadline4 } from "../_common/Typography";
 import { Pressable, ScrollView } from "react-native";
 import { useContext } from "react";
 import OnboardingContext from "../../contexts/Onboarding";
@@ -41,8 +41,8 @@ const ItemCancelImage = styled.Image.attrs({
 const Item = ({ value, onCancel }) => {
     return (
         <ItemBox>
-            <SemiHeadline2 style={{ color: color.black }}>{value}</SemiHeadline2>
-            <Pressable onPress={onCancel}>
+            <SemiHeadline3 style={{ color: color.black }} >{value}</SemiHeadline3>
+            <Pressable onPress={onCancel} hitSlop={10}>
                 <ItemCancelImage />
             </Pressable>
         </ItemBox>
