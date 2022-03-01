@@ -1,8 +1,6 @@
 import styled from "styled-components/native";
-import { image } from "../../common/images";
 import { color } from "../../common/colors";
 import { Pressable, View } from 'react-native';
-import { useState } from "react";
 import Modal from 'react-native-modal';
 import { SemiHeadline3 } from "./Typography";
 
@@ -29,7 +27,7 @@ const AlertModal = ({ isVisible, setIsVisible, value }) => {
             onBackdropPress={() => setIsVisible(false)}>
             <Container>
                 <View style={{marginBottom: 24}}>
-                    <SemiHeadline3>
+                    <SemiHeadline3 ellipsizeMode='tail'>
                     {value}
                     </SemiHeadline3>
                 </View>
