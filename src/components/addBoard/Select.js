@@ -26,7 +26,7 @@ const Title = ({ children }) => {
     );
 }
 
-const DropDownIcon = styled.Image.attrs({source: image.common.dropdown.primary})`
+const DropDownIcon = styled.Image.attrs({ source: image.common.dropdown.primary })`
     height: 18px;
     width: 18px;
 `;
@@ -51,7 +51,7 @@ const SearchBox = styled.View`
 `;
 
 
-const SearchIcon = styled.Image.attrs({source : image.common.search.primary})`
+const SearchIcon = styled.Image.attrs({ source: image.common.search.primary })`
     height: 18px;
     width: 18px;
 `
@@ -65,8 +65,8 @@ const Select = ({ onDropdownPress, selectedSchool, navigation, setAlertModalVisi
 
         if (!selectedSchool) {
             setAlertModalVisible(true);
-        } else{
-            navigation.navigate('onboarding-searchBoard', { school: selectedSchool})
+        } else {
+            navigation.navigate('searchBoard', { school: selectedSchool })
         }
     };
 
@@ -75,10 +75,10 @@ const Select = ({ onDropdownPress, selectedSchool, navigation, setAlertModalVisi
             <Title>학교 선택하기</Title>
             <Pressable onPress={onDropdownPress}>
                 <DropdownBox >
-                    <SemiHeadline3 style={{color: selectedSchool ? color.black : color.gray6}}>
+                    <SemiHeadline3 style={{ color: selectedSchool ? color.black : color.gray6 }}>
                         {selectedSchool?.name || '학교 선택하기'}
                     </SemiHeadline3>
-                    <DropDownIcon/>
+                    <DropDownIcon />
                 </DropdownBox>
             </Pressable>
 
@@ -89,7 +89,7 @@ const Select = ({ onDropdownPress, selectedSchool, navigation, setAlertModalVisi
                     <SearchIcon />
                 </SearchBox>
             </Pressable>
-            
+
         </Container>
     );
 }
