@@ -17,7 +17,7 @@ const OnboardingNavigation = () => {
             >
                 <Stack.Screen name='onboarding-start' component={Start} />
                 <Stack.Screen name='onboarding-addBoard' component={OnboardingAddBoard} />
-                <Stack.Screen name='onboarding-searchBoard' component={SearchBoard} />
+                <Stack.Screen name='searchBoard' component={SearchBoard} />
                 <Stack.Screen name='onboarding-addKeyword' component={OnboardingAddKeyword} />
                 <Stack.Screen name='onboarding-complete' component={Complete} />
 
