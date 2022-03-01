@@ -22,6 +22,7 @@ const DragIconImage = styled.Image.attrs({
     height: 24px;
 `;
 
+
 const Item = ({ name, onLongPress, isActive }) => {
 
     const _shadow = {
