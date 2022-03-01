@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { color } from '../common/colors';
 import DraggableFlatList from 'react-native-draggable-flatlist';
-import Item from '../components/board/Item';
+import Item from '../components/board/BoardItem';
 
 
 const Container = styled.View`
@@ -33,7 +33,7 @@ const data = [
 ]
 
 
-const SetBoards = ( ) => {
+const SetBoards = () => {
 
     const [boards, setBoards] = useState(data);
 
@@ -46,12 +46,13 @@ const SetBoards = ( ) => {
     return (
         <Container>
             <DraggableFlatList
+                showsVerticalScrollIndicator={false}
                 keyExtractor={(board) => board.id}
                 data={boards}
                 onDragEnd={({ data }) => setBoards(data)}
-                renderItem={renderItem} 
-                containerStyle={{backgroundColor: color.primaryLight}}
-                />
+                renderItem={renderItem}
+                containerStyle={{ backgroundColor: color.primaryLight }}
+            />
         </Container>
 
     )
