@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\DASOM\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add react-native-root-toas
+  C:\Program Files\nodejs\node.exe C:\Users\DASOM\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @react-native-async-storage/async-storage@~1.15.0
 
 PATH: 
   C:\Program Files\Tesseract-OCR;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\libnvvp;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\libnvvp;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files (x86)\Brackets\command;C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\MongoDB\Server\4.2\bin;C:\Program Files\NVIDIA Corporation\Nsight Compute 2019.4.0\;C:\Program Files\MiKTeX\miktex\bin\x64\;"C:\Program Files\Java\jdk-13.0.1\bin;";C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\MySQL\MySQL Server 8.0\bin\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\APM_Setup\Server\Apache\bin;C:\APM_Setup\Server\MySQL5\bin;C:\APM_Setup\Server\PHP5;C:\apache-maven-3.8.4\bin;C:\spring-2.6.3\bin\;C:\Users\DASOM\AppData\Local\Android\Sdk\platform-tools\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\DASOM\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\DASOM\AppData\Local\Programs\Python\Python36\;C:\Users\DASOM\AppData\Local\Microsoft\WindowsApps;C:\Users\DASOM\AppData\Local\GitHubDesktop\bin;C:\Users\DASOM\AppData\Roaming\npm;C:\Users\DASOM\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.3\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.3\bin;C:\Program Files\MySQL\MySQL Server 8.0\bin\;C:\spring-2.6.3\bin\;C:\Users\DASOM\AppData\Local\Programs\Fiddler;%ANDORID_HOME%\platform-tools;
@@ -14,17 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/react-native-root-toas: Not found
-      at Request.params.callback [as _callback] (C:\Users\DASOM\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:67029:18)
-      at Request.self.callback (C:\Users\DASOM\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140883:22)
-      at Request.emit (events.js:223:5)
-      at Request.<anonymous> (C:\Users\DASOM\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141855:10)
-      at Request.emit (events.js:223:5)
-      at IncomingMessage.<anonymous> (C:\Users\DASOM\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141777:12)
-      at Object.onceWrapper (events.js:312:28)
-      at IncomingMessage.emit (events.js:228:7)
-      at endReadableNT (_stream_readable.js:1185:12)
-      at processTicksAndRejections (internal/process/task_queues.js:81:21)
+  Error: EPERM: operation not permitted, unlink 'C:\Users\DASOM\Desktop\gongtalk-app\node_modules\expo-clipboard\node_modules\.bin'
 
 npm manifest: 
   {
@@ -63,6 +53,7 @@ npm manifest:
       "react-native-pager-view": "5.4.9",
       "react-native-reanimated": "~2.3.1",
       "react-native-render-html": "^6.3.4",
+      "react-native-root-toast": "^3.3.0",
       "react-native-safe-area-context": "3.3.2",
       "react-native-screens": "~3.10.1",
       "react-native-tab-view": "^3.1.1",
@@ -5002,6 +4993,19 @@ Lockfile:
       ramda "^0.27.2"
       stringify-entities "^3.1.0"
       urijs "^1.19.6"
+  
+  react-native-root-siblings@^4.0.0:
+    version "4.1.1"
+    resolved "https://registry.yarnpkg.com/react-native-root-siblings/-/react-native-root-siblings-4.1.1.tgz#b7742db7634a87f507eb99a5fd699c4f10c46ab0"
+    integrity sha512-sdmLElNs5PDWqmZmj4/aNH4anyxreaPm61c4ZkRiR8SO/GzLg6KjAbb0e17RmMdnBdD0AIQbS38h/l55YKN4ZA==
+  
+  react-native-root-toast@^3.3.0:
+    version "3.3.0"
+    resolved "https://registry.yarnpkg.com/react-native-root-toast/-/react-native-root-toast-3.3.0.tgz#526aaf0ac48f584fb851d5e82855edfe585930ce"
+    integrity sha512-C4Pqu+Ae7kXsYJwTvz8NshyJ9SL5YJd+/vCkvgDAxxR8AYlPFggEcTCMNARIWXuRwthLbuwcakh4z9k6qg95dg==
+    dependencies:
+      prop-types "^15.5.10"
+      react-native-root-siblings "^4.0.0"
   
   react-native-safe-area-context@3.3.2:
     version "3.3.2"

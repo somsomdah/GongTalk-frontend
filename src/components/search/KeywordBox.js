@@ -37,9 +37,8 @@ const Chip = ({ text, onPress }) => {
 };
 
 
-const KeywordBox = ({ navigation, title, keywordList }) => {
-    
-    
+const KeywordBox = ({ title, keywordList, search }) => {
+
     return (
         <Container>
             <TitleContainer>
@@ -50,7 +49,7 @@ const KeywordBox = ({ navigation, title, keywordList }) => {
                     <Chip
                         key={keyword.id}
                         text={keyword.content}
-                        onPress={() => { navigation.navigate('searchList', { searchValue: keyword.content })}}
+                        onPress={() => { search(keyword.content) }}
                     />
                 ))}
             </BodyContainer>

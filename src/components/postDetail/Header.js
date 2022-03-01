@@ -34,7 +34,7 @@ const PopOverBox = styled.View`
     top: 16px; 
     right: 20px; 
     background-color: ${color.white};
-    border-radius: 16px;
+    border-radius: 8px;
     flex-direction: column;
     border: 0.5px solid ${color.gray3};
 `
