@@ -30,6 +30,7 @@ const SearchBoard = ({ navigation, route }) => {
 
     const [inputValue, setInputValue] = useState('');
     const [schoolBoardList, setSchoolBoardList] = useState(boardData.filter(board => board.school.id === school.id))
+    const [boardList, setBoardList] = useState([]);
     
     return (
             <Container>
@@ -49,6 +50,7 @@ const SearchBoard = ({ navigation, route }) => {
                             key={item.id}
                             board={item}
                             navigation={navigation}
+                            setBoardList={setBoardList}
                         />
                     }
                 />
