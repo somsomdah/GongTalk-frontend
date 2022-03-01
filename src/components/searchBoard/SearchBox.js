@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { color } from '../../common/colors';
 import { image } from '../../common/images';
 import { Pressable } from 'react-native';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 
 const Container = styled.View`
@@ -49,14 +49,10 @@ const DeleteButton = ({ pressDelete }) => {
     );
 };
 
-const SearchBox = ({ navigation, inputValue, setInputValue, boardList, setBoardList }) => {
+const SearchBox = ({ navigation, onChangeText, setInputValue, inputValue}) => {
 
     const [focus, setFocus] = useState(false);
-    
-    const _onChangeText = (newInput) => {
-        setInputValue(newInput);
-        setBoardList(boardList => (boardList.filter(board => board.name.includes(newInput))))
-    }
+
 
     return (
 
@@ -68,7 +64,7 @@ const SearchBox = ({ navigation, inputValue, setInputValue, boardList, setBoardL
             <Input
                 placeholder={'전공/기관 검색하기'}
                 onFocus={() => setFocus(true)}
-                onChangeText={_onChangeText}
+                onChangeText={setInputValue}
                 value={inputValue}
                 onSubmitEditing={() => setFocus(false)}
                 returnKeyType={'search'}

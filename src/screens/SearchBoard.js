@@ -4,7 +4,7 @@ import SearchBox from '../components/searchBoard/SearchBox';
 import styled from 'styled-components/native';
 import { color } from '../common/colors';
 import { FlatList } from 'react-native';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 
 const Container = styled.View`
@@ -29,28 +29,25 @@ const SearchBoard = ({ navigation, route }) => {
     const { school } = route.params;
 
     const [inputValue, setInputValue] = useState('');
-    const [schoolBoardList, setSchoolBoardList] = useState(boardData.filter(board => board.school.id === school.id))
-    const [boardList, setBoardList] = useState([]);
-    
+    const allBoards = boardData.filter(board => board.school.id === school.id)
+    const matchedBoardList = useMemo(() => allBoards.filter(board => board.name.includes(inputValue)), [inputValue]);
+
     return (
             <Container>
                 <SearchBox
                     navigation={navigation}
                     inputValue={inputValue}
                     setInputValue={setInputValue}
-                    boardList={schoolBoardList}
-                    setBoardList={setSchoolBoardList}
                 />
                 <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={schoolBoardList}
+                    data={matchedBoardList}
                     style={{ paddingVertical: 16 }}
                     renderItem={({ item }) =>
                         <Item
                             key={item.id}
                             board={item}
                             navigation={navigation}
-                            setBoardList={setBoardList}
                         />
                     }
                 />
