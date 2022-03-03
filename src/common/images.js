@@ -70,4 +70,9 @@ export const image = {
         circle: require('../../assets/symbols/circle_primary.png'),
         square: require('../../assets/symbols/square_primary.png'),
     },
+
+    illust : {
+        onboarding: require('../../assets/illusts/onboarding.png'),
+        teaminfo: require('../../assets/illusts/teaminfo.png'),
+    }
 }
