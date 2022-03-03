@@ -14,25 +14,33 @@ const Container = styled.View`
 const Space = styled.View`
     flex: 1;
 `
+const Illust = styled.Image.attrs({
+    source: image.illust.onboarding
+})`
+    width: 360px;
+    height: 367px;
+`
+
 const CheckImage = styled.Image.attrs({
     source: image.common.roundCheck.primary
 })`
-    width: 52px;
-    height: 52px;
+    width: 32px;
+    height: 32px;
 `
-
-const Complete = ({navigation}) => {
+const Complete = ({ navigation }) => {
 
     return (
         <Container>
-            <Space />
-            <CheckImage />
-            <View style={{margin: 24}}>
-            <Headline4 style={{color: color.primary}}>{'모든 설정을 완료했어요!'}</Headline4>
+            <View style={{ alignItems: 'center' }}>
+                <View style={{height: 52}}/>
+                <Illust />
+                <View style={{height: 120}}/>
+                <Headline4 style={{ color: color.primary}}>{'모든 설정을 완료했어요!'}</Headline4>
+                <View style={{height: 16}}/>
+                <SemiHeadline1 style={{ color: color.gray6 }}>
+                    {'이제 공똑을 시작해볼까요?'}
+                </SemiHeadline1>
             </View>
-            <SemiHeadline1 style={{color: color.gray6}}>
-                {'이제 공똑 서비스를 시작해볼까요?'}
-            </SemiHeadline1>
             <Space />
             <ButtonContainer>
                 <ReturnButton value={'이전'} onPress={() => navigation.navigate('onboarding-addKeyword')} />
