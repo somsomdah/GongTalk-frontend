@@ -34,9 +34,9 @@ const ItemInfoContainer = styled.View`
 `;
 
 const ItemInfoDivider = styled.View`
-    width: 4px;
+    width: 6px;
     height: 8px;
-    margin-left: 4px;
+    margin-left: 6px;
     border-left-color: ${color.gray3};
     border-left-width: 1px;
 `;
