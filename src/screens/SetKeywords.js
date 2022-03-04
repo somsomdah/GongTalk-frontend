@@ -6,6 +6,7 @@ import { color } from '../common/colors';
 import { FlatList } from 'react-native';
 import { image } from '../common/images';
 import AlarmTypeModal from '../components/board/AlarmTypeModal';
+import { ScrollView } from 'react-native';
 
 const Container = styled.View`
     flex: 1;
@@ -94,43 +95,40 @@ const SetKeywords = ({ navigation }) => {
 
     return (
         <Container>
+            <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
+                <UpperContainer>
+                    <SemiHeadline3>
+                        {'전체 키워드 알림'}
+                    </SemiHeadline3>
+                    <SmallBody1>
+                        {'전체 키워드를 수정, 저장합니다.'}
+                    </SmallBody1>
+                    <Space />
 
-            <UpperContainer>
-                <SemiHeadline3>
-                    {'전체 키워드 알림'}
-                </SemiHeadline3>
-                <SmallBody1>
-                    {'전체 키워드를 수정, 저장합니다.'}
-                </SmallBody1>
-                <Space />
+                    <Item subscribe={subscribeDataList.filter(subscribe => subscribe.type === 'CKEYWORD')[0]} navigation={navigation} />
+                </UpperContainer>
 
-                <Item subscribe={subscribeDataList.filter(subscribe => subscribe.type === 'CKEYWORD')[0]} navigation={navigation} />
-            </UpperContainer>
+                <LowerContainer>
+                    <SemiHeadline3>
+                        {'게시판 키워드 알림'}
+                    </SemiHeadline3>
+                    <SmallBody1>
+                        {'게시판과 각 게시판에 설정된 키워드의 알림을 설정합니다. (전체 알림을 받지 않더라도 설정한 키워드의 알림은 받습니다.) '}
+                    </SmallBody1>
+                    <Space />
+                    {Object.values(subscribeDataList.filter(subscribe => subscribe.type !== 'CKEYWORD')).map(
+                        (item) =>
+                            <Item
+                                key={item.id}
+                                subscribe={item}
+                                navigation={navigation}
+                                setModalVisible={setModalVisible}
+                            />
+                    )}
+                </LowerContainer>
 
-            <LowerContainer>
-                <SemiHeadline3>
-                    {'게시판 키워드 알림'}
-                </SemiHeadline3>
-                <SmallBody1>
-                    {'게시판과 각 게시판에 설정된 키워드의 알림을 설정합니다. (전체 알림을 받지 않더라도 설정한 키워드의 알림은 받습니다.) '}
-                </SmallBody1>
-                <Space />
-
-                <FlatList
-                    showsVerticalScrollIndicator={false}
-                    data={subscribeDataList.filter(subscribe => subscribe.type !== 'CKEYWORD')}
-                    renderItem={({ item }) =>
-                        <Item
-                            key={item.id}
-                            subscribe={item}
-                            navigation={navigation}
-                            setModalVisible={setModalVisible}
-                        />}
-                />
-            </LowerContainer>
-
-            <AlarmTypeModal visible={modalVisible} setVisible={setModalVisible} />
-
+                <AlarmTypeModal visible={modalVisible} setVisible={setModalVisible} />
+            </ScrollView>
         </Container>
     )
 }
