@@ -37,9 +37,11 @@ const SearchButtonBox = styled.View`
     right: 24px;
 `;
 
-const SearchButton = ({ navigation, type, value }) => {
+const SearchButton = ({ navigation }) => {
+
+
     return (
-        <Pressable hitSlop={10} onPress={() => navigation.navigate('search', {type: type, value: value})}>
+        <Pressable hitSlop={10} onPress={() => navigation.navigate('search', { type: 'keyword', value: '' })}>
             <ButtonIcon source={image.common.search.black} />
         </Pressable>
     );
@@ -47,12 +49,12 @@ const SearchButton = ({ navigation, type, value }) => {
 };
 
 
-const Header = ({ value, navigation, searchType }) => {
+const Header = ({ value, navigation }) => {
     return (
         <Container>
             <ReturnButtonBox><ReturnButton navigation={navigation} /></ReturnButtonBox>
             <SemiHeadline2_1>{value}</SemiHeadline2_1>
-            <SearchButtonBox><SearchButton navigation={navigation} type={searchType} value={value}/></SearchButtonBox>
+            <SearchButtonBox><SearchButton navigation={navigation} /></SearchButtonBox>
         </Container>
     );
 };

@@ -14,17 +14,19 @@ const Container = styled.View`
 
 const Search = ({ navigation, route }) => {
 
-    const [inputValue, setInputValue] = useState('')
+
+    const {type, value, searchValue} = route.params;
+
+    const [inputValue, setInputValue] = useState(searchValue);
+    console.log(searchValue, inputValue);
+
     const [recentSearchKeywords, setRecentSearchKeywords] = useState([]);
-
-    const { type, value } = route.params
-
 
     useEffect(async () => {
         const recentKeywordsFromStorage = await AsyncStorage.getItem('recentSearchValues') || '[]';
         const recentKeywords = JSON.parse(recentKeywordsFromStorage); 
         setRecentSearchKeywords(recentKeywords.map((keyword, idx) => ({id: idx, content: keyword})));
-    }, [recentSearchKeywords])
+    }, [inputValue])
 
 
     const recommendedSearchKeywords = [
@@ -40,9 +42,10 @@ const Search = ({ navigation, route }) => {
 
     const _search = async (value) => {
         const newValue = value || inputValue;
+        setInputValue(newValue);
         const unique = recentSearchKeywords.map(keyword=>keyword.content).filter(word => word !== newValue);
         await AsyncStorage.setItem('recentSearchValues', JSON.stringify([newValue, ...unique.slice(0, 9)]));
-        navigation.navigate('searchList', { searchValue: newValue});
+        navigation.navigate('searchList', { type: type, value: value, searchValue: newValue});
     }
 
     return (
@@ -55,7 +58,7 @@ const Search = ({ navigation, route }) => {
                 setInputValue={setInputValue}
             />
             <KeywordBox
-                title='최근 검색어'
+                title={'최근 검색어'}
                 keywordList={recentSearchKeywords}
                 search={_search}
                 />

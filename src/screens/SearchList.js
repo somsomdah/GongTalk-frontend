@@ -26,20 +26,21 @@ const ItemContainer = styled.View`
 
 const SearchList = ({ route, navigation }) => {
 
-    const { searchValue } = route.params
+    const { type, value, searchValue } = route.params;
 
     return (
         <Container>
             <InputBoxButton
                 navigation={navigation}
                 value={searchValue}
+                searchType = {type}
+                searchValue = {value}
             />
             <ItemContainer>
                 <FlatList showsVerticalScrollIndicator={false}
                     data={postList}
                     renderItem={({ item }) => (
-                        <Pressable hitSlop={20} onPress={() => navigation.navigate('postDetail', { post: item }
-                        )}>
+                        <Pressable hitSlop={10} onPress={() => navigation.navigate('postDetail', { post: item })}>
                             <Item key={item.id} post={item} />
                         </Pressable>
                     )}

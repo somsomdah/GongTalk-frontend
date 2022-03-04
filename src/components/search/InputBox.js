@@ -48,9 +48,9 @@ const DeleteButton = ({ pressDelete }) => {
     );
 };
 
-const InputBox = ({ placeholder, navigation, onSearchButtonPress, inputValue, setInputValue }) => {
+const InputBox = ({ placeholder, navigation, onSearchButtonPress, inputValue, setInputValue}) => {
 
-
+    
     return (
 
         <Container >

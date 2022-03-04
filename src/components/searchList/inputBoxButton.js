@@ -40,7 +40,7 @@ const DeleteImage = styled.Image.attrs(
 `;
 
 
-const InputBoxButton = ({ navigation, value }) => {
+const InputBoxButton = ({ navigation, value, searchType, searchValue }) => {
 
 
     return (
@@ -51,11 +51,11 @@ const InputBoxButton = ({ navigation, value }) => {
                 <ReturnImage />
             </Pressable>
 
-            <Input onPress={() => navigation.navigate('search', { searchValue: value })}>
+            <Input onPress={() => navigation.navigate('search', { type: searchType, value: searchValue, searchValue: value })}>
                 <SemiHeadline3>{value}</SemiHeadline3>
             </Input>
 
-            <Pressable onPress={() => navigation.navigate('search', { searchValue: '' })}>
+            <Pressable onPress={() => navigation.navigate('search', { type: searchType, value: searchValue, searchValue: '' })}>
                 <DeleteImage />
             </Pressable>
 

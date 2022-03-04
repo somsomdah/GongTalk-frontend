@@ -41,7 +41,7 @@ const SearchIcon = styled.Image`
 
 const SearchButton = ({navigation}) => {
     return (
-        <Pressable hitSlop={20} onPress={() => navigation.navigate('search', {type: 'scrap', value: '스크랩'})}>
+        <Pressable hitSlop={20} onPress={() => navigation.navigate('search', {type: 'scrap', value: null})}>
             <SearchIcon source={image.common.search.primary} />
         </Pressable>
     );
