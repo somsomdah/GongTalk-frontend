@@ -1,10 +1,10 @@
 import React from 'react';
-import { Pressable } from 'react-native';
+import { Pressable, View } from 'react-native';
 import styled from 'styled-components/native';
 import { color } from '../../common/colors';
 import { image } from '../../common/images';
 import { Platform } from 'react-native';
-import {SemiHeadline2} from '../_common/Typography'
+import { SemiHeadline2 } from '../_common/Typography'
 
 
 const Container = styled.View`
@@ -37,10 +37,8 @@ const Item = ({ name, onLongPress, isActive }) => {
     }
 
     return (
-        <Container style ={isActive ? _shadow : {}}>
-            <Pressable hitSlop={20}>
-                <SemiHeadline2>{name}</SemiHeadline2>
-            </Pressable>
+        <Container style={isActive ? _shadow : {}}>
+            <SemiHeadline2>{name}</SemiHeadline2>
             <Pressable hitSlop={20} onLongPress={onLongPress}>
                 <DragIconImage />
             </Pressable>

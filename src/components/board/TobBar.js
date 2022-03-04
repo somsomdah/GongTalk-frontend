@@ -20,13 +20,12 @@ const Container = styled.View.attrs({
     elevation: 1;
 `;
 
-const TitleBox = styled.View.attrs(({ focused }) => ({
-    borderBottomColor: focused ? color.primary : color.gray3,
-    borderBottomWidth: focused? 3 : 0
-}))`
+const TitleBox = styled.View`
     height: 38px;
     padding-bottom: 16px;
     margin-right: 24px;
+    border-bottom-color: ${({focused}) => focused ? color.primary : color.gray3 };
+    border-bottom-width: ${({focused}) => focused ? '3px' : '0px' };
 `;
 
 

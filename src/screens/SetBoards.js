@@ -7,7 +7,8 @@ import Item from '../components/board/BoardItem';
 
 const Container = styled.View`
     flex-direction: column;
-    padding: 10px 0px;
+    padding: 12px 0px;
+    justify-content: flex-start;
     align-items: stretch;
     background-color: ${color.white};
     flex: 1;
