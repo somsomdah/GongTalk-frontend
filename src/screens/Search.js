@@ -21,8 +21,8 @@ const Search = ({ navigation, route }) => {
 
 
     useEffect(async () => {
-        const recentKeywordsString = await AsyncStorage.getItem('recentSearchValues') || '[]';
-        const recentKeywords = JSON.parse(recentKeywordsString); 
+        const recentKeywordsFromStorage = await AsyncStorage.getItem('recentSearchValues') || '[]';
+        const recentKeywords = JSON.parse(recentKeywordsFromStorage); 
         setRecentSearchKeywords(recentKeywords.map((keyword, idx) => ({id: idx, content: keyword})));
     }, [recentSearchKeywords])
 
@@ -50,11 +50,10 @@ const Search = ({ navigation, route }) => {
             <InputBox
                 placeholder={'키워드 검색하기'}
                 navigation={navigation}
-                onSearchButtonPress={_search}
+                onSearchButtonPress={() => _search()}
                 autoFocus={true}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
-                isFromSearchList={false}
             />
             <KeywordBox
                 title='최근 검색어'
