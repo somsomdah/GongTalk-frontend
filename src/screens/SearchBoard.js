@@ -1,4 +1,3 @@
-// import InputBox from '../components/search/InputBox'
 import Item from '../components/searchBoard/Item';
 import SearchBox from '../components/searchBoard/SearchBox';
 import styled from 'styled-components/native';

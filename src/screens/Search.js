@@ -51,7 +51,6 @@ const Search = ({ navigation, route }) => {
                 placeholder={'키워드 검색하기'}
                 navigation={navigation}
                 onSearchButtonPress={() => _search()}
-                autoFocus={true}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
             />

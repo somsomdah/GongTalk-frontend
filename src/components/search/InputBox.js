@@ -10,13 +10,13 @@ const Container = styled.View`
     border-radius: 12px;
     align-items: center;
     flex-direction: row;
-    border: 1px solid ${({ focused }) => focused ? color.primary : color.gray3};
+    border: 1px solid ${color.primary};
     padding: 16px;
 `;
 
-const ReturnImage = styled.Image.attrs(({focused}) => ({
-    source: image.common.return[focused? 'primary': 'black']
-}))`
+const ReturnImage = styled.Image.attrs({
+    source: image.common.return.primary
+})`
     margin-right: 24px;
     height: 20px;
     width: 20px;
@@ -48,25 +48,23 @@ const DeleteButton = ({ pressDelete }) => {
     );
 };
 
-const InputBox = ({ placeholder, navigation, onSearchButtonPress, autoFocus, inputValue, setInputValue}) => {
+const InputBox = ({ placeholder, navigation, onSearchButtonPress, inputValue, setInputValue }) => {
 
-    const [focus, setFocus] = useState(false);
-    
+
     return (
 
-        <Container focused={focus} >
+        <Container >
             <Pressable onPress={() => navigation.goBack()}>
-                <ReturnImage focused={focus} />
+                <ReturnImage />
             </Pressable>
 
             <Input
                 placeholder={placeholder}
-                onFocus={() => setFocus(true)}
                 onChangeText={(newInput) => setInputValue(newInput)}
                 value={inputValue}
                 onSubmitEditing={onSearchButtonPress}
                 returnKeyType={'search'}
-                autoFocus={autoFocus}
+                autoFocus={true}
             />
             <DeleteButton pressDelete={() => setInputValue('')} />
         </Container>
