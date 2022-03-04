@@ -3,6 +3,7 @@ import { color } from '../../common/colors';
 import { image } from "../../common/images";
 import { postList } from '../../common/data'
 import { SemiHeadline2_1, SemiHeadline3, SemiHeadline4 } from "../_common/Typography";
+import { Pressable } from "react-native";
 
 const Container = styled.View`
     margin-bottom: 32px;
@@ -11,8 +12,10 @@ const Container = styled.View`
 `;
 
 const TitleContainer = styled.View`
-    padding-bottom: 16px;
+    margin-bottom: 16px;
     justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
 `;
 
 const ContentContainer = styled.View``;
@@ -53,6 +56,13 @@ const ItemInfoDivider = styled.View`
     border-left-width: 1px;
 `;
 
+const MoreImage = styled.Image.attrs({ source: image.common.next })`
+    width: 12px;
+    height: 12px;
+    margin-left: 4px;
+`
+
+
 const Item = ({ post }) => {
 
     return (
@@ -70,12 +80,18 @@ const Item = ({ post }) => {
 }
 
 
-const Roundup = () => {
+const Roundup = ({ navigation }) => {
+
+
+
     return (
         <Container>
-            <TitleContainer>
-                <SemiHeadline2_1>모아보기</SemiHeadline2_1>
-            </TitleContainer>
+            <Pressable onPress={() => navigation.navigate('postList', { headerValue: '모아보기' })} >
+                <TitleContainer>
+                    <SemiHeadline2_1>모아보기</SemiHeadline2_1>
+                    <MoreImage />
+                </TitleContainer>
+            </Pressable>
             <ContentContainer>
                 {Object.values(postList).map((post, idx) => idx < 3 && <Item key={post.id} post={post} />)}
             </ContentContainer>

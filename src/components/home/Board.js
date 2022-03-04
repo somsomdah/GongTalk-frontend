@@ -13,8 +13,10 @@ const Container = styled.View`
 `;
 
 const TitleContainer = styled.View`
-    padding-bottom: 16px;
+    margin-bottom: 16px;
     justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
 `;
 
 const ContentContainer = styled.View``;
@@ -73,6 +75,13 @@ const ItemInfoDivider = styled.View`
     border-left-width: 1px;
 `;
 
+
+const MoreImage = styled.Image.attrs({ source: image.common.next })`
+    width: 12px;
+    height: 12px;
+    margin-left: 4px;
+`
+
 const Item = ({ post }) => {
 
     const [starred, setStarred] = useState(false);
@@ -99,15 +108,18 @@ const Item = ({ post }) => {
 }
 
 
-const Board = () => {
+const Board = ({ navigation }) => {
 
     const [items, setItems] = useState(postList);
 
     return (
         <Container>
-            <TitleContainer>
-                <SemiHeadline2_1>이화여대 컴퓨터공학과</SemiHeadline2_1>
-            </TitleContainer>
+            <Pressable onPress={() => navigation.navigate('postList', { headerValue: '이화여대 컴퓨터공학과' })} >
+                <TitleContainer>
+                    <SemiHeadline2_1>{'이화여대 컴퓨터공학과'}</SemiHeadline2_1>
+                    <MoreImage />
+                </TitleContainer>
+            </Pressable>
 
             <ContentContainer>
                 {Object.values(items).map((item, idx) =>

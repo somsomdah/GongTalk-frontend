@@ -33,8 +33,8 @@ const Home = ({ navigation }) => {
             <InnerContainer onScroll={({nativeEvent})=>{nativeEvent.contentOffset.y < 5 ? setIsOnTop(true) : setIsOnTop(false)}}>
                 <KeywordBox navigation={navigation} keywordList={['인턴', '대외활동', '해외', '부트캠프', '동아리']} />
                 <BodyContainer >
-                    <Roundup />
-                    <Board />
+                    <Roundup navigation={navigation}/>
+                    <Board navigation={navigation}/>
                 </BodyContainer>
             </InnerContainer>
 
