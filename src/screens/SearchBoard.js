@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import { color } from '../common/colors';
 import { FlatList } from 'react-native';
 import { useState, useMemo } from 'react';
+import * as Hangul from 'hangul-js';
 
 
 const Container = styled.View`
@@ -29,7 +30,12 @@ const SearchBoard = ({ navigation, route }) => {
 
     const [inputValue, setInputValue] = useState('');
     const allBoards = boardData.filter(board => board.school.id === school.id)
-    const matchedBoardList = useMemo(() => allBoards.filter(board => board.name.includes(inputValue)), [inputValue]);
+    const disassembleString = (string) => {
+        return Hangul.disassemble(string).join();
+    }
+    const matchedBoardList = useMemo(() => allBoards.filter(board => {
+        return disassembleString(board.name).includes(disassembleString(inputValue))
+    }), [inputValue]);
 
     return (
             <Container>
