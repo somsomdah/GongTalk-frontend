@@ -15,4 +15,5 @@ web-build/
 
 # env
 .env
-*.env
+*.environment.jk
+config/
