@@ -50,7 +50,7 @@ const Etc = ({ navigation }) => {
             <TitleBox>
                 <SemiHeadline4>기타</SemiHeadline4>
             </TitleBox>
-            <Item value={'공지사항'} onNextPress={() => navigation.navigate('noticeList')} />
+            <Item value={'공지사항'} onNextPress={() => navigation.navigate('notice')} />
             <Item value={'팀소개'}  onNextPress={() => navigation.navigate('teamInfo')}/>
             <Item value={'오픈소스'} />
         </Container>
