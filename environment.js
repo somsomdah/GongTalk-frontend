@@ -6,6 +6,14 @@ import Constants from 'expo-constants';
 // const localhost = Platform.OS === 'ios' ? 'localhost:8080' : '10.0.2.2:8080';
 
 const ENV = {
+  common: {
+    notion: {
+      noticeUrl: 'https://gongtalk-notice.oopy.io/',
+      teamInfoUrl: 'https://gongtalk-team.oopy.io/',
+      openSourceUrl: 'https://gongtalk-opensource.oopy.io/',
+    }
+  },
+
   dev: {
     apiUrl: 'http://localhost:8090/api',
     amplitudeApiKey: null,
@@ -22,17 +30,17 @@ const ENV = {
   },
 };
 
-const getEnvVars = (env = Constants.manifest.releaseChannel) => {
+const envVars = (env = Constants.manifest.releaseChannel) => {
   // What is __DEV__ ?
   // This variable is set to true when react-native is running in Dev mode.
   // __DEV__ is true when run locally, but false when published.
   if (__DEV__) {
-    return ENV.dev;
+    return { ...ENV.dev, ...ENV.common };
   } else if (env === 'staging') {
-    return ENV.staging;
+    return { ...ENV.staging, ...ENV.common };
   } else if (env === 'prod') {
-    return ENV.prod;
+    return { ...ENV.prod, ...ENV.common };
   }
 };
 
-export default getEnvVars;
+export default envVars();
