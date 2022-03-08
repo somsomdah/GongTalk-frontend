@@ -17,6 +17,7 @@
     "@react-navigation/material-top-tabs": "^6.1.1",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/stack": "^6.1.1",
+    "dotenv": "^16.0.0",
     "expo": "~44.0.0",
     "expo-clipboard": "~2.1.0",
     "expo-font": "~10.0.4",
@@ -42,6 +43,7 @@
     "react-native-tab-view": "^3.1.1",
     "react-native-web": "0.17.1",
     "react-native-webview": "11.15.0",
+    "react-query": "^3.34.16",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
