@@ -64,11 +64,11 @@ const GET = (keyList, url, params, authToken, options) => {
     return data;
 };
 
-const POST = (url, body, authToken, invalidateKey) => {
-    const { data, error, status } = useMutation(_post(url, body, authToken), 
-    {
-        onSuccess: () => invalidateKey ? queryClient.invalidateQueries(invalidateKey) : null
-    })
+const POST = (invalidateKey, url, body, authToken) => {
+    const { data, error, status } = useMutation(_post(url, body, authToken),
+        {
+            onSuccess: () => invalidateKey ? queryClient.invalidateQueries(invalidateKey) : null
+        })
 
     if (status === 'error') {
         throw new Exception('POST', error.message, url)
@@ -82,11 +82,11 @@ const POST = (url, body, authToken, invalidateKey) => {
     return data;
 };
 
-const PATCH = (url, body, authToken, invalidateKey) => {
+const PATCH = (invalidateKey, url, body, authToken) => {
     const { data, error, status } = useMutation(_patch(url, body, authToken),
-    {
-        onSuccess: () => invalidateKey ? queryClient.invalidateQueries(invalidateKey) : null
-    });
+        {
+            onSuccess: () => invalidateKey ? queryClient.invalidateQueries(invalidateKey) : null
+        });
 
     if (status === 'error') {
         throw new Exception('POST', error.message, url)
@@ -100,8 +100,8 @@ const PATCH = (url, body, authToken, invalidateKey) => {
     return data;
 };
 
-const DELETE = (url, authToken, invalidateKey) => {
-    const { data, error, status } = useMutation(_delete(url, authToken),     {
+const DELETE = (invalidateKey, url, authToken) => {
+    const { data, error, status } = useMutation(_delete(url, authToken), {
         onSuccess: () => invalidateKey ? queryClient.invalidateQueries(invalidateKey) : null
     });
 
