@@ -1,39 +1,75 @@
 import axios from 'axios'
 import ENV_VARS from 'env'
 
-const baseUrl = `${ENV_VARS.apiUrl}/api/`
+const baseUrl = `${ENV_VARS.apiUrl}`
 
-const printResponse = (method, url, statusCode, body) => {
-    console.log('==========================================');
-    console.log(`[API] (${method}) ${url}`)
-    console.log(`[RESPONSE] ${statusCode} - ${body}`);
+const printResponse = (method, url, response) => {
+    console.log('==========================================')
+    console.log(`[METHOD] ${method}`)
+    console.log(`[URL] ${url}`)
+    console.log(`[STATUS] ${response.status}`);
+    console.log(`[RESPONSE] \n${JSON.stringify(response.data, null, 4)}`);
     console.log('==========================================');
 }
 
+const printError = (method, url, error) => {
+    console.log('==========================================');
+    console.log(`[METHOD] ${method}`)
+    console.log(`[URL] ${url}`)
+    console.log(`[STATUS] ${error.response.status}`);
+    console.log(`[ERROR] \n${JSON.stringify(error.response.data, null, 4)}`);
+    console.log('==========================================');
+}
+
+
 const _get = async (url, params, authToken) => {
-    const { data, status } = await axios.get(`${baseUrl}/${url}`, {
-        params: { params },
-        headers: authToken && { 'Authorization': `Bearer ${authToken}` }
-    });
 
-    printResponse('GET', url, status, data)
+    try {
+        const response  = await axios.get(`${baseUrl}/${url}`, {
+            params: { params },
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': authToken && `Bearer ${authToken}`
+            },
+        })
 
-    return { body: data, statusCode: status }
+        printResponse('GET', url, response)
+        return { body: response.data, statusCode: response.status }
+
+    } catch (error) {
+        printError('GET', url, error)
+        throw error;
+    }
+
 };
 
 const _post = async (url, body, authToken) => {
-    const { data, status } = await axios.post(`${baseUrl}/${url}`, body, {
-        headers: authToken && { 'Authorization': `Bearer ${authToken}` },
-    })
+    try {
+        const response = await axios.post(`${baseUrl}/${url}`, body, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': authToken && `Bearer ${authToken}`
+            },
+        })
 
-    printResponse('POST', url, status, data)
+        printResponse('POST', url, response)
+        return { body: response.data, statusCode: response.status }
 
-    return { body: data, statusCode: status }
+    } catch (error) {
+        printError('POST', url, error)
+        throw error;
+    }
 };
 
 const _patch = async (url, body, authToken) => {
     const { data, status } = await axios.patch(`${baseUrl}/${url}`, body, {
-        headers: authToken && { 'Authorization': `Bearer ${authToken}` },
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': authToken && `Bearer ${authToken}`
+        },
     })
 
     printResponse('PATCH', url, status, data)
@@ -43,7 +79,11 @@ const _patch = async (url, body, authToken) => {
 
 const _delete = async (url, authToken) => {
     const { data, status } = await axios.delete(`${baseUrl}/${url}`, {
-        headers: authToken && { 'Authorization': `Bearer ${authToken}` },
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': authToken && `Bearer ${authToken}`
+        },
     })
 
     printResponse('DELETE', url, status, data)
