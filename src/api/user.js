@@ -1,19 +1,15 @@
-import { _get, _post, _patch, _delete } from './query'
+import { _query } from './_query'
+import { getUniqueId } from 'utils/device';
 
+// method, url, params, body, auth=true, urlBase=true
+export const createUser = async () => {
 
+  const response = await _query({
+    method: 'POST',
+    url: 'user',
+    body: { deviceNum: await getUniqueId() },
+    auth: false
+  });
 
-export const createUser = (deviceNum) => {
-  return _post('user', { deviceNum: deviceNum });
+  return response;
 }
-
-export const login = (deviceNum) => {
-  return _post('auth/login', { deviceNum: deviceNum });
-}
-
-// const makeFn = (url) => {
-//   return (params) => {
-//     return _post(url,params);
-//   }
-// }
-
-// makeFn(url)(params)

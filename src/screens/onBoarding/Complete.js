@@ -7,10 +7,11 @@ import { ReturnButton, NextButton, ButtonContainer } from "./Start";
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useContext } from "react";
 import { useMutation } from 'react-query';
-import { createUser, login } from "api/user";
-import { getUniqueId } from "react-native-device-info";
+import { login } from "../../api/_query";
+import { createUser } from "api/user";
 import OnboardingContext from "../../contexts/Onboarding";
 import UserContext from "../../contexts/User";
+
 
 const Container = styled.View`
     flex: 1;
@@ -37,62 +38,44 @@ const CheckImage = styled.Image.attrs({
 const Complete = ({ navigation }) => {
 
     const { boardList, keywordList } = useContext(OnboardingContext);
-    const deviceNum = getUniqueId();
 
-    const createUser = useMutation(createUser);
-    const login = useMutation(login);
-    // board랑 keyword user와 함께 저장함
+    const createUserMutation = useMutation(createUser);
 
-    createUser.mutate({ deviceNum: deviceNum }, {
-        onSuccess: () => {
-            login.mutate({ deviceNum: deviceNum },
-                {
-                    onSuccess: () => {
-                        // board랑 keyword user와 함께 저장함
-                    }
-                }
-            )
-        }
-    });
-
-    // const userCheck = new Promise((resolve, reject) => {
-    //     createUser.mutate({ deviceNum: deviceNum }, {onSuccess : () => {
-    //         login.mutate({deviceNum: deviceNum},
-    //             {onSuccess : (data) => {
-    //                 resolve(data)
-    //             }}
-    //             )
-    //     }});
-
-    // })
-
-    // userCheck().then(result => {})
+    const onStartButtonPress = async () => {
+            
+        createUserMutation.mutate(null, {
+            onSuccess: (data) => {
+                login().then(() => {
+                    navigation.navigate('app', {screen: 'main'})
+                });
+            },
+            onError: error => {
+            }
+        });
 
 
-
-    navigation.navigate('app')
-}
+    }
 
 
-return (
-    <Container>
-        <View style={{ alignItems: 'center' }}>
-            <View style={{ height: 52 }} />
-            <Illust />
-            <View style={{ height: 120 }} />
-            <Headline4 style={{ color: color.primary }}>{'모든 설정을 완료했어요!'}</Headline4>
-            <View style={{ height: 16 }} />
-            <SemiHeadline1 style={{ color: color.gray6 }}>
-                {'이제 공똑을 시작해볼까요?'}
-            </SemiHeadline1>
-        </View>
-        <Space />
-        <ButtonContainer>
-            <ReturnButton value={'이전'} onPress={() => navigation.navigate('onboarding-addKeyword')} />
-            <NextButton value={'시작하기'} onPress={onStartButtonPress} />
-        </ButtonContainer>
-    </Container>
-);
+    return (
+        <Container>
+            <View style={{ alignItems: 'center' }}>
+                <View style={{ height: 52 }} />
+                <Illust />
+                <View style={{ height: 120 }} />
+                <Headline4 style={{ color: color.primary }}>{'모든 설정을 완료했어요!'}</Headline4>
+                <View style={{ height: 16 }} />
+                <SemiHeadline1 style={{ color: color.gray6 }}>
+                    {'이제 공똑을 시작해볼까요?'}
+                </SemiHeadline1>
+            </View>
+            <Space />
+            <ButtonContainer>
+                <ReturnButton value={'이전'} onPress={() => navigation.navigate('onboarding-addKeyword')} />
+                <NextButton value={'시작하기'} onPress={onStartButtonPress} />
+            </ButtonContainer>
+        </Container>
+    );
 }
 
 export default Complete;

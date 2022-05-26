@@ -3,6 +3,8 @@ import { color } from "../../common/colors";
 import { image } from "../../common/images";
 import { SemiHeadline2, SemiHeadline1 } from "../../components/_common/Typography";
 import { Pressable, View } from "react-native";
+import { useEffect } from "react";
+import { login } from 'api/_query'
 
 const Container = styled.View`
     flex: 1;
@@ -67,10 +69,10 @@ const NextButton = ({ onPress, value, disabled }) => {
 
     return (
 
-        <Pressable onPress={disabled ? () => {} : onPress} hitSlop={10}>
+        <Pressable onPress={disabled ? () => { } : onPress} hitSlop={10}>
             <NextButtonBox>
                 <SemiHeadline1 style={_textStyle}>{value}</SemiHeadline1>
-                <NextImage disabled={disabled}/>
+                <NextImage disabled={disabled} />
             </NextButtonBox>
         </Pressable>
 
@@ -120,6 +122,20 @@ const ButtonContainer = styled.View`
 
 
 const Start = ({ navigation }) => {
+
+    const tryLogin = async () => {
+        try {
+            await login()
+            navigation.navigate('app', { screen: 'main' })
+        } catch (e) {
+            // setIsMember = false
+        }
+    }
+
+    useEffect(() => {
+        tryLogin();
+    }, [])
+
     return (
         <Container>
             <Box><SymbolImage /></Box>

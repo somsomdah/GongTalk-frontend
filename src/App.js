@@ -8,6 +8,8 @@ import { color } from './common/colors';
 import { font } from "./common/fonts";
 import OnboardingNavigation from "./navigations/OnboardingStack";
 import AppStackNavigation from './navigations/AppStack';
+import { login } from "api/_query";
+import { useEffect, useState } from "react";
 
 
 const App = () => {
@@ -15,6 +17,7 @@ const App = () => {
     const [loaded, error] = useFonts(font.pretendard);
     const Stack = createStackNavigator();
     const queryClient = new QueryClient();
+    // const [isMember, setIsMember] = useState(false)
 
 
     return (
@@ -25,7 +28,7 @@ const App = () => {
                 <NavigationContainer>
                     <Stack.Navigator
                         screenOptions={{ headerShown: false, animationEnabled: false }}
-                        initialRouteName='onboarding'
+                        initialRouteName={'onboarding'}
                     >
                         <Stack.Screen name={'app'} component={AppStackNavigation} />
                         <Stack.Screen name={'onboarding'} component={OnboardingNavigation} />

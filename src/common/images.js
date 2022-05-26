@@ -1,4 +1,3 @@
-// import * as icons from '../assets/icons/';'
 
 export const image = {
     bottom: {
@@ -56,9 +55,10 @@ export const image = {
     },
 
     school: {
-        ewha: require('../../assets/schools/ewha-logo.png'),
-        hongik: require('../../assets/schools/hongik-logo.png'),
-        seogang: require('../../assets/schools/seogang-logo.png'),
+        ewha: require('../../assets/schools/ewha.png'),
+        yonsei: require('../../assets/schools/yonsei.png'),
+        hongik: require('../../assets/schools/hongik.png'),
+        seogang: require('../../assets/schools/seogang.png'),
 
     },
 
