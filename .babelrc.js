@@ -15,8 +15,8 @@ const plugins = [
         screens: './src/screens',
         navigations: './src/navigations',
         colors: './src/common/colors',
-        images: './src/common/colors',
-
+        images: './src/common/images',
+        api: './src/api',
       },
     }]
 ]

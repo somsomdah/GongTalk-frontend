@@ -21,7 +21,8 @@ module.exports = function (api) {
               navigations: './src/navigations',
               colors: './src/common/colors',
               images: './src/common/colors',
-              api: './src/api'
+              api: './src/api',
+              utils: './src/utils',
             },
           }]
       ]
