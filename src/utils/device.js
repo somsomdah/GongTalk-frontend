@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 export const getUniqueId = async () => {
     let deviceUUID = await SecureStore.getItemAsync('deviceUUID');
     if (!deviceUUID) {
-        deviceUUID = await uuidv4();
+        deviceUUID = uuidv4();
         await SecureStore.setItemAsync('deviceUUID', deviceUUID);
     }
 

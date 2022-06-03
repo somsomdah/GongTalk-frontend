@@ -35,7 +35,7 @@ const Item = ({ value, selected, onPress }) => {
     return (
         <Pressable onPress={onPress}>
             <ItemBox selected={selected}>
-                <SemiHeadline3 style={{color: selected? color.primary : color.black}}>{value}</SemiHeadline3>
+                <SemiHeadline3 style={{ color: selected ? color.primary : color.black }}>{value}</SemiHeadline3>
                 {!selected || <ItemCheckIcon source={image.common.selected} />}
             </ItemBox>
         </Pressable>
@@ -52,7 +52,7 @@ const SelectModal = ({ isVisible, setIsVisible, schoolList, selectedSchool, sele
             onBackButtonPress={() => setIsVisible(false)}
             onBackdropPress={() => setIsVisible(false)}>
             <Container>
-                {Object.values(schoolList).map(school =>
+                {schoolList.map(school =>
                     <Item
                         key={school.id}
                         value={school.name}

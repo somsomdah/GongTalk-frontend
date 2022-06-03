@@ -17,7 +17,6 @@ const App = () => {
     const [loaded, error] = useFonts(font.pretendard);
     const Stack = createStackNavigator();
     const queryClient = new QueryClient();
-    // const [isMember, setIsMember] = useState(false)
 
 
     return (
