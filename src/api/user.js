@@ -1,7 +1,6 @@
 import { _query } from './_query'
 import { getUniqueId } from 'utils/device';
 
-// method, url, params, body, auth=true, urlBase=true
 export const createUser = async () => {
 
   const response = await _query({
@@ -11,5 +10,5 @@ export const createUser = async () => {
     auth: false
   });
 
-  return response;
+  return response.data;
 }
