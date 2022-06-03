@@ -1,10 +1,12 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { NextButton, ReturnButton, ButtonContainer } from "./Start";
 import { SemiHeadline1, SmallBody1 } from "../../components/_common/Typography";
 import { Select, List, SelectModal, Container } from '../AddBoard'
 import styled from "styled-components/native";
 import AlertModal from "../../components/_common/AlertModal";
 import OnboardingContext from "../../contexts/Onboarding";
+import { useQuery } from "react-query";
+import { getSchoolList } from "api/boards";
 
 const UpperContainer = styled.View`
     flex-direction: column;
@@ -16,13 +18,8 @@ const UpperContainer = styled.View`
 
 const AddBoard = ({ navigation }) => {
 
-    const schoolData = [
-        { id: 1, name: '이화여자대학교' },
-        { id: 2, name: '서강대학교' },
-        { id: 3, name: '연세대학교' },
-        { id: 4, name: '홍익대학교' },
-    ];
 
+    const schoolListQuery = useQuery('schoolList', getSchoolList);
 
     const [selectedSchool, setSelectedSchool] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
@@ -35,7 +32,7 @@ const AddBoard = ({ navigation }) => {
     }
 
     const nextButtonDisabled = boardList.length > 0 ? false : true
-    
+
     return (
         <Container>
             <UpperContainer>
@@ -54,13 +51,14 @@ const AddBoard = ({ navigation }) => {
 
             <List />
 
-            <SelectModal
-                isVisible={modalVisible}
-                setIsVisible={setModalVisible}
-                schoolList={schoolData}
-                selectedSchool={selectedSchool}
-                select={_select}
-            />
+            {schoolListQuery.isSuccess &&
+                <SelectModal
+                    isVisible={modalVisible}
+                    setIsVisible={setModalVisible}
+                    schoolList={schoolListQuery.data}
+                    selectedSchool={selectedSchool}
+                    select={_select}
+                />}
 
             <AlertModal
                 isVisible={alertModalVisible}
