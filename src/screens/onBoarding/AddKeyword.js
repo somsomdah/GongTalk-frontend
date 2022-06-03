@@ -1,36 +1,49 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Input, Title, Recommend, Added, Container, UpperContainer, LowerContainer } from "../AddKeyword";
 import { NextButton, ReturnButton, ButtonContainer } from "./Start";
 import { SemiHeadline1, SmallBody1 } from "../../components/_common/Typography";
 import AlertModal from "../../components/_common/AlertModal";
 import OnboardingContext from "../../contexts/Onboarding";
 import { Dimensions, ScrollView, KeyboardAvoidingView } from "react-native";
+import { useQuery } from "react-query";
+import { getRecommendedKeywordList } from "../../api/keywords";
 
 
 const AddKeyword = ({ navigation }) => {
-    const recommendedKeywordList = [
-        { id: 1, content: '장학' }, { id: 2, content: '인턴' }, { id: 3, content: '교육' },
-        { id: 21, content: '세미나' }, { id: 22, content: '체험' }, { id: 23, content: '해외' },
-        { id: 31, content: '취업' }, { id: 32, content: '수강' }, { id: 33, content: '졸업' }
-    ]
+
+    const [recommendedKeywordList, setRecommendedKeywordList] = useState([])
+
+    useQuery('recommendedKeywords', getRecommendedKeywordList,
+        {
+            onSuccess: (data) => setRecommendedKeywordList(data)
+        }
+    )
+    
 
     const { keywordList, setKeywordList } = useContext(OnboardingContext)
     const [alertModalVisible, setAlertModalVisible] = useState(false);
 
     const nextButtonDisabled = keywordList.length > 0 ? false : true
-    const height =  Dimensions.get('window').height
+    const height = Dimensions.get('window').height
 
     return (
-        <KeyboardAvoidingView style={{height: height}} >
+        <KeyboardAvoidingView style={{ height: height }} >
             <Container>
 
                 <UpperContainer style={{ paddingTop: 40 }}>
+                    
                     <SemiHeadline1>{'관심있는 키워드를 추가하세요.'}</SemiHeadline1>
                     <SmallBody1 style={{ marginBottom: 25 }}>
                         {'추가한 키워드와 관련있는 모든 공지사항을 모아 확인할 수 있어요. 해당 키워드로 알림이 갑니다. 최소 1개 이상 선택해주세요. '}
                     </SmallBody1>
+
                     <Title value={'키워드 입력하기'} />
-                    <Input keywordList={keywordList} setKeywordList={setKeywordList} />
+                    <Input
+                        keywordList={keywordList}
+                        setKeywordList={setKeywordList}
+                        setAlertModalVisible={setAlertModalVisible}
+                    />
+
                     <Title value={`추천 키워드`} />
                     <Recommend
                         keywordList={recommendedKeywordList}
@@ -48,18 +61,18 @@ const AddKeyword = ({ navigation }) => {
                 </LowerContainer>
 
                 <ButtonContainer>
-                    <ReturnButton value={'이전'} onPress={() => navigation.navigate('onboarding-addBoard')} />
-                    <NextButton value={'다음'} onPress={() => navigation.navigate('onboarding-complete')} disabled={nextButtonDisabled} />
+                    <ReturnButton value={'이전'} onPress={() => navigation.navigate('addBoard')} />
+                    <NextButton value={'다음'} onPress={() => navigation.navigate('complete')} disabled={nextButtonDisabled} />
                 </ButtonContainer>
 
                 <AlertModal
                     isVisible={alertModalVisible}
                     setIsVisible={setAlertModalVisible}
-                    value={'동일한 키워드를 여러번 추가할 수 없습니다.'}
+                    value={'동일한 키워드를 여러 번 추가할 수 없습니다.'}
                 />
 
             </Container>
-            </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
     )
 
 }

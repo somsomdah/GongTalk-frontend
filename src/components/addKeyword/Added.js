@@ -31,19 +31,19 @@ const CancelImage = styled.Image`
 
 const  Added = ({keywordList, setKeywordList}) => {
     
-    onCancelButtonPress = (keywordId) => {
-        const newKeywordList = keywordList.filter(keyword => keyword.id !== keywordId);
+    onCancelButtonPress = (keywordContent) => {
+        const newKeywordList = keywordList.filter(keyword => keyword.content !== keywordContent);
         setKeywordList(newKeywordList);
     }
 
     return (
         <Container>
             {Object.values(keywordList).map(keyword =>
-                <Chip key={keyword.id}>
+                <Chip key={keyword.content}>
                     <ButtonMediumW >
                         {keyword.content}
                     </ButtonMediumW>
-                    <TouchableOpacity onPress={() => onCancelButtonPress(keyword.id)}>
+                    <TouchableOpacity onPress={() => onCancelButtonPress(keyword.content)}>
                         <CancelImage source={image.common.cancel.white}/>
                     </TouchableOpacity>
                 </Chip>

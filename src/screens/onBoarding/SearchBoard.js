@@ -1,13 +1,14 @@
-import Item from '../components/searchBoard/Item';
-import SearchBox from '../components/searchBoard/SearchBox';
+import Item from '../../components/searchBoard/ItemForOnboarding';
+import SearchBox from '../../components/searchBoard/SearchBox';
 import styled from 'styled-components/native';
-import { color } from '../common/colors';
+import { color } from '../../common/colors';
 import { FlatList } from 'react-native';
 import { useState, useMemo, useEffect } from 'react';
 import * as Hangul from 'hangul-js';
 import { useQuery } from 'react-query';
 import { getBoardsBySchoolId } from 'api/boards';
-import Loading from '../components/_common/Loading';
+import Loading from '../../components/_common/Loading';
+import AlertModal from 'components/_common/AlertModal'
 
 const Container = styled.View`
     flex: 1;
@@ -18,13 +19,6 @@ const Container = styled.View`
     padding: 24px 20px;
 `;
 
-// const boardData = [
-//     { id: 1, name: '홈', school: { id: 1, name: '이화여자대학교' } },
-//     { id: 2, name: '컴퓨터공학전공', school: { id: 1, name: '이화여자대학교' } },
-//     { id: 4, name: '조형예술대학', school: { id: 1, name: '이화여자대학교' } },
-//     { id: 7, name: '중어중문학과', school: { id: 2, name: '서강대학교' } },
-//     { id: 8, name: '경영학과', school: { id: 2, name: '서강대학교' } },
-// ];
 
 const disassembleString = (string) => {
     return Hangul.disassemble(string).join();
@@ -32,10 +26,11 @@ const disassembleString = (string) => {
 
 const SearchBoard = ({ navigation, route }) => {
 
-    const { school } = route.params;
+    const { school, boardList } = route.params;
 
     const [boardListData, setBoardListData] = useState([]);
     const [inputValue, setInputValue] = useState('');
+    const [alertModalVisible, setAlertModalVisible] = useState(false);
 
     const getBoardListQuery = useQuery(['boards', { schoolId: school.id }],
         () => getBoardsBySchoolId(school.id), {
@@ -43,7 +38,7 @@ const SearchBoard = ({ navigation, route }) => {
             setBoardListData(data)
         }
     })
-    
+
     const matchedBoardList = useMemo(() => boardListData.filter(board => {
         return disassembleString(board.name).includes(disassembleString(inputValue))
     }), [boardListData, inputValue]);
@@ -65,12 +60,18 @@ const SearchBoard = ({ navigation, route }) => {
                             key={item.id}
                             board={item}
                             navigation={navigation}
-                            setBoardList={setBoardList}
+                            setAlertModalVisible={setAlertModalVisible}
                         />
                     }
                 />
                 :
                 <Loading />}
+
+                <AlertModal
+                    isVisible={alertModalVisible}
+                    setIsVisible={setAlertModalVisible}
+                    value={'동일한 게시판을 여러 번 추가할 수 없습니다.'}
+                />
         </Container>
     )
 

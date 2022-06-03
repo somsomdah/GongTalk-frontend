@@ -40,15 +40,17 @@ const DeleteButton = ({ pressDelete }) => {
     );
 };
 
-const InputBox = ({keywordList, setKeywordList}) => {
+const InputBox = ({keywordList, setKeywordList, setAlertModalVisible}) => {
     
     const [focus, setFocus] = useState(false);
     const [input, setInput] = useState('');
 
-    const _onInputDoneButtonPressed = () => {
-        setKeywordList([...keywordList, {id: 1000+keywordList.length,  content: input}])
+    const _onInputDoneButtonPressed = (keywordInput) => {
+        const includes = keywordList.find(keyword => keyword.content === keywordInput)
+        includes ? setAlertModalVisible(true) : setKeywordList([...keywordList, {content: keywordInput}])
         setInput('');
     }
+    
 
     return (
         <Container focused={focus} >
@@ -58,7 +60,7 @@ const InputBox = ({keywordList, setKeywordList}) => {
                 onBlur={() => setFocus(false)}
                 onChangeText={(newInput) => setInput(newInput)}
                 value={input}
-                onSubmitEditing={_onInputDoneButtonPressed}
+                onSubmitEditing={() => _onInputDoneButtonPressed(input)}
                 returnKeyType={'done'}
             />
             <DeleteButton pressDelete={() => setInput('')} />

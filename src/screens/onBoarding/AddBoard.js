@@ -1,9 +1,10 @@
 import { useState, useContext, useEffect } from "react";
 import { NextButton, ReturnButton, ButtonContainer } from "./Start";
-import { SemiHeadline1, SmallBody1 } from "../../components/_common/Typography";
-import { Select, List, SelectModal, Container } from '../AddBoard'
+import { SemiHeadline1, SmallBody1 } from "components/_common/Typography";
+import { Select, SelectModal, Container } from '../AddBoard'
+import List from 'components/addBoard/ListForOnboarding'
 import styled from "styled-components/native";
-import AlertModal from "../../components/_common/AlertModal";
+import AlertModal from "components/_common/AlertModal";
 import OnboardingContext from "../../contexts/Onboarding";
 import { useQuery } from "react-query";
 import { getSchoolList } from "api/boards";
@@ -66,8 +67,8 @@ const AddBoard = ({ navigation }) => {
                 value={'학교를 먼저 선택해주세요.'} />
 
             <ButtonContainer>
-                <ReturnButton value={'이전'} onPress={() => navigation.navigate('onboarding-start')} />
-                <NextButton value={'다음'} disabled={nextButtonDisabled} onPress={() => navigation.navigate('onboarding-addKeyword')} />
+                <ReturnButton value={'이전'} onPress={() => navigation.navigate('start')} />
+                <NextButton value={'다음'} disabled={nextButtonDisabled} onPress={() => navigation.navigate('addKeyword')} />
             </ButtonContainer>
 
         </Container>

@@ -105,7 +105,7 @@ const SetKeywords = ({ navigation }) => {
                     </SmallBody1>
                     <Space />
 
-                    <Item subscribe={subscribeDataList.filter(subscribe => subscribe.type === 'CKEYWORD')[0]} navigation={navigation} />
+                    <Item subscribe={subscribeDataList.filter(subscribe => subscribe.type === 'KEYWORD_COMMON')[0]} navigation={navigation} />
                 </UpperContainer>
 
                 <LowerContainer>
@@ -116,7 +116,7 @@ const SetKeywords = ({ navigation }) => {
                         {'게시판과 각 게시판에 설정된 키워드의 알림을 설정합니다. (전체 알림을 받지 않더라도 설정한 키워드의 알림은 받습니다.) '}
                     </SmallBody1>
                     <Space />
-                    {Object.values(subscribeDataList.filter(subscribe => subscribe.type !== 'CKEYWORD')).map(
+                    {Object.values(subscribeDataList.filter(subscribe => subscribe.type !== 'KEYWORD_COMMON')).map(
                         (item) =>
                             <Item
                                 key={item.id}

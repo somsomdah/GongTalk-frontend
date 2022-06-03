@@ -61,7 +61,7 @@ const List = () => {
                 <SemiHeadline4>추가 목록</SemiHeadline4>
             </TitleBox>
             <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
-                {Object.values(boardList).map(board => {
+                {boardList.map(board => {
                     const boardId = board.id;
                     const boardFullName = `${board.school.name} ${board.name}`;
                     return (

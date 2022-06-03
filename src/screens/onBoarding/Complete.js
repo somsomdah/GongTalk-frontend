@@ -11,6 +11,7 @@ import { login } from "../../api/_query";
 import { createUser } from "api/user";
 import OnboardingContext from "../../contexts/Onboarding";
 import UserContext from "../../contexts/User";
+import { createBoardSubscribe, createCommonKeywordSubscribe } from "../../api/user";
 
 
 const Container = styled.View`
@@ -39,21 +40,29 @@ const Complete = ({ navigation }) => {
 
     const { boardList, keywordList } = useContext(OnboardingContext);
 
-    const createUserMutation = useMutation(createUser);
+    console.log(boardList,keywordList)
 
-    const onStartButtonPress = async () => {
-            
-        createUserMutation.mutate(null, {
+    const createSubscribeMutation = useMutation(async () => {
+        for (board of boardList) {
+            await createBoardSubscribe(board.id)
+        }
+        for (keyword of keywordList) {
+            await createCommonKeywordSubscribe(keyword.content)
+        }
+    })
+
+    const createUserMutation = useMutation(createUser,
+        {
             onSuccess: (data) => {
-                login().then(() => {
-                    navigation.navigate('app', {screen: 'main'})
-                });
+                login().then(() => createSubscribeMutation.mutate()).then(() => navigation.navigate('app', { screen: 'main' }));
             },
-            onError: error => {
-            }
+            onError: error => { }
         });
 
 
+
+    const onStartButtonPress = async () => {
+        createUserMutation.mutate()
     }
 
 
@@ -71,7 +80,7 @@ const Complete = ({ navigation }) => {
             </View>
             <Space />
             <ButtonContainer>
-                <ReturnButton value={'이전'} onPress={() => navigation.navigate('onboarding-addKeyword')} />
+                <ReturnButton value={'이전'} onPress={() => navigation.navigate('addKeyword')} />
                 <NextButton value={'시작하기'} onPress={onStartButtonPress} />
             </ButtonContainer>
         </Container>

@@ -22,7 +22,7 @@ const Container = styled.View`
 const Recommend = ({ keywordList, myKeywordList, setMyKeywordList, setAlertModalVisible }) => {
 
     const _addKeyword = (keyword) => {
-        const includes = myKeywordList.find(myKeyword => myKeyword.id === keyword.id)
+        const includes = myKeywordList.find(myKeyword => myKeyword.content === keyword.content)
         includes ? setAlertModalVisible(true) : setMyKeywordList([...myKeywordList, keyword])
 
     };
@@ -30,7 +30,7 @@ const Recommend = ({ keywordList, myKeywordList, setMyKeywordList, setAlertModal
     return (
         <Container>
             {Object.values(keywordList).map(keyword =>
-                <TouchableOpacity key={keyword.id} onPress={() => _addKeyword(keyword)} >
+                <TouchableOpacity key={keyword.content} onPress={() => _addKeyword(keyword)} >
                     <Chip >
                         <ButtonMedium >
                             {keyword.content}

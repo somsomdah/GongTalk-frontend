@@ -6,6 +6,7 @@ import { Pressable, View } from "react-native";
 import { useEffect } from "react";
 import { login } from 'api/_query'
 
+
 const Container = styled.View`
     flex: 1;
     background-color: ${color.white};
@@ -123,18 +124,17 @@ const ButtonContainer = styled.View`
 
 const Start = ({ navigation }) => {
 
-    const tryLogin = async () => {
-        try {
-            await login()
-            navigation.navigate('app', { screen: 'main' })
-        } catch (e) {
-            // setIsMember = false
-        }
-    }
+    // const tryLogin = async () => {
+    //     try {
+    //         await login()
+    //         navigation.navigate('app', { screen: 'main' })
+    //     } catch (e) {
+    //     }
+    // }
 
-    useEffect(() => {
-        tryLogin();
-    }, [])
+    // useEffect(() => {
+    //     tryLogin();
+    // }, [])
 
     return (
         <Container>
@@ -143,7 +143,7 @@ const Start = ({ navigation }) => {
             <View style={{ flexGrow: 1 }} />
             <ButtonContainer>
                 <View />
-                <NextButton onPress={() => navigation.navigate('onboarding-addBoard')} value={'다음'} />
+                <NextButton onPress={() => navigation.navigate('addBoard')} value={'다음'} />
             </ButtonContainer>
         </Container>
     )
