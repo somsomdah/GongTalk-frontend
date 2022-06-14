@@ -11,7 +11,7 @@ import { login } from "../../api/_query";
 import { createUser } from "api/user";
 import OnboardingContext from "../../contexts/Onboarding";
 import UserContext from "../../contexts/User";
-import { createBoardSubscribe, createCommonKeywordSubscribe } from "../../api/user";
+import { createUserBoard, createBoardSubscribe, createCommonKeywordSubscribe } from "../../api/user";
 
 
 const Container = styled.View`
@@ -40,31 +40,34 @@ const Complete = ({ navigation }) => {
 
     const { boardList, keywordList } = useContext(OnboardingContext);
 
-    console.log(boardList,keywordList)
-
     const createSubscribeMutation = useMutation(async () => {
         for (board of boardList) {
+            await createUserBoard(board.id)
             await createBoardSubscribe(board.id)
         }
         for (keyword of keywordList) {
             await createCommonKeywordSubscribe(keyword.content)
         }
+    }, {
+        onSuccess: () => {
+            navigation.navigate('app', { screen: 'main' })
+        }
     })
 
-    const createUserMutation = useMutation(createUser,
-        {
-            onSuccess: (data) => {
-                login().then(() => createSubscribeMutation.mutate()).then(() => navigation.navigate('app', { screen: 'main' }));
-            },
-            onError: error => { }
-        });
-
+    const createUserMutation = useMutation(createUser);
 
 
     const onStartButtonPress = async () => {
-        createUserMutation.mutate()
+        createUserMutation.mutate(null,
+            {
+                onSuccess: (data) => {
+                    login().then(() => createSubscribeMutation.mutate());
+                },
+                onError: error => {
+                },
+            }
+        )
     }
-
 
     return (
         <Container>

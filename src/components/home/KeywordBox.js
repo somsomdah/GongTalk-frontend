@@ -23,8 +23,8 @@ const KeywordBox = ({ navigation, keywordList }) => {
     return (
         <Container>
             {Object.values(keywordList).map(keyword => (
-                <Chip key={keyword} onPress={() => navigation.navigate('postList', { headerValue: keyword })}>
-                    <ButtonMediumW>{`#${keyword}`}</ButtonMediumW>
+                <Chip key={keyword.id} onPress={() => navigation.navigate('postList', { headerValue: keyword.content })}>
+                    <ButtonMediumW>{`#${keyword.content}`}</ButtonMediumW>
                 </Chip>
             ))}
         </Container>

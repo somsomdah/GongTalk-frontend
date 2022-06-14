@@ -1,7 +1,6 @@
 import axios from 'axios'
 import ENV_VARS from 'env'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useQuery, useMutation } from 'react-query'
 import { getUniqueId } from 'utils/device';
 import { LogBox } from 'react-native';
 

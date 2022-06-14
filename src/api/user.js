@@ -10,7 +10,16 @@ export const createUser = async () => {
     auth: false
   });
 
+  console.log("dddddd")
+
   return response.data;
+}
+
+export const createUserBoard = async (boardId) => {
+  const response = await _query({
+    method: 'POST',
+    url: `user/boards/${boardId}`
+  })
 }
 
 export const createBoardSubscribe = async (boardId) => {
@@ -49,4 +58,43 @@ export const createBoardKeywordSubscribe = async (boardId, keywordContent) => {
       keywordContent: keywordContent
     }
   })
+}
+
+
+export const getSubscribesCommonKeyword = async () => {
+  const response = await _query({
+    method: 'GET',
+    url: 'user/subscribes',
+    params: {
+      type: "KEYWORD_COMMON",
+    }
+  })
+
+  return response.data
+}
+
+export const getSubscribesBoardKeyword = async (boardId) => {
+  const response = await _query({
+    method: 'GET',
+    url: 'user/subscribes',
+    params: {
+      type: "KEYWORD_BOARD",
+      boardId: boardId
+    }
+  })
+
+  return response.data
+}
+
+export const getSubscribesBoard = async (boardId) => {
+  const response = await _query({
+    method: 'GET',
+    url: 'user/subscribes',
+    params: {
+      type: "BOARD",
+      boardId: boardId,
+    }
+  })
+
+  return response.data
 }

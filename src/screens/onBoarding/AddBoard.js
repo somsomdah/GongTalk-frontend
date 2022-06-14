@@ -20,7 +20,7 @@ const UpperContainer = styled.View`
 const AddBoard = ({ navigation }) => {
 
 
-    const schoolListQuery = useQuery('schoolList', getSchoolList);
+    const schoolListQuery = useQuery('schools', getSchoolList);
 
     const [selectedSchool, setSelectedSchool] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);

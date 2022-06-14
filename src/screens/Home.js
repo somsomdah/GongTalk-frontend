@@ -5,6 +5,7 @@ import Roundup from '../components/home/Roundup'
 import Board from '../components/home/Board';
 import styled from 'styled-components/native';
 import { color } from '../common/colors';
+import { getSubscribesCommonKeyword } from '../api/user';
 
 
 const Container = styled.View`
@@ -26,15 +27,23 @@ const BodyContainer = styled.View`
 const Home = ({ navigation }) => {
 
     const [isOnTop, setIsOnTop] = useState(true);
+    const [keywordList, setKeywordList] = useState([])
+
+    useQuery(['common_keywords', { type: "KEYWORD_COMMON" }],
+        () => getSubscribesCommonKeyword(), {
+        onSuccess: (data) => {
+            setKeywordList(data)
+        }
+    })
 
     return (
         <Container>
-            <Header navigation={navigation} isOnTop={isOnTop}/>
-            <InnerContainer onScroll={({nativeEvent})=>{nativeEvent.contentOffset.y < 5 ? setIsOnTop(true) : setIsOnTop(false)}}>
-                <KeywordBox navigation={navigation} keywordList={['인턴', '대외활동', '해외', '부트캠프', '동아리']} />
+            <Header navigation={navigation} isOnTop={isOnTop} />
+            <InnerContainer onScroll={({ nativeEvent }) => { nativeEvent.contentOffset.y < 5 ? setIsOnTop(true) : setIsOnTop(false) }}>
+                <KeywordBox navigation={navigation} keywordList={keywordList} />
                 <BodyContainer >
-                    <Roundup navigation={navigation}/>
-                    <Board navigation={navigation}/>
+                    <Roundup navigation={navigation} />
+                    <Board navigation={navigation} />
                 </BodyContainer>
             </InnerContainer>
 
