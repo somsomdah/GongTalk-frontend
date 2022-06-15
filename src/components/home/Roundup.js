@@ -1,9 +1,11 @@
 import styled from "styled-components/native";
 import { color } from '../../common/colors';
 import { image } from "../../common/images";
-import { postList } from '../../common/data'
 import { SemiHeadline2_1, SemiHeadline3, SemiHeadline4 } from "../_common/Typography";
 import { Pressable } from "react-native";
+import { useQuery } from "react-query";
+import { getPosts } from "../../api/user";
+import { useState } from "react";
 
 const Container = styled.View`
     margin-bottom: 32px;
@@ -64,10 +66,9 @@ const MoreImage = styled.Image.attrs({ source: image.common.next })`
 
 
 const Item = ({ post }) => {
-
     return (
         <ItemBox>
-            <Symbol source={post.board.school.image} />
+            <Symbol source={{ uri: post.board.school.image }} />
             <TextBox>
                 <SemiHeadline3 ellipsizeMode='tail' numberOfLines={1}>{post.title}</SemiHeadline3>
                 <WriterDateBox>
@@ -82,7 +83,12 @@ const Item = ({ post }) => {
 
 const Roundup = ({ navigation }) => {
 
+    [postList, setPostList] = useState([])
 
+    useQuery(['posts', 'roundup'], () => getPosts(3), {
+        onSuccess: (data) => setPostList(data)
+    }
+    )
 
     return (
         <Container>
@@ -93,7 +99,7 @@ const Roundup = ({ navigation }) => {
                 </TitleContainer>
             </Pressable>
             <ContentContainer>
-                {Object.values(postList).map((post, idx) => idx < 3 && <Item key={post.id} post={post} />)}
+                {postList && Object.values(postList).map((post) => <Item key={post.id} post={post} />)}
             </ContentContainer>
         </Container>
     );

@@ -5,7 +5,8 @@ import Roundup from '../components/home/Roundup'
 import Board from '../components/home/Board';
 import styled from 'styled-components/native';
 import { color } from '../common/colors';
-import { getSubscribesCommonKeyword } from '../api/user';
+import { getCommonKeywordSubscribes } from '../api/user';
+import { useQuery } from 'react-query';
 
 
 const Container = styled.View`
@@ -30,9 +31,9 @@ const Home = ({ navigation }) => {
     const [keywordList, setKeywordList] = useState([])
 
     useQuery(['common_keywords', { type: "KEYWORD_COMMON" }],
-        () => getSubscribesCommonKeyword(), {
+        () => getCommonKeywordSubscribes(), {
         onSuccess: (data) => {
-            setKeywordList(data)
+            setKeywordList(data.map((subscribe) => subscribe.keyword))
         }
     })
 

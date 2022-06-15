@@ -10,8 +10,6 @@ export const createUser = async () => {
     auth: false
   });
 
-  console.log("dddddd")
-
   return response.data;
 }
 
@@ -61,7 +59,7 @@ export const createBoardKeywordSubscribe = async (boardId, keywordContent) => {
 }
 
 
-export const getSubscribesCommonKeyword = async () => {
+export const getCommonKeywordSubscribes = async () => {
   const response = await _query({
     method: 'GET',
     url: 'user/subscribes',
@@ -73,7 +71,7 @@ export const getSubscribesCommonKeyword = async () => {
   return response.data
 }
 
-export const getSubscribesBoardKeyword = async (boardId) => {
+export const getBoardKeywordSubscribes = async (boardId) => {
   const response = await _query({
     method: 'GET',
     url: 'user/subscribes',
@@ -86,13 +84,26 @@ export const getSubscribesBoardKeyword = async (boardId) => {
   return response.data
 }
 
-export const getSubscribesBoard = async (boardId) => {
+export const getBoardSubscribes = async (boardId) => {
   const response = await _query({
     method: 'GET',
     url: 'user/subscribes',
     params: {
       type: "BOARD",
       boardId: boardId,
+    }
+  })
+
+  return response.data
+}
+
+
+export const getPosts = async (size) => {
+  const response = await _query({
+    method: 'GET',
+    url: 'user/posts',
+    params: {
+      size: size,
     }
   })
 

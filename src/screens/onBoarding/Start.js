@@ -124,18 +124,6 @@ const ButtonContainer = styled.View`
 
 const Start = ({ navigation }) => {
 
-    // const tryLogin = async () => {
-    //     try {
-    //         await login()
-    //         navigation.navigate('app', { screen: 'main' })
-    //     } catch (e) {
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     tryLogin();
-    // }, [])
-
     return (
         <Container>
             <Box><SymbolImage /></Box>

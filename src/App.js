@@ -18,16 +18,31 @@ const App = () => {
     const Stack = createStackNavigator();
     const queryClient = new QueryClient();
 
+    const [initialRouteName, setInitialRouteName] = useState(null)
+
+    const tryLogin = async () => {
+        try {
+            await login()
+            setInitialRouteName('main')
+        } catch (e) {
+            setInitialRouteName('onboarding')
+        }
+    }
+
+    useEffect(() => {
+        tryLogin();
+    }, [])
+
 
     return (
-        loaded &&
+        loaded && initialRouteName &&
         <QueryClientProvider client={queryClient}>
             <Container>
                 <StatusBar backgroundColor={color.white} barStyle='dark-content' />
                 <NavigationContainer>
                     <Stack.Navigator
                         screenOptions={{ headerShown: false, animationEnabled: false }}
-                        initialRouteName={'onboarding'}
+                        initialRouteName={initialRouteName}
                     >
                         <Stack.Screen name={'app'} component={AppStackNavigation} />
                         <Stack.Screen name={'onboarding'} component={OnboardingNavigation} />
@@ -35,7 +50,6 @@ const App = () => {
                 </NavigationContainer>
             </Container>
         </QueryClientProvider>
-
     );
 };
 
