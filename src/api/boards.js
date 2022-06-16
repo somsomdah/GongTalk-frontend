@@ -28,6 +28,9 @@ export const getPostsByBoardId = async (id) => {
     const response = await _query({
         method: 'GET',
         url: `boards/${id}/posts`,
+        params: {
+            size: 3
+        },
         auth: false
     })
 

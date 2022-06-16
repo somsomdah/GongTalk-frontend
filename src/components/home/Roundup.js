@@ -87,14 +87,14 @@ const Roundup = ({ navigation }) => {
 
     [postList, setPostList] = useState([])
 
-    useQuery(['posts', 'roundup'], () => getPosts(3), {
+    useQuery(['roundup'], () => getPosts(3), {
         onSuccess: (data) => setPostList(data)
     }
     )
 
     return (
         <Container>
-            <Pressable onPress={() => navigation.navigate('postList', { headerValue: '모아보기' })} >
+            <Pressable onPress={() => navigation.navigate('postList', { headerValue: '모아보기', boardId: null })} >
                 <TitleContainer>
                     <SemiHeadline2_1>모아보기</SemiHeadline2_1>
                     <MoreImage />

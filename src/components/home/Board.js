@@ -116,13 +116,13 @@ const Board = ({ navigation, board }) => {
 
     const [items, setItems] = useState([]);
 
-    useQuery(['posts', { boardId: board.id }], () => getPostsByBoardId(board.id), {
+    useQuery([{ boardId: boardId, content: 'home_posts' }], () => getPostsByBoardId(board.id), {
         onSuccess: (data) => setItems(data)
     })
 
     return (
         <Container>
-            <Pressable onPress={() => navigation.navigate('postList', { headerValue: '이화여대 컴퓨터공학과' })} >
+            <Pressable onPress={() => navigation.navigate('postList', { headerValue: `${board.school.name} ${board.name}`, boardId: board.id })} >
                 <TitleContainer>
                     <SemiHeadline2_1>{`${board.school.name} ${board.name}`}</SemiHeadline2_1>
                     <MoreImage />
