@@ -109,3 +109,12 @@ export const getPosts = async (size) => {
 
   return response.data
 }
+
+export const getBoards = async () => {
+  const response = await _query({
+    method: 'GET',
+    url: 'user/boards'
+  })
+
+  return response.data
+}

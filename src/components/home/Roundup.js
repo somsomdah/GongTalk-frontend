@@ -6,6 +6,8 @@ import { Pressable } from "react-native";
 import { useQuery } from "react-query";
 import { getPosts } from "../../api/user";
 import { useState } from "react";
+import { dateParser } from 'utils/parser'
+
 
 const Container = styled.View`
     margin-bottom: 32px;
@@ -65,16 +67,16 @@ const MoreImage = styled.Image.attrs({ source: image.common.next })`
 `
 
 
-const Item = ({ post }) => {
+const Item = ({ post, navigation }) => {
     return (
-        <ItemBox>
+        <ItemBox onPress={() => navigation.navigate('postDetail', { post: post })}>
             <Symbol source={{ uri: post.board.school.image }} />
             <TextBox>
                 <SemiHeadline3 ellipsizeMode='tail' numberOfLines={1}>{post.title}</SemiHeadline3>
                 <WriterDateBox>
                     <SemiHeadline4>{`${post.board.school.name} ${post.board.name}`}</SemiHeadline4>
                     <ItemInfoDivider />
-                    <SemiHeadline4 style={{ color: color.gray5 }}>{post.date}</SemiHeadline4>
+                    <SemiHeadline4 style={{ color: color.gray5 }}>{dateParser(post.date)}</SemiHeadline4>
                 </WriterDateBox>
             </TextBox>
         </ItemBox>);
@@ -99,7 +101,7 @@ const Roundup = ({ navigation }) => {
                 </TitleContainer>
             </Pressable>
             <ContentContainer>
-                {postList && Object.values(postList).map((post) => <Item key={post.id} post={post} />)}
+                {postList && Object.values(postList).map((post) => <Item key={post.id} post={post} navigation={navigation} />)}
             </ContentContainer>
         </Container>
     );

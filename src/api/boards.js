@@ -16,8 +16,18 @@ export const getBoardsBySchoolId = async (id) => {
         method: 'GET',
         url: 'boards',
         params: {
-            schoolId : id
+            schoolId: id
         },
+        auth: false
+    })
+
+    return response.data
+}
+
+export const getPostsByBoardId = async (id) => {
+    const response = await _query({
+        method: 'GET',
+        url: `boards/${id}/posts`,
         auth: false
     })
 
