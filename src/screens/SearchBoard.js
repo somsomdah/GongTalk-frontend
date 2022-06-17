@@ -18,13 +18,6 @@ const Container = styled.View`
     padding: 24px 20px;
 `;
 
-// const boardData = [
-//     { id: 1, name: '홈', school: { id: 1, name: '이화여자대학교' } },
-//     { id: 2, name: '컴퓨터공학전공', school: { id: 1, name: '이화여자대학교' } },
-//     { id: 4, name: '조형예술대학', school: { id: 1, name: '이화여자대학교' } },
-//     { id: 7, name: '중어중문학과', school: { id: 2, name: '서강대학교' } },
-//     { id: 8, name: '경영학과', school: { id: 2, name: '서강대학교' } },
-// ];
 
 const disassembleString = (string) => {
     return Hangul.disassemble(string).join();
@@ -34,19 +27,19 @@ const SearchBoard = ({ navigation, route }) => {
 
     const { school } = route.params;
 
-    const [boardListData, setBoardListData] = useState([]);
+    const [boardList, setBoardList] = useState([]);
     const [inputValue, setInputValue] = useState('');
 
-    const getBoardListQuery = useQuery(['boards', { schoolId: school.id }],
+    const getBoardListQuery = useQuery(['user_boards', { schoolId: school.id }],
         () => getBoardsBySchoolId(school.id), {
         onSuccess: (data) => {
-            setBoardListData(data)
+            setBoardList(data)
         }
     })
-    
-    const matchedBoardList = useMemo(() => boardListData.filter(board => {
+
+    const matchedBoardList = useMemo(() => boardList.filter(board => {
         return disassembleString(board.name).includes(disassembleString(inputValue))
-    }), [boardListData, inputValue]);
+    }), [boardList, inputValue]);
 
     return (
         <Container>
@@ -55,22 +48,19 @@ const SearchBoard = ({ navigation, route }) => {
                 inputValue={inputValue}
                 setInputValue={setInputValue}
             />
-            {getBoardListQuery.isSuccess ?
-                <FlatList
-                    showsVerticalScrollIndicator={false}
-                    data={matchedBoardList}
-                    style={{ paddingVertical: 16 }}
-                    renderItem={({ item }) =>
-                        <Item
-                            key={item.id}
-                            board={item}
-                            navigation={navigation}
-                            setBoardList={setBoardList}
-                        />
-                    }
-                />
-                :
-                <Loading />}
+            <FlatList
+                showsVerticalScrollIndicator={false}
+                data={matchedBoardList}
+                style={{ paddingVertical: 16 }}
+                renderItem={({ item }) =>
+                    <Item
+                        key={item.id}
+                        board={item}
+                        navigation={navigation}
+                    />
+                }
+            />
+
         </Container>
     )
 

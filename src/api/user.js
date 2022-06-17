@@ -13,13 +13,6 @@ export const createUser = async () => {
   return response.data;
 }
 
-export const createUserBoard = async (boardId) => {
-  const response = await _query({
-    method: 'POST',
-    url: `user/boards/${boardId}`
-  })
-}
-
 export const createBoardSubscribe = async (boardId) => {
   const response = await _query({
     method: 'POST',
@@ -110,10 +103,36 @@ export const getPosts = async (size) => {
   return response.data
 }
 
-export const getBoards = async () => {
+export const getUserBoards = async () => {
   const response = await _query({
     method: 'GET',
     url: 'user/boards'
+  })
+
+  return response.data
+}
+
+export const createUserBoard = async (boardId) => {
+  const response = await _query({
+    method: 'POST',
+    url: `user/boards/${boardId}`
+  })
+}
+
+export const deleteUserBoard = async (boardId) => {
+  const response = await _query({
+    method: 'DELETE',
+    url: `user/boards/${boardId}`
+  })
+}
+
+export const updateUserBoardOrder = async (boardId, orderValue) => {
+  const response = await _query({
+    method: 'PATCH',
+    url: `user/boards/${boardId}`,
+    body: {
+      orderValue: orderValue
+    }
   })
 
   return response.data

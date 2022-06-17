@@ -5,6 +5,7 @@ import { Pressable } from 'react-native';
 import { SemiHeadline2_1 } from '../_common/Typography';
 
 
+
 const Container = styled.View.attrs({
     // borderBottomColor: color.gray2,
     // borderBottomWidth: 1
@@ -24,8 +25,8 @@ const TitleBox = styled.View`
     height: 38px;
     padding-bottom: 16px;
     margin-right: 24px;
-    border-bottom-color: ${({focused}) => focused ? color.primary : color.gray3 };
-    border-bottom-width: ${({focused}) => focused ? '3px' : '0px' };
+    border-bottom-color: ${({ focused }) => focused ? color.primary : color.gray3};
+    border-bottom-width: ${({ focused }) => focused ? '3px' : '0px'};
 `;
 
 
@@ -33,7 +34,7 @@ const Title = ({ focused, onPress, children }) => {
     return (
         <Pressable onPress={onPress} hitSlop={20}>
             <TitleBox focused={focused}>
-                <SemiHeadline2_1 style={{color: focused ? color.primary : color.gray3}}>{children}</SemiHeadline2_1>
+                <SemiHeadline2_1 style={{ color: focused ? color.primary : color.gray3 }}>{children}</SemiHeadline2_1>
             </TitleBox>
         </Pressable>
     );
@@ -51,9 +52,9 @@ const AddIcon = styled.Image`
     height: 20px;
 `;
 
-const AddButton = ({navigation}) => {
+const AddButton = ({ navigation }) => {
     return (
-        <Pressable hitSlop={20} onPress={() => navigation.navigate('addBoard') }>
+        <Pressable hitSlop={20} onPress={() => navigation.navigate('addBoard')}>
             <AddIcon source={image.common.add} />
         </Pressable>
     );
@@ -61,6 +62,7 @@ const AddButton = ({navigation}) => {
 
 
 const TobBar = ({ navigation, state }) => {
+
     return (
         <Container>
             {state.routes.map((route, index) => {
@@ -86,7 +88,7 @@ const TobBar = ({ navigation, state }) => {
                 );
             })}
             {state.index === 1 ||
-                <AddButtonBox ><AddButton navigation={navigation}/></AddButtonBox>
+                <AddButtonBox ><AddButton navigation={navigation} /></AddButtonBox>
             }
         </Container>
     );

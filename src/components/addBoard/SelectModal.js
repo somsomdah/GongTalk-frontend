@@ -5,6 +5,8 @@ import { Pressable } from 'react-native';
 import { useState } from "react";
 import Modal from 'react-native-modal';
 import { SemiHeadline3 } from "../_common/Typography";
+import { getSchools } from "../../api/boards";
+import { useQuery } from 'react-query'
 
 
 const Container = styled.View`
@@ -43,7 +45,15 @@ const Item = ({ value, selected, onPress }) => {
     )
 }
 
-const SelectModal = ({ isVisible, setIsVisible, schoolList, selectedSchool, select }) => {
+const SelectModal = ({ isVisible, setIsVisible, selectedSchool, select }) => {
+
+    [schoolList, setSchoolList] = useState([])
+
+    useQuery('schools', getSchools, {
+        onSuccess: (data) => {
+            setSchoolList(data)
+        }
+    });
 
     return (
         <Modal

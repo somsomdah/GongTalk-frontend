@@ -6,19 +6,19 @@ import AlertModal from "../../components/_common/AlertModal";
 import OnboardingContext from "../../contexts/Onboarding";
 import { Dimensions, ScrollView, KeyboardAvoidingView } from "react-native";
 import { useQuery } from "react-query";
-import { getRecommendedKeywordList } from "../../api/keywords";
+import { getRecommendedKeywords } from "../../api/keywords";
 
 
 const AddKeyword = ({ navigation }) => {
 
     const [recommendedKeywordList, setRecommendedKeywordList] = useState([])
 
-    useQuery('recommendedKeywords', getRecommendedKeywordList,
+    useQuery('recommendedKeywords', getRecommendedKeywords,
         {
             onSuccess: (data) => setRecommendedKeywordList(data)
         }
     )
-    
+
 
     const { keywordList, setKeywordList } = useContext(OnboardingContext)
     const [alertModalVisible, setAlertModalVisible] = useState(false);
@@ -31,7 +31,7 @@ const AddKeyword = ({ navigation }) => {
             <Container>
 
                 <UpperContainer style={{ paddingTop: 40 }}>
-                    
+
                     <SemiHeadline1>{'관심있는 키워드를 추가하세요.'}</SemiHeadline1>
                     <SmallBody1 style={{ marginBottom: 25 }}>
                         {'추가한 키워드와 관련있는 모든 공지사항을 모아 확인할 수 있어요. 해당 키워드로 알림이 갑니다. 최소 1개 이상 선택해주세요. '}

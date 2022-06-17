@@ -3,6 +3,9 @@ import styled from 'styled-components/native';
 import { color } from '../common/colors';
 import DraggableFlatList from 'react-native-draggable-flatlist';
 import Item from '../components/board/BoardItem';
+import { getUserBoards, updateUserBoardOrder } from 'api/user'
+import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { useEffect } from 'react';
 
 
 const Container = styled.View`
@@ -14,29 +17,28 @@ const Container = styled.View`
     flex: 1;
 `;
 
-const data = [
-    { id: 1, name: '이화여자대학교 컴퓨터공학과' },
-    { id: 2, name: '서강대학교 컴퓨터공학과' },
-    { id: 3, name: '연세대학교 컴퓨터공학과' },
-    { id: 4, name: '이화여자대학교 엘텍공과대학' },
-    { id: 5, name: '이화여자대학교 컴퓨터공학과' },
-    { id: 6, name: '서강대학교 컴퓨터공학과' },
-    { id: 7, name: '연세대학교 컴퓨터공학과' },
-    { id: 8, name: '이화여자대학교 엘텍공과대학' },
-    { id: 9, name: '이화여자대학교 컴퓨터공학과' },
-    { id: 10, name: '서강대학교 컴퓨터공학과' },
-    { id: 11, name: '연세대학교 컴퓨터공학과' },
-    { id: 12, name: '이화여자대학교 엘텍공과대학' },
-    { id: 13, name: '이화여자대학교 컴퓨터공학과' },
-    { id: 14, name: '서강대학교 컴퓨터공학과' },
-    { id: 15, name: '연세대학교 컴퓨터공학과' },
-    { id: 16, name: '이화여자대학교 엘텍공과대학' },
-]
-
 
 const SetBoards = () => {
 
-    const [boards, setBoards] = useState(data);
+    const [boards, setBoards] = useState([]);
+    const queryClient = useQueryClient();
+
+    useQuery('user_boards', getUserBoards, {
+        onSuccess: (data) => {
+            setBoards(data)
+        }
+    })
+
+    updateUserBoardOrderMutation = useMutation(() => {
+        for (let i = 0; i < boards.length; i++) {
+            updateUserBoardOrder(boards[i].id, i)
+        }
+    }, {
+        onSuccess: () => {
+            queryClient.invalidateQueries('user_boards')
+        }
+    }
+    )
 
     const renderItem = ({ item, index, drag, isActive }) => {
         return (
@@ -50,7 +52,10 @@ const SetBoards = () => {
                 showsVerticalScrollIndicator={false}
                 keyExtractor={(board) => board.id}
                 data={boards}
-                onDragEnd={({ data }) => setBoards(data)}
+                onDragEnd={({ data }) => {
+                    setBoards(data)
+                    updateUserBoardOrderMutation.mutate()
+                }}
                 renderItem={renderItem}
                 containerStyle={{ backgroundColor: color.primaryLight }}
             />

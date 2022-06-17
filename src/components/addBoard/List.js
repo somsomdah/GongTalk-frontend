@@ -3,8 +3,9 @@ import { image } from "../../common/images";
 import { color } from "../../common/colors";
 import { SemiHeadline3, SemiHeadline4 } from "../_common/Typography";
 import { Pressable, ScrollView } from "react-native";
-import { useContext } from "react";
-import OnboardingContext from "../../contexts/Onboarding";
+import { useState } from "react";
+import { useQuery, useMutation, useQueryClient } from 'react-query'
+import { getUserBoards, deleteUserBoard } from 'api/user'
 
 const Container = styled.View`
     padding: 24px;
@@ -53,7 +54,19 @@ const Item = ({ value, onCancel }) => {
 
 const List = () => {
 
-    const { boardList, setBoardList } = useContext(OnboardingContext);
+    const [boards, setBoards] = useState([]);
+    const queryClient = useQueryClient()
+
+    useQuery('user_boards', getUserBoards, {
+        onSuccess: (data) => {
+            setBoards(data)
+        }
+    })
+
+    const deleteUserBoardMutation = useMutation((boardId) => deleteUserBoard(boardId), {
+        onSuccess: () => queryClient.invalidateQueries('user_boards')
+    })
+
 
     return (
         <Container>
@@ -61,14 +74,14 @@ const List = () => {
                 <SemiHeadline4>추가 목록</SemiHeadline4>
             </TitleBox>
             <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
-                {boardList.map(board => {
+                {boards.map(board => {
                     const boardId = board.id;
                     const boardFullName = `${board.school.name} ${board.name}`;
                     return (
                         <Item
                             key={boardId}
                             value={boardFullName}
-                            onCancel={() => setBoardList(boardList.filter(board => board.id !== boardId))}
+                            onCancel={() => deleteUserBoardMutation.mutate(boardId)}
                         />
                     );
 

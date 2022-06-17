@@ -48,40 +48,40 @@ const subscribeDataList = [
         ]
     },
     {
-        id: 2, type: 'BKEYWORD', board: { id: 11, name: '컴퓨터공학과', school: { id: 2, name: '서강대학교', image: image.school.seogang } }, keywords: [
+        id: 2, type: 'KEYWORD_BOARD', board: { id: 11, name: '컴퓨터공학과', school: { id: 2, name: '서강대학교', image: image.school.seogang } }, keywords: [
             { id: 11, content: '세미나' },
             { id: 12, content: '교육' },
             { id: 13, content: '해커톤' },
         ]
     },
     {
-        id: 3, type: 'CKEYWORD', keywords: [
+        id: 3, type: 'KEYWORD_COMMON', keywords: [
             { id: 14, content: '대회' },
             { id: 15, content: '수강' },
         ]
     },
     {
-        id: 4, type: 'BKEYWORD', board: { id: 11, name: '컴퓨터공학과', school: { id: 2, name: '서강대학교', image: image.school.seogang } }, keywords: [
+        id: 4, type: 'KEYWORD_BOARD', board: { id: 11, name: '컴퓨터공학과', school: { id: 2, name: '서강대학교', image: image.school.seogang } }, keywords: [
             { id: 11, content: '세미나' },
             { id: 12, content: '교육' },
             { id: 13, content: '해커톤' },
         ]
     },
     {
-        id: 5, type: 'CKEYWORD', keywords: [
+        id: 5, type: 'KEYWORD_COMMON', keywords: [
             { id: 14, content: '대회' },
             { id: 15, content: '수강' },
         ]
     },
     {
-        id: 6, type: 'BKEYWORD', board: { id: 11, name: '컴퓨터공학과', school: { id: 2, name: '서강대학교', image: image.school.seogang } }, keywords: [
+        id: 6, type: 'KEYWORD_BOARD', board: { id: 11, name: '컴퓨터공학과', school: { id: 2, name: '서강대학교', image: image.school.seogang } }, keywords: [
             { id: 11, content: '세미나' },
             { id: 12, content: '교육' },
             { id: 13, content: '해커톤' },
         ]
     },
     {
-        id: 7, type: 'CKEYWORD', keywords: [
+        id: 7, type: 'KEYWORD_COMMON', keywords: [
             { id: 14, content: '대회' },
             { id: 15, content: '수강' },
         ]
@@ -105,7 +105,11 @@ const SetKeywords = ({ navigation }) => {
                     </SmallBody1>
                     <Space />
 
-                    <Item subscribe={subscribeDataList.filter(subscribe => subscribe.type === 'KEYWORD_COMMON')[0]} navigation={navigation} />
+                    {/* <Item
+                        subscribe={subscribeDataList.filter(subscribe => subscribe.type === 'KEYWORD_COMMON')[0]}
+                        navigation={navigation}
+                        setModalVisible={setModalVisible}
+                    /> */}
                 </UpperContainer>
 
                 <LowerContainer>

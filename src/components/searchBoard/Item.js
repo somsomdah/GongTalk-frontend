@@ -2,8 +2,8 @@ import styled from 'styled-components/native';
 import { SemiHeadline2 } from '../_common/Typography'
 import { color } from '../../common/colors';
 import { TouchableHighlight } from 'react-native';
-import OnboardingContext from '../../contexts/Onboarding';
-import { useContext, useEffect } from 'react';
+import { useMutation, useQueryClient } from 'react-query'
+import { createUserBoard } from '../../api/user';
 
 const ItemBox = styled.View`
     padding: 12px;
@@ -13,10 +13,19 @@ const ItemBox = styled.View`
     align-self: stretch;
 `
 
-const Item = ({ board, navigation}) => {
+const Item = ({ board, navigation }) => {
 
-        const _onPress = () => {
-        // API 붙이기
+    const queryClient = useQueryClient()
+
+    createUserBoardMutation = useMutation((boardId) => createUserBoard(boardId),
+        {
+            onSuccess: () =>
+                queryClient.invalidateQueries('user_boards')
+        }
+    )
+
+    const _onPress = () => {
+        createUserBoardMutation.mutate(board.id)
         navigation.goBack()
     };
 
