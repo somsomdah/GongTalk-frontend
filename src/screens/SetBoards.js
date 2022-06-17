@@ -42,7 +42,7 @@ const SetBoards = () => {
 
     const renderItem = ({ item, index, drag, isActive }) => {
         return (
-            <Item name={item.name} onLongPress={drag} isActive={isActive} />
+            <Item name={`${item.school.name} ${item.name}`} onLongPress={drag} isActive={isActive} />
         );
     };
 

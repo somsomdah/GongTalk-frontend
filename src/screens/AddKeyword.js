@@ -8,6 +8,8 @@ import Recommend from '../components/addKeyword/Recommend'
 import Added from "../components/addKeyword/Added";
 import { ScrollView } from "react-native";
 import AlertModal from "../components/_common/AlertModal";
+import { useQuery } from 'react-query'
+import { getRecommendedKeywords } from 'api/keywords'
 
 const Container = styled.View`
     flex: 1;
@@ -35,14 +37,24 @@ const LowerContainer = styled.View`
 `
 
 const AddKeyword = ({ navigation }) => {
-    const keywordList = [
-        { id: 1, content: '장학' }, { id: 2, content: '인턴' }, { id: 3, content: '교육' },
-        { id: 21, content: '세미나' }, { id: 22, content: '체험' }, { id: 23, content: '해외' },
-        { id: 31, content: '취업' }, { id: 32, content: '수강' }, { id: 33, content: '졸업' }
-    ]
+    // const keywordList = [
+    //     { id: 1, content: '장학' }, { id: 2, content: '인턴' }, { id: 3, content: '교육' },
+    //     { id: 21, content: '세미나' }, { id: 22, content: '체험' }, { id: 23, content: '해외' },
+    //     { id: 31, content: '취업' }, { id: 32, content: '수강' }, { id: 33, content: '졸업' }
+    // ]
 
+
+    const [recommendedKeywordList, setRecommendedKeywordList] = useState([])
     const [myKeywords, setMyKeywords] = useState([])
     const [alertModalVisible, setAlertModalVisible] = useState(false);
+
+    useQuery('recommendedKeywords', getRecommendedKeywords,
+        {
+            onSuccess: (data) => setRecommendedKeywordList(data)
+        }
+    )
+
+
 
     return (
         <Container>
@@ -52,7 +64,7 @@ const AddKeyword = ({ navigation }) => {
                 <Input keywordList={myKeywords} setKeywordList={setMyKeywords} />
                 <Title value={'추천 키워드'} />
                 <Recommend
-                    keywordList={keywordList}
+                    keywordList={recommendedKeywordList}
                     myKeywordList={myKeywords}
                     setMyKeywordList={setMyKeywords}
                     setAlertModalVisible={setAlertModalVisible}

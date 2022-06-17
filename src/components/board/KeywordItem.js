@@ -36,18 +36,17 @@ const LowerContainer = styled.View`
 
 
 
-const Item = ({ subscribe, navigation, setModalVisible }) => {
+const Item = ({ board, isBoardAlarm, keywordList, navigation, setModalVisible }) => {
 
-    const isBoardAlarm = subscribe.type === 'BOARD';
-    const isCmnKwdAlarm = subscribe.type === 'KEYWORD_COMMON';
+    const isCommonKeywordAlarm = !Boolean(board)
 
     return (
         <Container>
             <UpperContainer>
                 <SemiHeadline3>
-                    {subscribe.board ? `${subscribe.board.school.name} ${subscribe.board.name}` : '전체 키워드'}
+                    {isCommonKeywordAlarm ? '전체 키워드' : `${board?.school?.name} ${board?.name}`}
                 </SemiHeadline3>
-                {isCmnKwdAlarm ?
+                {isBoardAlarm ?
                     <View />
                     :
                     <Pressable onPress={() => setModalVisible(true)} hitSlop={10}>
@@ -55,11 +54,12 @@ const Item = ({ subscribe, navigation, setModalVisible }) => {
                             {isBoardAlarm ? '전체' : '키워드'}
                         </SemiHeadline4>
                     </Pressable>
+
                 }
             </UpperContainer>
             <LowerContainer>
-                <SemiHeadline4 style={{ color: color.primary }}>
-                    {Object.values(subscribe.keywords).map(keyword => `${keyword.content}, `)}
+                <SemiHeadline4 style={{ color: isBoardAlarm ? color.gray4 : color.primary }}>
+                    {keywordList.map(keyword => `${keyword.content}, `)}
                 </SemiHeadline4>
                 <Pressable onPress={() => { isBoardAlarm ? null : navigation.navigate('addKeyword') }} hitSlop={10}>
                     <SemiHeadline4 style={{ color: isBoardAlarm ? color.gray4 : color.black }}>
