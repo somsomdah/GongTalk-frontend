@@ -32,7 +32,7 @@ const SearchBoard = ({ navigation, route }) => {
     const [inputValue, setInputValue] = useState('');
     const [alertModalVisible, setAlertModalVisible] = useState(false);
 
-    const getBoardListQuery = useQuery(['boards', { schoolId: school.id }],
+    const getBoardListQuery = useQuery([`school_${school.id}_boards`],
         () => getBoardsBySchoolId(school.id), {
         onSuccess: (data) => {
             setBoardListData(data)

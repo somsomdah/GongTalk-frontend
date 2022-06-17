@@ -30,7 +30,7 @@ const SearchBoard = ({ navigation, route }) => {
     const [boardList, setBoardList] = useState([]);
     const [inputValue, setInputValue] = useState('');
 
-    const getBoardListQuery = useQuery(['user_boards', { schoolId: school.id }],
+    const getBoardListQuery = useQuery([`school_${school.id}_boards`],
         () => getBoardsBySchoolId(school.id), {
         onSuccess: (data) => {
             setBoardList(data)
