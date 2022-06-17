@@ -116,7 +116,7 @@ const Board = ({ navigation, board }) => {
 
     const [items, setItems] = useState([]);
 
-    useQuery([{ boardId: boardId, content: 'home_posts' }], () => getPostsByBoardId(board.id), {
+    useQuery([{ boardId: board.id, content: 'home_posts' }], () => getPostsByBoardId(board.id), {
         onSuccess: (data) => setItems(data)
     })
 

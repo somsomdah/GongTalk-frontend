@@ -1,7 +1,7 @@
 import { _query } from "./_query";
 
 
-export const getRecommendedKeywordList = async () => {
+export const getRecommendedKeywords = async () => {
     const response = await _query({
         method: 'GET',
         url: 'keywords/recommended',

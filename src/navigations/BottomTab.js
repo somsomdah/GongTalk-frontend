@@ -9,7 +9,7 @@ import AlarmTopTabNavigator from './AlarmTopTab';
 
 const BottomTab = createBottomTabNavigator();
 
-const BottomTabNavigation = ({navigation}) => {
+const BottomTabNavigation = ({ navigation }) => {
     return (
         <BottomTab.Navigator
             initialRouteName='home'
@@ -23,7 +23,7 @@ const BottomTabNavigation = ({navigation}) => {
                     height: 56,
                     elevation: 1,
                 },
-                headerShown: false
+                headerShown: false,
             }
 
             )}
@@ -34,7 +34,7 @@ const BottomTabNavigation = ({navigation}) => {
             <BottomTab.Screen name='board' component={BoardTopTabNavigator} />
             <BottomTab.Screen name='alarm' component={AlarmTopTabNavigator} />
             <BottomTab.Screen name='settings' component={Settings} />
-            
+
         </BottomTab.Navigator>
     );
 };

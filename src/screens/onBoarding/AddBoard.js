@@ -7,7 +7,7 @@ import styled from "styled-components/native";
 import AlertModal from "components/_common/AlertModal";
 import OnboardingContext from "../../contexts/Onboarding";
 import { useQuery } from "react-query";
-import { getSchoolList } from "api/boards";
+import { getSchools } from "api/boards";
 
 const UpperContainer = styled.View`
     flex-direction: column;
@@ -20,7 +20,7 @@ const UpperContainer = styled.View`
 const AddBoard = ({ navigation }) => {
 
 
-    const schoolListQuery = useQuery('schools', getSchoolList);
+    const schoolListQuery = useQuery('schools', getSchools);
 
     const [selectedSchool, setSelectedSchool] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);

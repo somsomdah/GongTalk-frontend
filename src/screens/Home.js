@@ -5,12 +5,13 @@ import Roundup from '../components/home/Roundup'
 import Board from '../components/home/Board';
 import styled from 'styled-components/native';
 import { color } from '../common/colors';
-import { getCommonKeywordSubscribes, getBoards } from '../api/user';
+import { getCommonKeywordSubscribes, getUserBoards } from '../api/user';
 import { useQuery } from 'react-query';
 
 
 const Container = styled.View`
     background-color: ${color.white};
+    flex: 1;
 `;
 
 const InnerContainer = styled.ScrollView.attrs({
@@ -32,13 +33,13 @@ const Home = ({ navigation }) => {
     const [boardList, setBoardList] = useState([])
 
     useQuery(['common_keywords', { type: "KEYWORD_COMMON" }],
-        () => getCommonKeywordSubscribes(), {
+        getCommonKeywordSubscribes, {
         onSuccess: (data) => {
             setKeywordList(data.map((subscribe) => subscribe.keyword))
         }
     })
 
-    useQuery('boards', getBoards,
+    useQuery('user_boards', getUserBoards,
         {
             onSuccess: (data) => setBoardList(data)
         }

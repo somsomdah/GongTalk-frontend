@@ -1,6 +1,6 @@
 import { _query } from "./_query";
 
-export const getSchoolList = async () => {
+export const getSchools = async () => {
 
     const response = await _query({
         method: 'GET',

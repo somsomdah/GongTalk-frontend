@@ -36,10 +36,10 @@ const LowerContainer = styled.View`
 
 
 
-const Item = ({ subscribe, navigation, setModalVisible  }) => {
+const Item = ({ subscribe, navigation, setModalVisible }) => {
 
     const isBoardAlarm = subscribe.type === 'BOARD';
-    const isCmnKwdAlarm = subscribe.type === 'CKEYWORD';
+    const isCmnKwdAlarm = subscribe.type === 'KEYWORD_COMMON';
 
     return (
         <Container>

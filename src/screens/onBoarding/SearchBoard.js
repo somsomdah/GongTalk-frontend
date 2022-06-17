@@ -67,11 +67,11 @@ const SearchBoard = ({ navigation, route }) => {
                 :
                 <Loading />}
 
-                <AlertModal
-                    isVisible={alertModalVisible}
-                    setIsVisible={setAlertModalVisible}
-                    value={'동일한 게시판을 여러 번 추가할 수 없습니다.'}
-                />
+            <AlertModal
+                isVisible={alertModalVisible}
+                setIsVisible={setAlertModalVisible}
+                value={'동일한 게시판을 여러 번 추가할 수 없습니다.'}
+            />
         </Container>
     )
 
