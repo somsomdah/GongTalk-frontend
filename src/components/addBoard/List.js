@@ -57,14 +57,14 @@ const List = () => {
     const [boards, setBoards] = useState([]);
     const queryClient = useQueryClient()
 
-    useQuery('user_boards', getUserBoards, {
+    useQuery('boards_user', getUserBoards, {
         onSuccess: (data) => {
             setBoards(data)
         }
     })
 
     const deleteUserBoardMutation = useMutation((boardId) => deleteUserBoard(boardId), {
-        onSuccess: () => queryClient.invalidateQueries('user_boards')
+        onSuccess: () => queryClient.invalidateQueries('boards_user')
     })
 
 

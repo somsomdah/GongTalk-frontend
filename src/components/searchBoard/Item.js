@@ -20,7 +20,7 @@ const Item = ({ board, navigation }) => {
     const createUserBoardMutation = useMutation((boardId) => createUserBoard(boardId),
         {
             onSuccess: () =>
-                queryClient.invalidateQueries('user_boards')
+                queryClient.invalidateQueries('boards_user')
         }
     )
 

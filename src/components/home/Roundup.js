@@ -87,7 +87,7 @@ const Roundup = ({ navigation }) => {
 
     [postList, setPostList] = useState([])
 
-    useQuery('user_posts', () => getPosts(3), {
+    useQuery('posts_user', () => getPosts(3), {
         onSuccess: (data) => setPostList(data)
     }
     )
