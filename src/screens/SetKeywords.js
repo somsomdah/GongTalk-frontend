@@ -8,7 +8,7 @@ import { image } from '../common/images';
 import AlarmTypeModal from '../components/board/AlarmTypeModal';
 import { ScrollView } from 'react-native';
 import { useQuery } from 'react-query'
-import { getCommonKeywordSubscribes, getBoardKeywordSubscribes, getUserBoards } from '../api/user';
+import { getCommonKeywordSubscribes, getBoardKeywordSubscribes, getUserBoards, getBoardSubscribes } from '../api/user';
 
 const Container = styled.View`
     flex: 1;
@@ -56,25 +56,16 @@ const SetKeywords = ({ navigation }) => {
     useQuery(['user_boards'],
         getUserBoards,
         {
-            onSuccess: (data) => {
-                setBoardKeywordsList(
-                    data.map((board) => {
-                        const boardKeywords = { board: board, isBoardAlarm: false, keywords: [] }
-                        getBoardKeywordSubscribes(board.id).then(
-                            (response) => {
-                                const keywords = response.map((subscribe) => {
-                                    if (subscribe.type === 'BOARD') {
-                                        boardKeywords.isBoardAlarm = true
-                                    }
-                                    return (subscribe.keyword)
-                                })
-                                boardKeywords.keywords = keywords
-                            }
-                        )
-                        return boardKeywords
-                    }
-                    )
-                )
+            onSuccess: async (data) => {
+                const tmp = []
+                for (board of data) {
+                    tmp.push({
+                        board: board,
+                        keywords: (await getBoardKeywordSubscribes(board.id)).map((subscribe) => subscribe.keyword),
+                        isBoardAlarm: Boolean(await getBoardSubscribes(board.id))
+                    })
+                }
+                setBoardKeywordsList(tmp);
             },
         }
     )
@@ -108,16 +99,18 @@ const SetKeywords = ({ navigation }) => {
                         {'게시판과 각 게시판에 설정된 키워드의 알림을 설정합니다. (전체 알림을 받지 않더라도 설정한 키워드의 알림은 받습니다.) '}
                     </SmallBody1>
                     <Space />
-                    {boardKeywordsList.map(
-                        (item) => <Item
-                            key={item.board.id}
-                            board={item.board}
-                            isBoardAlarm={item.isBoardAlarm}
-                            keywordList={item.keywords}
-                            setModalVisible={setModalVisible}
-                        />
-
-                    )}
+                    {boardKeywordsList.map
+                        (
+                            (item) =>
+                                <Item
+                                    key={item.board.id}
+                                    board={item.board}
+                                    isBoardAlarm={item.isBoardAlarm}
+                                    keywordList={item.keywords}
+                                    setModalVisible={setModalVisible}
+                                />
+                        )
+                    }
                 </LowerContainer>
 
                 <AlarmTypeModal visible={modalVisible} setVisible={setModalVisible} />

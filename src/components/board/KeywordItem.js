@@ -46,7 +46,7 @@ const Item = ({ board, isBoardAlarm, keywordList, navigation, setModalVisible })
                 <SemiHeadline3>
                     {isCommonKeywordAlarm ? '전체 키워드' : `${board?.school?.name} ${board?.name}`}
                 </SemiHeadline3>
-                {isBoardAlarm ?
+                {isCommonKeywordAlarm ?
                     <View />
                     :
                     <Pressable onPress={() => setModalVisible(true)} hitSlop={10}>
