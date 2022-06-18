@@ -36,12 +36,14 @@ const LowerContainer = styled.View`
     flex: 1;
 `
 
-const AddKeyword = ({ navigation, boardId, mutation }) => {
+const AddKeyword = ({ route, navigation }) => {
 
     const queryClient = useQueryClient()
     const [recommendedKeywordList, setRecommendedKeywordList] = useState([])
     const [myKeywords, setMyKeywords] = useState([])
     const [alertModalVisible, setAlertModalVisible] = useState(false);
+
+    const { boardId } = route.params
 
     useQuery('keywords_recommended', getRecommendedKeywords,
         {
@@ -49,13 +51,14 @@ const AddKeyword = ({ navigation, boardId, mutation }) => {
         }
     )
 
+
     const createBoardKeywordSubscribeMutation = useMutation(
         (boardId, keywordContent) => {
             createBoardKeywordSubscribe(boardId, keywordContent)
         },
         {
             onSuccess: (data) => {
-                queryClient.invalidateQueries(`subscribes_board_keyword__board_${boardId}`)
+                queryClient.invalidateQueries(`keywords_board__board_${boardId}`)
             }
         }
     )
@@ -66,7 +69,6 @@ const AddKeyword = ({ navigation, boardId, mutation }) => {
         },
         {
             onSuccess: (data) => {
-                queryClient.invalidateQueries('subscribes_common_keyword')
                 queryClient.invalidateQueries('keywords_common')
             }
         }

@@ -32,7 +32,7 @@ const PostList = ({ route, navigation }) => {
     const { headerValue, boardId } = route.params;
     const [items, setItems] = useState([])
 
-    useQuery(`posts__board_${boardId}_home`, () => {
+    useQuery(`posts_home__board_${boardId}`, () => {
         if (boardId) {
             return getPostsByBoardId(boardId)
         } else {
