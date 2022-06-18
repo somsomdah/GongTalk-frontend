@@ -8,8 +8,8 @@ import Recommend from '../components/addKeyword/Recommend'
 import Added from "../components/addKeyword/Added";
 import { ScrollView } from "react-native";
 import AlertModal from "../components/_common/AlertModal";
-import { useQuery, useMutation, QueryClient, useQueryClient } from 'react-query'
-import { getRecommendedKeywords, createBoardKeywordSubscribe, createBoardSubscribe, createCommonKeywordSubscribe } from 'api/keywords'
+import { useQuery, useMutation, useQueryClient } from 'react-query'
+import { getBoardKeywordSubscribes, getCommonKeywordSubscribes, createBoardKeywordSubscribe, createCommonKeywordSubscribe } from "../api/user";
 
 const Container = styled.View`
     flex: 1;
@@ -39,15 +39,27 @@ const LowerContainer = styled.View`
 const AddKeyword = ({ route, navigation }) => {
 
     const queryClient = useQueryClient()
-    const [recommendedKeywordList, setRecommendedKeywordList] = useState([])
     const [myKeywords, setMyKeywords] = useState([])
     const [alertModalVisible, setAlertModalVisible] = useState(false);
 
     const { boardId } = route.params
 
-    useQuery('keywords_recommended', getRecommendedKeywords,
+
+    const getBoardKeywordSubscribesQuery = useQuery(`keywords_board__board_${boardId}`, (boardId) => getBoardKeywordSubscribes(boardId),
         {
-            onSuccess: (data) => setRecommendedKeywordList(data)
+            enabled: Boolean(boardId),
+            onSuccess: (data) => {
+                setMyKeywords(data.map((subscribe) => subscribe.keyword))
+            }
+        }
+    )
+
+    const getCommonKeywordSubscribesQuery = useQuery(`keywords_common`, getCommonKeywordSubscribes,
+        {
+            enabled: !Boolean(boardId),
+            onSuccess: (data) => {
+                setMyKeywords(data.map((subscribe) => subscribe.keyword))
+            }
         }
     )
 
@@ -58,7 +70,9 @@ const AddKeyword = ({ route, navigation }) => {
         },
         {
             onSuccess: (data) => {
+                console.log(22222, data)
                 queryClient.invalidateQueries(`keywords_board__board_${boardId}`)
+                getBoardKeywordSubscribesQuery.refetch()
             }
         }
     )
@@ -69,29 +83,49 @@ const AddKeyword = ({ route, navigation }) => {
         },
         {
             onSuccess: (data) => {
+                console.log(11111, data)
                 queryClient.invalidateQueries('keywords_common')
+                getCommonKeywordSubscribesQuery.refetch()
             }
         }
     )
+
+
+    const _addKeyword = (keyword) => {
+        const includes = myKeywords.find(myKeyword => myKeyword.content === keyword.content)
+        if (includes) {
+            setAlertModalVisible(true)
+            return
+        }
+        if (boardId)
+            createBoardKeywordSubscribeMutation.mutate(boardId, keyword.content)
+        else
+            createCommonKeywordSubscribeMutation.mutate(keyword.content)
+
+    };
+
 
     return (
         <Container>
             <Header navigation={navigation} value={'키워드 설정'} />
             <UpperContainer>
                 <Title value={'키워드 입력하기'} />
-                <Input keywordList={myKeywords} setKeywordList={setMyKeywords} />
+                <Input
+                    addKeyword={_addKeyword}
+                />
                 <Title value={'추천 키워드'} />
                 <Recommend
-                    keywordList={recommendedKeywordList}
-                    myKeywordList={myKeywords}
-                    setMyKeywordList={setMyKeywords}
-                    setAlertModalVisible={setAlertModalVisible}
+                    addKeyword={_addKeyword}
                 />
             </UpperContainer>
             <LowerContainer>
                 <Title value={'내 키워드'} />
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <Added keywordList={myKeywords} setKeywordList={setMyKeywords} />
+                    <Added
+                        keywordList={myKeywords}
+                        // setKeywordList={setMyKeywords}
+                        boardId={boardId}
+                    />
                 </ScrollView>
             </LowerContainer>
 

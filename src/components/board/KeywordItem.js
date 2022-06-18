@@ -61,7 +61,7 @@ const Item = ({ board, isBoardAlarm, keywordList, navigation, setModalVisible })
                 <SemiHeadline4 style={{ color: isBoardAlarm ? color.gray4 : color.primary }}>
                     {keywordList.map(keyword => `${keyword.content}, `)}
                 </SemiHeadline4>
-                <Pressable onPress={() => { isBoardAlarm ? null : navigation.navigate('addKeyword') }} hitSlop={10}>
+                <Pressable onPress={() => { isBoardAlarm ? null : navigation.navigate('addKeyword', { boardId: board?.id }) }} hitSlop={10}>
                     <SemiHeadline4 style={{ color: isBoardAlarm ? color.gray4 : color.black }}>
                         {'설정'}
                     </SemiHeadline4>

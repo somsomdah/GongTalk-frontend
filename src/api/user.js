@@ -37,6 +37,9 @@ export const createCommonKeywordSubscribe = async (keywordContent) => {
       keywordContent: keywordContent
     }
   })
+
+  return response.data
+
 }
 
 export const createBoardKeywordSubscribe = async (boardId, keywordContent) => {
@@ -49,6 +52,9 @@ export const createBoardKeywordSubscribe = async (boardId, keywordContent) => {
       keywordContent: keywordContent
     }
   })
+
+  return response.data
+
 }
 
 
@@ -124,6 +130,9 @@ export const deleteUserBoard = async (boardId) => {
     method: 'DELETE',
     url: `user/boards/${boardId}`
   })
+
+  return response.data
+
 }
 
 export const updateUserBoardOrder = async (boardId, orderValue) => {

@@ -2,7 +2,9 @@ import styled from 'styled-components/native';
 import { color } from '../../common/colors';
 import { TouchableOpacity } from 'react-native';
 import { ButtonMedium } from '../_common/Typography';
-
+import { useState } from "react";
+import { useQuery } from 'react-query';
+import { getRecommendedKeywords } from 'api/keywords'
 
 const Chip = styled.View`
     padding: 6.5px 14px;
@@ -19,18 +21,20 @@ const Container = styled.View`
 `;
 
 
-const Recommend = ({ keywordList, myKeywordList, setMyKeywordList, setAlertModalVisible }) => {
+const Recommend = ({ addKeyword }) => {
 
-    const _addKeyword = (keyword) => {
-        const includes = myKeywordList.find(myKeyword => myKeyword.content === keyword.content)
-        includes ? setAlertModalVisible(true) : setMyKeywordList([...myKeywordList, keyword])
+    const [recommendedKeywordList, setRecommendedKeywordList] = useState([])
 
-    };
+    useQuery('keywords_recommended', getRecommendedKeywords,
+        {
+            onSuccess: (data) => setRecommendedKeywordList(data)
+        }
+    )
 
     return (
         <Container>
-            {Object.values(keywordList).map(keyword =>
-                <TouchableOpacity key={keyword.content} onPress={() => _addKeyword(keyword)} >
+            {Object.values(recommendedKeywordList).map(keyword =>
+                <TouchableOpacity key={keyword.content} onPress={() => addKeyword(keyword)} >
                     <Chip >
                         <ButtonMedium >
                             {keyword.content}

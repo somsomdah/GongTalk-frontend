@@ -29,12 +29,12 @@ const CancelImage = styled.Image`
 `
 
 
-const  Added = ({keywordList, setKeywordList}) => {
-    
-    onCancelButtonPress = (keywordContent) => {
-        const newKeywordList = keywordList.filter(keyword => keyword.content !== keywordContent);
-        setKeywordList(newKeywordList);
-    }
+const Added = ({ keywordList, boardId }) => {
+
+    // onCancelButtonPress = (keywordContent) => {
+    // 키워드 삭제하는 API 붙이기
+    //     const newKeywordList = keywordList.filter(keyword => keyword.content !== keywordContent);
+    // }
 
     return (
         <Container>
@@ -44,7 +44,7 @@ const  Added = ({keywordList, setKeywordList}) => {
                         {keyword.content}
                     </ButtonMediumW>
                     <TouchableOpacity onPress={() => onCancelButtonPress(keyword.content)}>
-                        <CancelImage source={image.common.cancel.white}/>
+                        <CancelImage source={image.common.cancel.white} />
                     </TouchableOpacity>
                 </Chip>
             )}
