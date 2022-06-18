@@ -13,7 +13,7 @@ const AddKeyword = ({ navigation }) => {
 
     const [recommendedKeywordList, setRecommendedKeywordList] = useState([])
 
-    useQuery('recommendedKeywords', getRecommendedKeywords,
+    useQuery('keywords_recommended', getRecommendedKeywords,
         {
             onSuccess: (data) => setRecommendedKeywordList(data)
         }

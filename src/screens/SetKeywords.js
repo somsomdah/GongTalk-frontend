@@ -46,14 +46,14 @@ const SetKeywords = ({ navigation }) => {
     const [commonKeywords, setCommonKeywords] = useState([])
     const [boardKeywordsList, setBoardKeywordsList] = useState([])
 
-    useQuery(['common_keywords'],
+    useQuery(['keywords_common'],
         getCommonKeywordSubscribes, {
         onSuccess: (data) => {
             setCommonKeywords(data.map((subscribe) => subscribe.keyword))
         }
     })
 
-    useQuery(['user_boards'],
+    useQuery(['boards_user'],
         getUserBoards,
         {
             onSuccess: async (data) => {

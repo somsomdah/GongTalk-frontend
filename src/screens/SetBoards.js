@@ -23,7 +23,7 @@ const SetBoards = () => {
     const [boards, setBoards] = useState([]);
     const queryClient = useQueryClient();
 
-    useQuery('user_boards', getUserBoards, {
+    useQuery('boards_user', getUserBoards, {
         onSuccess: (data) => {
             setBoards(data)
         }
@@ -35,7 +35,8 @@ const SetBoards = () => {
         }
     }, {
         onSuccess: () => {
-            queryClient.invalidateQueries('user_boards')
+            queryClient.invalidateQueries('boards_user')
+            queryClient.invalidateQueries('posts_user')
         }
     }
     )

@@ -8,8 +8,8 @@ import Recommend from '../components/addKeyword/Recommend'
 import Added from "../components/addKeyword/Added";
 import { ScrollView } from "react-native";
 import AlertModal from "../components/_common/AlertModal";
-import { useQuery } from 'react-query'
-import { getRecommendedKeywords } from 'api/keywords'
+import { useQuery, useMutation, QueryClient, useQueryClient } from 'react-query'
+import { getRecommendedKeywords, createBoardKeywordSubscribe, createBoardSubscribe, createCommonKeywordSubscribe } from 'api/keywords'
 
 const Container = styled.View`
     flex: 1;
@@ -36,25 +36,41 @@ const LowerContainer = styled.View`
     flex: 1;
 `
 
-const AddKeyword = ({ navigation }) => {
-    // const keywordList = [
-    //     { id: 1, content: '장학' }, { id: 2, content: '인턴' }, { id: 3, content: '교육' },
-    //     { id: 21, content: '세미나' }, { id: 22, content: '체험' }, { id: 23, content: '해외' },
-    //     { id: 31, content: '취업' }, { id: 32, content: '수강' }, { id: 33, content: '졸업' }
-    // ]
+const AddKeyword = ({ navigation, boardId, mutation }) => {
 
-
+    const queryClient = useQueryClient()
     const [recommendedKeywordList, setRecommendedKeywordList] = useState([])
     const [myKeywords, setMyKeywords] = useState([])
     const [alertModalVisible, setAlertModalVisible] = useState(false);
 
-    useQuery('recommendedKeywords', getRecommendedKeywords,
+    useQuery('keywords_recommended', getRecommendedKeywords,
         {
             onSuccess: (data) => setRecommendedKeywordList(data)
         }
     )
 
+    const createBoardKeywordSubscribeMutation = useMutation(
+        (boardId, keywordContent) => {
+            createBoardKeywordSubscribe(boardId, keywordContent)
+        },
+        {
+            onSuccess: (data) => {
+                queryClient.invalidateQueries(`subscribes_board_keyword__board_${boardId}`)
+            }
+        }
+    )
 
+    const createCommonKeywordSubscribeMutation = useMutation(
+        (keywordContent) => {
+            createCommonKeywordSubscribe(keywordContent)
+        },
+        {
+            onSuccess: (data) => {
+                queryClient.invalidateQueries('subscribes_common_keyword')
+                queryClient.invalidateQueries('keywords_common')
+            }
+        }
+    )
 
     return (
         <Container>
