@@ -1,10 +1,10 @@
 import { Pressable } from "react-native";
 import styled from "styled-components/native";
 import { color } from '../../common/colors'
-import { SemiHeadline3, SemiHeadline4, SemiHeadline5 } from "../_common/Typography";
-import { useState } from "react";
-import AlarmTypeModal from "./AlarmTypeModal";
+import { SemiHeadline3, SemiHeadline4 } from "../_common/Typography";
 import { View } from "react-native";
+import AlarmTypeModal from "./AlarmTypeModal";
+import { useState } from "react";
 
 
 const Container = styled.View` 
@@ -36,39 +36,53 @@ const LowerContainer = styled.View`
 
 
 
-const Item = ({ board, isBoardAlarm, keywordList, navigation, setModalVisible }) => {
+const Item = ({ board, isBoardAlarm, keywordList, navigation }) => {
+
+    const [modalVisible, setModalVisible] = useState(false)
+    const [_isBoardAlarm, setIsBoardAlarm] = useState(isBoardAlarm)
 
     const isCommonKeywordAlarm = !Boolean(board)
 
     return (
-        <Container>
-            <UpperContainer>
-                <SemiHeadline3>
-                    {isCommonKeywordAlarm ? '전체 키워드' : `${board?.school?.name} ${board?.name}`}
-                </SemiHeadline3>
-                {isCommonKeywordAlarm ?
-                    <View />
-                    :
-                    <Pressable onPress={() => setModalVisible(true)} hitSlop={10}>
-                        <SemiHeadline4>
-                            {isBoardAlarm ? '전체' : '키워드'}
+        <View>
+            <Container>
+                <UpperContainer>
+                    <SemiHeadline3>
+                        {isCommonKeywordAlarm ? '전체 키워드' : `${board?.school?.name} ${board?.name}`}
+                    </SemiHeadline3>
+                    {isCommonKeywordAlarm ?
+                        <View />
+                        :
+                        <Pressable onPress={() => setModalVisible(true)} hitSlop={10}>
+                            <SemiHeadline4>
+                                {_isBoardAlarm ? '전체' : '키워드'}
+                            </SemiHeadline4>
+                        </Pressable>
+
+                    }
+                </UpperContainer>
+                <LowerContainer>
+                    <SemiHeadline4 style={{ color: _isBoardAlarm ? color.gray4 : color.primary }}>
+                        {keywordList.map(keyword => `${keyword?.content}, `)}
+                    </SemiHeadline4>
+                    <Pressable onPress={() => { _isBoardAlarm ? null : navigation.navigate('addKeyword', { boardId: board?.id }) }} hitSlop={10}>
+                        <SemiHeadline4 style={{ color: _isBoardAlarm ? color.gray4 : color.black }}>
+                            {'설정'}
                         </SemiHeadline4>
                     </Pressable>
+                </LowerContainer>
+            </Container>
 
-                }
-            </UpperContainer>
-            <LowerContainer>
-                <SemiHeadline4 style={{ color: isBoardAlarm ? color.gray4 : color.primary }}>
-                    {keywordList.map(keyword => `${keyword.content}, `)}
-                </SemiHeadline4>
-                <Pressable onPress={() => { isBoardAlarm ? null : navigation.navigate('addKeyword', { boardId: board?.id }) }} hitSlop={10}>
-                    <SemiHeadline4 style={{ color: isBoardAlarm ? color.gray4 : color.black }}>
-                        {'설정'}
-                    </SemiHeadline4>
-                </Pressable>
-            </LowerContainer>
-
-        </Container>
+            {isCommonKeywordAlarm ||
+                <AlarmTypeModal
+                    modalVisible={modalVisible}
+                    setModalVisible={setModalVisible}
+                    boardId={board.id}
+                    setIsBoardAlarm={setIsBoardAlarm}
+                    isBoardAlarm={_isBoardAlarm}
+                />
+            }
+        </View>
     );
 }
 

@@ -54,18 +54,8 @@ export const createCommonKeywordSubscribe = async (keywordContent) => {
 
 }
 
-export const deleteBoardSubscribe = async (boardId) => {
-  const response = await _query({
-    method: 'DELETE',
-    url: 'user/subscribes',
-    body: {
-      type: 'BOARD',
-      boardId: boardId,
-    }
-  })
-}
-
 export const createBoardKeywordSubscribe = async (boardId, keywordContent) => {
+
   const response = await _query({
     method: 'POST',
     url: 'user/subscribes',
@@ -79,6 +69,19 @@ export const createBoardKeywordSubscribe = async (boardId, keywordContent) => {
   return response.data
 
 }
+
+export const deleteBoardSubscribe = async (boardId) => {
+  const response = await _query({
+    method: 'DELETE',
+    url: 'user/subscribes',
+    body: {
+      type: 'BOARD',
+      boardId: boardId,
+    }
+  })
+}
+
+
 
 export const deleteCommonKeywordSubscribe = async (keywordId) => {
   const response = await _query({

@@ -44,8 +44,7 @@ const AddKeyword = ({ route, navigation }) => {
 
     const { boardId } = route.params
 
-
-    const getBoardKeywordSubscribesQuery = useQuery(`keywords_board__board_${boardId}`, (boardId) => getBoardKeywordSubscribes(boardId),
+    useQuery(`keywords_board__board_${boardId}`, () => getBoardKeywordSubscribes(boardId),
         {
             enabled: Boolean(boardId),
             onSuccess: (data) => {
@@ -54,7 +53,7 @@ const AddKeyword = ({ route, navigation }) => {
         }
     )
 
-    const getCommonKeywordSubscribesQuery = useQuery(`keywords_common`, getCommonKeywordSubscribes,
+    useQuery(`keywords_common`, getCommonKeywordSubscribes,
         {
             enabled: !Boolean(boardId),
             onSuccess: (data) => {
@@ -65,11 +64,11 @@ const AddKeyword = ({ route, navigation }) => {
 
 
     const createBoardKeywordSubscribeMutation = useMutation(
-        (boardId, keywordContent) => createBoardKeywordSubscribe(boardId, keywordContent),
+        (keywordContent) => createBoardKeywordSubscribe(boardId, keywordContent),
         {
             onSuccess: (data) => {
                 queryClient.invalidateQueries(`keywords_board__board_${boardId}`)
-                // getBoardKeywordSubscribesQuery.refetch()
+                queryClient.invalidateQueries(`boards_user`)
             }
         }
     )
@@ -77,12 +76,7 @@ const AddKeyword = ({ route, navigation }) => {
     const createCommonKeywordSubscribeMutation = useMutation(
         (keywordContent) => createCommonKeywordSubscribe(keywordContent),
         {
-            onSuccess: (data) => {
-                console.log(11111111111111111111111111111111111111111111111111111111111111111)
-                queryClient.invalidateQueries('keywords_common')
-                // getCommonKeywordSubscribesQuery.refetch()
-                console.log(22222222222222222222222222222222222222222222222222222222222222222)
-            }
+            onSuccess: (data) => queryClient.invalidateQueries('keywords_common')
         }
     )
 
@@ -94,7 +88,7 @@ const AddKeyword = ({ route, navigation }) => {
             return
         }
         if (boardId)
-            createBoardKeywordSubscribeMutation.mutate(boardId, keywordContent)
+            createBoardKeywordSubscribeMutation.mutate(keywordContent)
         else
             createCommonKeywordSubscribeMutation.mutate(keywordContent)
 
@@ -119,7 +113,6 @@ const AddKeyword = ({ route, navigation }) => {
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Added
                         keywordList={myKeywords}
-                        // setKeywordList={setMyKeywords}
                         boardId={boardId}
                     />
                 </ScrollView>

@@ -3,12 +3,13 @@ import styled from 'styled-components/native';
 import Item from '../components/board/KeywordItem';
 import { SemiHeadline3, SmallBody1 } from '../components/_common/Typography';
 import { color } from '../common/colors';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { image } from '../common/images';
 import AlarmTypeModal from '../components/board/AlarmTypeModal';
 import { ScrollView } from 'react-native';
 import { useQuery } from 'react-query'
 import { getCommonKeywordSubscribes, getBoardKeywordSubscribes, getUserBoards, getBoardSubscribes } from '../api/user';
+import { useEffect } from 'react';
 
 const Container = styled.View`
     flex: 1;
@@ -42,7 +43,6 @@ const Space = styled.View`
 
 const SetKeywords = ({ navigation }) => {
 
-    const [modalVisible, setModalVisible] = useState(false);
     const [commonKeywords, setCommonKeywords] = useState([])
     const [boardKeywordsList, setBoardKeywordsList] = useState([])
 
@@ -62,14 +62,13 @@ const SetKeywords = ({ navigation }) => {
                     tmp.push({
                         board: board,
                         keywords: (await getBoardKeywordSubscribes(board.id)).map((subscribe) => subscribe.keyword),
-                        isBoardAlarm: Boolean(await getBoardSubscribes(board.id))
+                        isBoardAlarm: (await getBoardSubscribes(board.id)).length > 0
                     })
                 }
                 setBoardKeywordsList(tmp);
             },
         }
     )
-
 
     return (
         <Container>
@@ -87,7 +86,6 @@ const SetKeywords = ({ navigation }) => {
                         keywordList={commonKeywords}
                         isBoardAlarm={false}
                         navigation={navigation}
-                        setModalVisible={setModalVisible}
                     />}
                 </UpperContainer>
 
@@ -99,21 +97,17 @@ const SetKeywords = ({ navigation }) => {
                         {'게시판과 각 게시판에 설정된 키워드의 알림을 설정합니다. 전체 알림을 받지 않더라도 설정한 키워드의 알림은 받습니다. '}
                     </SmallBody1>
                     <Space />
-                    {boardKeywordsList.map
-                        (
-                            (item) =>
-                                <Item
-                                    key={item.board.id}
-                                    board={item.board}
-                                    isBoardAlarm={item.isBoardAlarm}
-                                    keywordList={item.keywords}
-                                    setModalVisible={setModalVisible}
-                                />
-                        )
+                    {boardKeywordsList.map(
+                        (item) =>
+                            <Item
+                                key={item.board.id}
+                                board={item.board}
+                                isBoardAlarm={item.isBoardAlarm}
+                                keywordList={item.keywords}
+                                navigation={navigation}
+                            />)
                     }
                 </LowerContainer>
-
-                <AlarmTypeModal visible={modalVisible} setVisible={setModalVisible} />
             </ScrollView>
         </Container>
     )

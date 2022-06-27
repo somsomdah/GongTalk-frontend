@@ -5,6 +5,9 @@ import { SemiHeadline3 } from "../_common/Typography";
 import Modal from 'react-native-modal';
 import { Pressable } from "react-native";
 import { useState } from "react";
+import { QueryClient, useMutation, useQuery, useQueryClient } from "react-query";
+import { createBoardSubscribe, deleteBoardSubscribe } from "../../api/user";
+
 
 
 const Container = styled.View`
@@ -20,7 +23,7 @@ const Container = styled.View`
     border-radius: 12px;
 `;
 
-const RadioButtonImage = styled.Image.attrs(({checked}) => ({
+const RadioButtonImage = styled.Image.attrs(({ checked }) => ({
     source: checked ? image.common.radio.primary : image.common.radio.gray
 }))`
     width : 16px;
@@ -36,36 +39,51 @@ const ItemBox = styled.View`
 
 
 
-const AlarmTypeModal = ({ visible, setVisible }) => {
+const AlarmTypeModal = ({ modalVisible, setModalVisible, boardId, isBoardAlarm, setIsBoardAlarm }) => {
 
-    const [isBoardAlarm, setIsBoardAlarm] = useState(true);
+    const queryClient = useQueryClient()
 
-    const _onPress = () => {
-        setIsBoardAlarm(!isBoardAlarm);
+    const createBoardSubscribeMutation = useMutation((boardId) => createBoardSubscribe(boardId), {
+        onSuccess: () => queryClient.invalidateQueries(`keywords_board__board_${boardId}`)
+    }
+    )
+
+    const deleteBoardSubscribeMutation = useMutation((boardId) => deleteBoardSubscribe(boardId), {
+        onSuccess: () => queryClient.invalidateQueries(`keywords_board__board_${boardId}`)
+    })
+
+    const setBoardAlarm = (boardId, _isBoardAlarm) => {
+        setIsBoardAlarm(_isBoardAlarm)
+        if (_isBoardAlarm) {
+            createBoardSubscribeMutation.mutate(boardId)
+        } else {
+            deleteBoardSubscribeMutation.mutate(boardId)
+        }
+
     }
 
     return (
         <Modal
             backdropOpacity={0.5}
-            isVisible={visible}
-            onBackButtonPress={() => setVisible(false)}
-            onBackdropPress={() => setVisible(false)}
+            isVisible={modalVisible}
+            onBackButtonPress={() => setModalVisible(false)}
+            onBackdropPress={() => setModalVisible(false)}
         >
             <Container>
                 <ItemBox>
                     <SemiHeadline3>
                         {'전체 알림 받기'}
                     </SemiHeadline3>
-                    <Pressable onPress={_onPress} hitSlop={10}>
-                        <RadioButtonImage checked={!isBoardAlarm} />
+                    <Pressable onPress={() => setBoardAlarm(boardId, true)} hitSlop={10}>
+                        <RadioButtonImage checked={isBoardAlarm} />
                     </Pressable>
                 </ItemBox>
                 <ItemBox>
                     <SemiHeadline3>
                         {'키워드 알림 받기'}
                     </SemiHeadline3>
-                    <Pressable onPress={_onPress} hitSlop={10}>
-                        <RadioButtonImage checked={isBoardAlarm} />
+                    <Pressable onPress={() => setBoardAlarm(boardId, false)} hitSlop={10}>
+                        <RadioButtonImage checked={!isBoardAlarm} />
                     </Pressable>
                 </ItemBox>
             </Container>
