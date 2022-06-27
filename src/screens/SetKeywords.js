@@ -96,7 +96,7 @@ const SetKeywords = ({ navigation }) => {
                         {'게시판 키워드 알림'}
                     </SemiHeadline3>
                     <SmallBody1>
-                        {'게시판과 각 게시판에 설정된 키워드의 알림을 설정합니다. (전체 알림을 받지 않더라도 설정한 키워드의 알림은 받습니다.) '}
+                        {'게시판과 각 게시판에 설정된 키워드의 알림을 설정합니다. 전체 알림을 받지 않더라도 설정한 키워드의 알림은 받습니다. '}
                     </SmallBody1>
                     <Space />
                     {boardKeywordsList.map

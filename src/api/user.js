@@ -13,6 +13,16 @@ export const createUser = async () => {
   return response.data;
 }
 
+export const deleteSubscribe = async (subscribeId) => {
+
+  const response = await _query({
+    method: 'DELETE',
+    url: `user/subscribe/${subscribeId}`,
+  })
+
+}
+
+
 export const createBoardSubscribe = async (boardId) => {
   const response = await _query({
     method: 'POST',
@@ -26,6 +36,8 @@ export const createBoardSubscribe = async (boardId) => {
 
   return response.data
 }
+
+
 
 export const createCommonKeywordSubscribe = async (keywordContent) => {
   const response = await _query({
@@ -42,6 +54,17 @@ export const createCommonKeywordSubscribe = async (keywordContent) => {
 
 }
 
+export const deleteBoardSubscribe = async (boardId) => {
+  const response = await _query({
+    method: 'DELETE',
+    url: 'user/subscribes',
+    body: {
+      type: 'BOARD',
+      boardId: boardId,
+    }
+  })
+}
+
 export const createBoardKeywordSubscribe = async (boardId, keywordContent) => {
   const response = await _query({
     method: 'POST',
@@ -55,6 +78,29 @@ export const createBoardKeywordSubscribe = async (boardId, keywordContent) => {
 
   return response.data
 
+}
+
+export const deleteCommonKeywordSubscribe = async (keywordId) => {
+  const response = await _query({
+    method: 'DELETE',
+    url: 'user/subscribes',
+    body: {
+      type: 'KEYWORD_COMMON',
+      keywordId, keywordId
+    }
+  })
+}
+
+export const deleteBoardKeywordSubscribe = async (boardId, keywordId) => {
+  const response = await _query({
+    method: 'DELETE',
+    url: 'user/subscribes',
+    body: {
+      type: 'KEYWORD_BOARD',
+      boardId: boardId,
+      keywordId, keywordId
+    }
+  })
 }
 
 

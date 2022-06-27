@@ -34,7 +34,7 @@ const Recommend = ({ addKeyword }) => {
     return (
         <Container>
             {Object.values(recommendedKeywordList).map(keyword =>
-                <TouchableOpacity key={keyword.content} onPress={() => addKeyword(keyword)} >
+                <TouchableOpacity key={keyword.id} onPress={() => addKeyword(keyword.content)} >
                     <Chip >
                         <ButtonMedium >
                             {keyword.content}

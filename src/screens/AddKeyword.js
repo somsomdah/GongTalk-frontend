@@ -65,42 +65,38 @@ const AddKeyword = ({ route, navigation }) => {
 
 
     const createBoardKeywordSubscribeMutation = useMutation(
-        (boardId, keywordContent) => {
-            createBoardKeywordSubscribe(boardId, keywordContent)
-        },
+        (boardId, keywordContent) => createBoardKeywordSubscribe(boardId, keywordContent),
         {
             onSuccess: (data) => {
-                console.log(22222, data)
                 queryClient.invalidateQueries(`keywords_board__board_${boardId}`)
-                getBoardKeywordSubscribesQuery.refetch()
+                // getBoardKeywordSubscribesQuery.refetch()
             }
         }
     )
 
     const createCommonKeywordSubscribeMutation = useMutation(
-        (keywordContent) => {
-            createCommonKeywordSubscribe(keywordContent)
-        },
+        (keywordContent) => createCommonKeywordSubscribe(keywordContent),
         {
             onSuccess: (data) => {
-                console.log(11111, data)
+                console.log(11111111111111111111111111111111111111111111111111111111111111111)
                 queryClient.invalidateQueries('keywords_common')
-                getCommonKeywordSubscribesQuery.refetch()
+                // getCommonKeywordSubscribesQuery.refetch()
+                console.log(22222222222222222222222222222222222222222222222222222222222222222)
             }
         }
     )
 
 
-    const _addKeyword = (keyword) => {
-        const includes = myKeywords.find(myKeyword => myKeyword.content === keyword.content)
+    const _addKeyword = (keywordContent) => {
+        const includes = myKeywords.find(myKeyword => myKeyword.content === keywordContent)
         if (includes) {
             setAlertModalVisible(true)
             return
         }
         if (boardId)
-            createBoardKeywordSubscribeMutation.mutate(boardId, keyword.content)
+            createBoardKeywordSubscribeMutation.mutate(boardId, keywordContent)
         else
-            createCommonKeywordSubscribeMutation.mutate(keyword.content)
+            createCommonKeywordSubscribeMutation.mutate(keywordContent)
 
     };
 
