@@ -46,11 +46,11 @@ const Item = ({ board, navigation }) => {
 
     const isCommonKeywordSubscribe = !Boolean(board)
 
-    useQuery(['subscribes', 'keyword_common'],
-        getCommonKeywordSubscribes, {
+    useQuery(['subscribes', 'keyword_common'], getCommonKeywordSubscribes, {
         enabled: !Boolean(board),
         onSuccess: (data) => {
-            setKeywords(data.map((subscribe) => subscribe.keyword))
+            if (!Boolean(board))
+                setKeywords(data.map((subscribe) => subscribe.keyword))
         }
     })
 
