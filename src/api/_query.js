@@ -30,13 +30,13 @@ const _query = async ({ method, url, params = null, body = null, auth = true, ur
             }
         )
 
-        printResponse(method, urlWithBase, response)
+        printResponse(response)
 
         return response
 
     } catch (error) {
 
-        printError(method, urlWithBase, error)
+        printError(error)
 
         if (auth && error.response?.status == HTTP_STATUS.UNAUTHORIZED) {
             await issueAuthToken();
@@ -65,19 +65,19 @@ const _query = async ({ method, url, params = null, body = null, auth = true, ur
 
 
 
-const printResponse = (method, url, response) => {
+const printResponse = (response) => {
     console.log('==========================================')
-    console.log(`[METHOD] ${method}`)
-    console.log(`[URL] ${url}`)
+    console.log(`[METHOD] ${response.request._method}`)
+    console.log(`[URL] ${response.request._url}`)
     console.log(`[STATUS] ${response.status}`);
-    console.log(`[RESPONSE] \n${JSON.stringify(response.data, null, 4)}`);
+    // console.log(`[RESPONSE] \n${JSON.stringify(response.data, null, 4)}`);
     console.log('==========================================');
 }
 
-const printError = (method, url, error) => {
+const printError = (error) => {
     console.log('==========================================');
-    console.log(`[METHOD] ${method}`)
-    console.log(`[URL] ${url}`)
+    console.log(`[METHOD] ${error.response?._method}`)
+    console.log(`[URL] ${error.response?._url}`)
     console.log(`[STATUS] ${error.response?.status}`);
     console.log(`[ERROR] \n${JSON.stringify(error.response?.data || error.message, null, 4)}`);
     console.log('==========================================');
