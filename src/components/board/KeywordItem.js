@@ -5,6 +5,8 @@ import { SemiHeadline3, SemiHeadline4 } from "../_common/Typography";
 import { View } from "react-native";
 import AlarmTypeModal from "./AlarmTypeModal";
 import { useState } from "react";
+import { getBoardKeywordSubscribes, getBoardSubscribes, getCommonKeywordSubscribes } from "../../api/user";
+import { useQuery } from "react-query";
 
 
 const Container = styled.View` 
@@ -36,53 +38,77 @@ const LowerContainer = styled.View`
 
 
 
-const Item = ({ board, isBoardAlarm, keywordList, navigation }) => {
+const Item = ({ board, navigation }) => {
 
     const [modalVisible, setModalVisible] = useState(false)
-    const [_isBoardAlarm, setIsBoardAlarm] = useState(isBoardAlarm)
+    const [isBoardSubscribe, setIsBoardSubscribe] = useState(false)
+    const [keywords, setKeywords] = useState([])
 
-    const isCommonKeywordAlarm = !Boolean(board)
+    const isCommonKeywordSubscribe = !Boolean(board)
+
+    useQuery(['subscribes', { type: 'keyword_common' }],
+        getCommonKeywordSubscribes, {
+        enabled: !Boolean(board),
+        onSuccess: (data) => {
+            setKeywords(data.map((subscribe) => subscribe.keyword))
+        }
+    })
+
+    useQuery(["subscribes", { type: "keyword_board", boardId: board?.id }],
+        () => getBoardKeywordSubscribes(board?.id), {
+        enabled: Boolean(board),
+        onSuccess: (data) => {
+            setKeywords(data.map((subscribe) => subscribe.keyword))
+        }
+    })
+
+    useQuery(["subscribes", { type: "board", boardId: board?.id }],
+        () => getBoardSubscribes(board?.id), {
+        enabled: Boolean(board),
+        onSuccess: (data) => setIsBoardSubscribe(data.length > 0)
+    })
 
     return (
         <View>
             <Container>
                 <UpperContainer>
                     <SemiHeadline3>
-                        {isCommonKeywordAlarm ? '전체 키워드' : `${board?.school?.name} ${board?.name}`}
+                        {isCommonKeywordSubscribe ? '전체 키워드' : `${board?.school?.name} ${board?.name}`}
                     </SemiHeadline3>
-                    {isCommonKeywordAlarm ?
+                    {isCommonKeywordSubscribe ?
                         <View />
                         :
                         <Pressable onPress={() => setModalVisible(true)} hitSlop={10}>
                             <SemiHeadline4>
-                                {_isBoardAlarm ? '전체' : '키워드'}
+                                {isBoardSubscribe ? '전체' : '키워드'}
                             </SemiHeadline4>
                         </Pressable>
 
                     }
                 </UpperContainer>
                 <LowerContainer>
-                    <SemiHeadline4 style={{ color: _isBoardAlarm ? color.gray4 : color.primary }}>
-                        {keywordList.map(keyword => `${keyword?.content}, `)}
+                    <SemiHeadline4 style={{ color: isBoardSubscribe ? color.gray4 : color.primary }}>
+                        {keywords.map(keyword => `${keyword?.content}, `)}
                     </SemiHeadline4>
-                    <Pressable onPress={() => { _isBoardAlarm ? null : navigation.navigate('addKeyword', { boardId: board?.id }) }} hitSlop={10}>
-                        <SemiHeadline4 style={{ color: _isBoardAlarm ? color.gray4 : color.black }}>
+                    <Pressable onPress={() => { isBoardSubscribe ? null : navigation.navigate('addKeyword', { boardId: board?.id }) }} hitSlop={10}>
+                        <SemiHeadline4 style={{ color: isBoardSubscribe ? color.gray4 : color.black }}>
                             {'설정'}
                         </SemiHeadline4>
                     </Pressable>
                 </LowerContainer>
             </Container>
 
-            {isCommonKeywordAlarm ||
+            {
+                isCommonKeywordSubscribe ||
                 <AlarmTypeModal
                     modalVisible={modalVisible}
                     setModalVisible={setModalVisible}
                     boardId={board.id}
-                    setIsBoardAlarm={setIsBoardAlarm}
-                    isBoardAlarm={_isBoardAlarm}
+                    setIsBoardSubscribe={setIsBoardSubscribe}
+                    isBoardSubscribe={isBoardSubscribe}
                 />
             }
-        </View>
+        </View >
     );
 }
 

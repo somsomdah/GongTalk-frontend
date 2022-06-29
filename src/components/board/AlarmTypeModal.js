@@ -39,22 +39,22 @@ const ItemBox = styled.View`
 
 
 
-const AlarmTypeModal = ({ modalVisible, setModalVisible, boardId, isBoardAlarm, setIsBoardAlarm }) => {
+const AlarmTypeModal = ({ modalVisible, setModalVisible, boardId, isBoardSubscribe, setIsBoardSubscribe }) => {
 
     const queryClient = useQueryClient()
 
-    const createBoardSubscribeMutation = useMutation((boardId) => createBoardSubscribe(boardId), {
-        onSuccess: () => queryClient.invalidateQueries(`keywords_board__board_${boardId}`)
+    const createBoardSubscribeMutation = useMutation(() => createBoardSubscribe(boardId), {
+        onSuccess: () => queryClient.invalidateQueries(["subscribes", { type: "keyword_board", boardId: boardId }])
     }
     )
 
-    const deleteBoardSubscribeMutation = useMutation((boardId) => deleteBoardSubscribe(boardId), {
-        onSuccess: () => queryClient.invalidateQueries(`keywords_board__board_${boardId}`)
+    const deleteBoardSubscribeMutation = useMutation(() => deleteBoardSubscribe(boardId), {
+        onSuccess: () => queryClient.invalidateQueries(["subscribes", { type: "keyword_board", boardId: boardId }])
     })
 
-    const setBoardAlarm = (boardId, _isBoardAlarm) => {
-        setIsBoardAlarm(_isBoardAlarm)
-        if (_isBoardAlarm) {
+    const setBoardAlarm = (boardId, _isBoardSubscribe) => {
+        setIsBoardSubscribe(_isBoardSubscribe)
+        if (_isBoardSubscribe) {
             createBoardSubscribeMutation.mutate(boardId)
         } else {
             deleteBoardSubscribeMutation.mutate(boardId)
@@ -75,7 +75,7 @@ const AlarmTypeModal = ({ modalVisible, setModalVisible, boardId, isBoardAlarm, 
                         {'전체 알림 받기'}
                     </SemiHeadline3>
                     <Pressable onPress={() => setBoardAlarm(boardId, true)} hitSlop={10}>
-                        <RadioButtonImage checked={isBoardAlarm} />
+                        <RadioButtonImage checked={isBoardSubscribe} />
                     </Pressable>
                 </ItemBox>
                 <ItemBox>
@@ -83,7 +83,7 @@ const AlarmTypeModal = ({ modalVisible, setModalVisible, boardId, isBoardAlarm, 
                         {'키워드 알림 받기'}
                     </SemiHeadline3>
                     <Pressable onPress={() => setBoardAlarm(boardId, false)} hitSlop={10}>
-                        <RadioButtonImage checked={!isBoardAlarm} />
+                        <RadioButtonImage checked={!isBoardSubscribe} />
                     </Pressable>
                 </ItemBox>
             </Container>

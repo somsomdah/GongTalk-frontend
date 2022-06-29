@@ -3,13 +3,9 @@ import styled from 'styled-components/native';
 import Item from '../components/board/KeywordItem';
 import { SemiHeadline3, SmallBody1 } from '../components/_common/Typography';
 import { color } from '../common/colors';
-import { FlatList, View } from 'react-native';
-import { image } from '../common/images';
-import AlarmTypeModal from '../components/board/AlarmTypeModal';
 import { ScrollView } from 'react-native';
 import { useQuery } from 'react-query'
-import { getCommonKeywordSubscribes, getBoardKeywordSubscribes, getUserBoards, getBoardSubscribes } from '../api/user';
-import { useEffect } from 'react';
+import { getCommonKeywordSubscribes, getUserBoards } from '../api/user';
 
 const Container = styled.View`
     flex: 1;
@@ -43,32 +39,11 @@ const Space = styled.View`
 
 const SetKeywords = ({ navigation }) => {
 
-    const [commonKeywords, setCommonKeywords] = useState([])
-    const [boardKeywordsList, setBoardKeywordsList] = useState([])
+    const [userBoards, setUserBoards] = useState([])
 
-    useQuery(['keywords_common'],
-        getCommonKeywordSubscribes, {
-        onSuccess: (data) => {
-            setCommonKeywords(data.map((subscribe) => subscribe.keyword))
-        }
+    useQuery('boards_user', getUserBoards, {
+        onSuccess: (data) => setUserBoards(data)
     })
-
-    useQuery(['boards_user'],
-        getUserBoards,
-        {
-            onSuccess: async (data) => {
-                const tmp = []
-                for (board of data) {
-                    tmp.push({
-                        board: board,
-                        keywords: (await getBoardKeywordSubscribes(board.id)).map((subscribe) => subscribe.keyword),
-                        isBoardAlarm: (await getBoardSubscribes(board.id)).length > 0
-                    })
-                }
-                setBoardKeywordsList(tmp);
-            },
-        }
-    )
 
     return (
         <Container>
@@ -81,12 +56,7 @@ const SetKeywords = ({ navigation }) => {
                         {'전체 키워드를 수정, 저장합니다.'}
                     </SmallBody1>
                     <Space />
-
-                    {<Item
-                        keywordList={commonKeywords}
-                        isBoardAlarm={false}
-                        navigation={navigation}
-                    />}
+                    <Item navigation={navigation} />
                 </UpperContainer>
 
                 <LowerContainer>
@@ -97,13 +67,11 @@ const SetKeywords = ({ navigation }) => {
                         {'게시판과 각 게시판에 설정된 키워드의 알림을 설정합니다. 전체 알림을 받지 않더라도 설정한 키워드의 알림은 받습니다. '}
                     </SmallBody1>
                     <Space />
-                    {boardKeywordsList.map(
-                        (item) =>
+                    {userBoards.map(
+                        (board) =>
                             <Item
-                                key={item.board.id}
-                                board={item.board}
-                                isBoardAlarm={item.isBoardAlarm}
-                                keywordList={item.keywords}
+                                key={board.id}
+                                board={board}
                                 navigation={navigation}
                             />)
                     }

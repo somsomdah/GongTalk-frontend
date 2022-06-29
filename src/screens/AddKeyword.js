@@ -44,7 +44,8 @@ const AddKeyword = ({ route, navigation }) => {
 
     const { boardId } = route.params
 
-    useQuery(`keywords_board__board_${boardId}`, () => getBoardKeywordSubscribes(boardId),
+    useQuery(["subscribes", { type: "keyword_board", boardId: boardId }],
+        () => getBoardKeywordSubscribes(boardId),
         {
             enabled: Boolean(boardId),
             onSuccess: (data) => {
@@ -53,7 +54,8 @@ const AddKeyword = ({ route, navigation }) => {
         }
     )
 
-    useQuery(`keywords_common`, getCommonKeywordSubscribes,
+    useQuery(["subscribes", { type: "keyword_common" }],
+        getCommonKeywordSubscribes,
         {
             enabled: !Boolean(boardId),
             onSuccess: (data) => {
@@ -67,8 +69,7 @@ const AddKeyword = ({ route, navigation }) => {
         (keywordContent) => createBoardKeywordSubscribe(boardId, keywordContent),
         {
             onSuccess: (data) => {
-                queryClient.invalidateQueries(`keywords_board__board_${boardId}`)
-                queryClient.invalidateQueries(`boards_user`)
+                queryClient.invalidateQueries(['subscribes', { type: 'keyword_board', boardId: boardId }])
             }
         }
     )
@@ -76,7 +77,7 @@ const AddKeyword = ({ route, navigation }) => {
     const createCommonKeywordSubscribeMutation = useMutation(
         (keywordContent) => createCommonKeywordSubscribe(keywordContent),
         {
-            onSuccess: (data) => queryClient.invalidateQueries('keywords_common')
+            onSuccess: (data) => queryClient.invalidateQueries(['subscribes', { type: 'keyword_common' }])
         }
     )
 

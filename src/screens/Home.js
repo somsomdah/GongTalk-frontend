@@ -32,7 +32,7 @@ const Home = ({ navigation }) => {
     const [keywordList, setKeywordList] = useState([])
     const [boardList, setBoardList] = useState([])
 
-    useQuery(['keywords_common', { type: "KEYWORD_COMMON" }],
+    useQuery(['subscribes', { type: 'keyword_common' }],
         getCommonKeywordSubscribes, {
         onSuccess: (data) => {
             setKeywordList(data.map((subscribe) => subscribe.keyword))
