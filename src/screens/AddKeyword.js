@@ -44,25 +44,21 @@ const AddKeyword = ({ route, navigation }) => {
 
     const { boardId } = route.params
 
-    useQuery(["subscribes", "keyword_board", boardId],
-        () => getBoardKeywordSubscribes(boardId),
-        {
-            enabled: Boolean(boardId),
-            onSuccess: (data) => {
-                setMyKeywords(data.map((subscribe) => subscribe.keyword))
-            }
-        }
-    )
-
     useQuery(["subscribes", "keyword_common"],
-        getCommonKeywordSubscribes,
-        {
-            enabled: !Boolean(boardId),
-            onSuccess: (data) => {
-                setMyKeywords(data.map((subscribe) => subscribe.keyword))
-            }
+        getCommonKeywordSubscribes, {
+        enabled: !Boolean(boardId),
+        onSuccess: (data) => {
+            setMyKeywords(data.map((subscribe) => subscribe.keyword))
         }
-    )
+    })
+
+    useQuery(["subscribes", "keyword_board", boardId],
+        () => getBoardKeywordSubscribes(boardId), {
+        enabled: Boolean(boardId),
+        onSuccess: (data) => {
+            setMyKeywords(data.map((subscribe) => subscribe.keyword))
+        }
+    })
 
 
     const createBoardKeywordSubscribeMutation = useMutation(
@@ -77,7 +73,9 @@ const AddKeyword = ({ route, navigation }) => {
     const createCommonKeywordSubscribeMutation = useMutation(
         (keywordContent) => createCommonKeywordSubscribe(keywordContent),
         {
-            onSuccess: (data) => queryClient.invalidateQueries(['subscribes', 'keyword_common'])
+            onSuccess: (data) => {
+                queryClient.invalidateQueries(['subscribes', 'keyword_common'])
+            }
         }
     )
 
@@ -88,6 +86,7 @@ const AddKeyword = ({ route, navigation }) => {
             setAlertModalVisible(true)
             return
         }
+
         if (boardId)
             createBoardKeywordSubscribeMutation.mutate(keywordContent)
         else
