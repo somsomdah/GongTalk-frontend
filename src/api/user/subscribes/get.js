@@ -1,13 +1,23 @@
 import { _query } from 'api/_query'
 
-
-export const createBoardSubscribe = async (boardId) => {
+export const getCommonKeywordSubscribes = async () => {
     const response = await _query({
-        method: 'POST',
-        url: `user/subscribes`,
-        auth: true,
-        body: {
-            type: 'BOARD',
+        method: 'GET',
+        url: 'user/subscribes',
+        params: {
+            type: "KEYWORD_COMMON",
+        }
+    })
+
+    return response.data
+}
+
+export const getBoardKeywordSubscribes = async (boardId) => {
+    const response = await _query({
+        method: 'GET',
+        url: 'user/subscribes',
+        params: {
+            type: "KEYWORD_BOARD",
             boardId: boardId
         }
     })
@@ -15,35 +25,15 @@ export const createBoardSubscribe = async (boardId) => {
     return response.data
 }
 
-
-
-export const createCommonKeywordSubscribe = async (keywordContent) => {
+export const getBoardSubscribes = async (boardId) => {
     const response = await _query({
-        method: 'POST',
+        method: 'GET',
         url: 'user/subscribes',
-        auth: true,
-        body: {
-            type: 'KEYWORD_COMMON',
-            keywordContent: keywordContent
-        }
-    })
-
-    return response.data
-
-}
-
-export const createBoardKeywordSubscribe = async (boardId, keywordContent) => {
-
-    const response = await _query({
-        method: 'POST',
-        url: 'user/subscribes',
-        body: {
-            type: 'KEYWORD_BOARD',
+        params: {
+            type: "BOARD",
             boardId: boardId,
-            keywordContent: keywordContent
         }
     })
 
     return response.data
-
 }
