@@ -5,7 +5,7 @@ import { Pressable, TouchableOpacity } from 'react-native';
 import { useRef, useState } from 'react';
 import { ButtonMediumW } from '../_common/Typography';
 import { useMutation, useQueryClient } from 'react-query';
-import { deleteCommonKeywordSubscribe, deleteBoardKeywordSubscribe } from '../../api/user';
+import { deleteCommonKeywordSubscribe, deleteBoardKeywordSubscribe } from 'api/user/user';
 
 const Chip = styled.View`
     padding: 6.5px 14px;
@@ -40,7 +40,7 @@ const Added = ({ keywordList, boardId }) => {
         (keywordId) => deleteCommonKeywordSubscribe(keywordId),
         {
             onSuccess: () => {
-                queryClient.invalidateQueries(['subscribes', { type: 'keyword_common' }])
+                queryClient.invalidateQueries(['subscribes', 'keyword_common'])
             }
         }
     )
@@ -49,7 +49,7 @@ const Added = ({ keywordList, boardId }) => {
         (keywordId) => deleteBoardKeywordSubscribe(boardId, keywordId),
         {
             onSuccess: () => {
-                queryClient.invalidateQueries(["subscribes", { type: "keyword_board", boardId: boardId }])
+                queryClient.invalidateQueries(["subscribes", "keyword_board", boardId])
             }
         }
     )

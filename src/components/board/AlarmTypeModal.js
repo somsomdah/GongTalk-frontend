@@ -6,7 +6,7 @@ import Modal from 'react-native-modal';
 import { Pressable } from "react-native";
 import { useState } from "react";
 import { QueryClient, useMutation, useQuery, useQueryClient } from "react-query";
-import { createBoardSubscribe, deleteBoardSubscribe } from "../../api/user";
+import { createBoardSubscribe, deleteBoardSubscribe } from "api/user/user";
 
 
 
@@ -44,12 +44,12 @@ const AlarmTypeModal = ({ modalVisible, setModalVisible, boardId, isBoardSubscri
     const queryClient = useQueryClient()
 
     const createBoardSubscribeMutation = useMutation(() => createBoardSubscribe(boardId), {
-        onSuccess: () => queryClient.invalidateQueries(["subscribes", { type: "keyword_board", boardId: boardId }])
+        onSuccess: () => queryClient.invalidateQueries(["subscribes", "keyword_board", boardId])
     }
     )
 
     const deleteBoardSubscribeMutation = useMutation(() => deleteBoardSubscribe(boardId), {
-        onSuccess: () => queryClient.invalidateQueries(["subscribes", { type: "keyword_board", boardId: boardId }])
+        onSuccess: () => queryClient.invalidateQueries(["subscribes", "keyword_board", boardId])
     })
 
     const setBoardAlarm = (boardId, _isBoardSubscribe) => {

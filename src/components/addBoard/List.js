@@ -5,7 +5,7 @@ import { SemiHeadline3, SemiHeadline4 } from "../_common/Typography";
 import { Pressable, ScrollView } from "react-native";
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from 'react-query'
-import { getUserBoards, deleteUserBoard } from 'api/user'
+import { getUserBoards, deleteUserBoard } from 'api/user/user'
 
 const Container = styled.View`
     padding: 24px;

@@ -5,7 +5,7 @@ import { SemiHeadline3, SemiHeadline4 } from "../_common/Typography";
 import { View } from "react-native";
 import AlarmTypeModal from "./AlarmTypeModal";
 import { useState } from "react";
-import { getBoardKeywordSubscribes, getBoardSubscribes, getCommonKeywordSubscribes } from "../../api/user";
+import { getBoardKeywordSubscribes, getBoardSubscribes, getCommonKeywordSubscribes } from "api/user/user";
 import { useQuery } from "react-query";
 
 
@@ -46,7 +46,7 @@ const Item = ({ board, navigation }) => {
 
     const isCommonKeywordSubscribe = !Boolean(board)
 
-    useQuery(['subscribes', { type: 'keyword_common' }],
+    useQuery(['subscribes', 'keyword_common'],
         getCommonKeywordSubscribes, {
         enabled: !Boolean(board),
         onSuccess: (data) => {
@@ -54,7 +54,7 @@ const Item = ({ board, navigation }) => {
         }
     })
 
-    useQuery(["subscribes", { type: "keyword_board", boardId: board?.id }],
+    useQuery(["subscribes", "keyword_board", board?.id],
         () => getBoardKeywordSubscribes(board?.id), {
         enabled: Boolean(board),
         onSuccess: (data) => {
@@ -62,7 +62,7 @@ const Item = ({ board, navigation }) => {
         }
     })
 
-    useQuery(["subscribes", { type: "board", boardId: board?.id }],
+    useQuery(["subscribes", "board", board?.id],
         () => getBoardSubscribes(board?.id), {
         enabled: Boolean(board),
         onSuccess: (data) => setIsBoardSubscribe(data.length > 0)

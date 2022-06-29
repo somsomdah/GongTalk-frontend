@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { color } from '../common/colors';
 import DraggableFlatList from 'react-native-draggable-flatlist';
 import Item from '../components/board/BoardItem';
-import { getUserBoards, updateUserBoardOrder } from 'api/user'
+import { getUserBoards, updateUserBoardOrder } from 'api/user/user'
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { useEffect } from 'react';
 

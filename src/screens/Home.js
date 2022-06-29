@@ -5,7 +5,7 @@ import Roundup from '../components/home/Roundup'
 import Board from '../components/home/Board';
 import styled from 'styled-components/native';
 import { color } from '../common/colors';
-import { getCommonKeywordSubscribes, getUserBoards } from '../api/user';
+import { getCommonKeywordSubscribes, getUserBoards } from 'api/user/user';
 import { useQuery } from 'react-query';
 
 
@@ -32,7 +32,7 @@ const Home = ({ navigation }) => {
     const [keywordList, setKeywordList] = useState([])
     const [boardList, setBoardList] = useState([])
 
-    useQuery(['subscribes', { type: 'keyword_common' }],
+    useQuery(['subscribes', 'keyword_common'],
         getCommonKeywordSubscribes, {
         onSuccess: (data) => {
             setKeywordList(data.map((subscribe) => subscribe.keyword))

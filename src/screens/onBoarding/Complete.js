@@ -2,16 +2,14 @@ import styled from "styled-components/native";
 import { color } from "../../common/colors";
 import { image } from "../../common/images";
 import { Headline4, SemiHeadline1 } from "../../components/_common/Typography";
-import { Pressable, View } from "react-native";
+import { View } from "react-native";
 import { ReturnButton, NextButton, ButtonContainer } from "./Start";
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useContext } from "react";
 import { useMutation } from 'react-query';
-import { login } from "../../api/_query";
-import { createUser } from "api/user";
+import { login } from "api/_query";
+import { createUser } from "api/user/user";
 import OnboardingContext from "../../contexts/Onboarding";
-import UserContext from "../../contexts/User";
-import { createUserBoard, createBoardSubscribe, createCommonKeywordSubscribe } from "../../api/user";
+import { createUserBoard, createBoardSubscribe, createCommonKeywordSubscribe } from "api/user/user";
 
 
 const Container = styled.View`

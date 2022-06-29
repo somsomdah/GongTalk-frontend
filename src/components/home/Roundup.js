@@ -4,7 +4,7 @@ import { image } from "../../common/images";
 import { SemiHeadline2_1, SemiHeadline3, SemiHeadline4 } from "../_common/Typography";
 import { Pressable } from "react-native";
 import { useQuery } from "react-query";
-import { getPosts } from "../../api/user";
+import { getPosts } from "api/user/user";
 import { useState } from "react";
 import { dateParser } from 'utils/parser'
 

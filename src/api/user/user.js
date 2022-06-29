@@ -1,4 +1,4 @@
-import { _query } from './_query'
+import { _query } from 'api/_query'
 import { getUniqueId } from 'utils/device';
 
 export const createUser = async () => {

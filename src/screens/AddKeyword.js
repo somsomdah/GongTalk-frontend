@@ -9,7 +9,7 @@ import Added from "../components/addKeyword/Added";
 import { ScrollView } from "react-native";
 import AlertModal from "../components/_common/AlertModal";
 import { useQuery, useMutation, useQueryClient } from 'react-query'
-import { getBoardKeywordSubscribes, getCommonKeywordSubscribes, createBoardKeywordSubscribe, createCommonKeywordSubscribe } from "../api/user";
+import { getBoardKeywordSubscribes, getCommonKeywordSubscribes, createBoardKeywordSubscribe, createCommonKeywordSubscribe } from "api/user/user";
 
 const Container = styled.View`
     flex: 1;
@@ -44,7 +44,7 @@ const AddKeyword = ({ route, navigation }) => {
 
     const { boardId } = route.params
 
-    useQuery(["subscribes", { type: "keyword_board", boardId: boardId }],
+    useQuery(["subscribes", "keyword_board", boardId],
         () => getBoardKeywordSubscribes(boardId),
         {
             enabled: Boolean(boardId),
@@ -54,7 +54,7 @@ const AddKeyword = ({ route, navigation }) => {
         }
     )
 
-    useQuery(["subscribes", { type: "keyword_common" }],
+    useQuery(["subscribes", "keyword_common"],
         getCommonKeywordSubscribes,
         {
             enabled: !Boolean(boardId),
@@ -69,7 +69,7 @@ const AddKeyword = ({ route, navigation }) => {
         (keywordContent) => createBoardKeywordSubscribe(boardId, keywordContent),
         {
             onSuccess: (data) => {
-                queryClient.invalidateQueries(['subscribes', { type: 'keyword_board', boardId: boardId }])
+                queryClient.invalidateQueries(['subscribes', 'keyword_board', boardId])
             }
         }
     )
@@ -77,7 +77,7 @@ const AddKeyword = ({ route, navigation }) => {
     const createCommonKeywordSubscribeMutation = useMutation(
         (keywordContent) => createCommonKeywordSubscribe(keywordContent),
         {
-            onSuccess: (data) => queryClient.invalidateQueries(['subscribes', { type: 'keyword_common' }])
+            onSuccess: (data) => queryClient.invalidateQueries(['subscribes', 'keyword_common'])
         }
     )
 

@@ -3,7 +3,7 @@ import { SemiHeadline2 } from '../_common/Typography'
 import { color } from '../../common/colors';
 import { TouchableHighlight } from 'react-native';
 import { useMutation, useQueryClient } from 'react-query'
-import { createUserBoard } from '../../api/user';
+import { createUserBoard } from 'api/user/user';
 
 const ItemBox = styled.View`
     padding: 12px;

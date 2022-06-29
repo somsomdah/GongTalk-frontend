@@ -7,7 +7,7 @@ import Item from '../components/postList/Item';
 import { postList } from '../common/data';
 import { useQuery } from 'react-query';
 import { getPostsByBoardId } from 'api/posts';
-import { getPosts } from '../api/user';
+import { getPosts } from 'api/user/user';
 
 const Container = styled.View`
     flex: 1;
