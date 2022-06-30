@@ -14,7 +14,6 @@ const _query = async ({ method, url, params = null, body = null, auth = true, ur
     const urlWithBase = urlBase ? `${baseUrl}/${url}` : url;
 
     try {
-
         const response = await axios(
             {
                 method: method,
@@ -76,8 +75,8 @@ const printResponse = (response) => {
 
 const printError = (error) => {
     console.log('==========================================');
-    console.log(`[METHOD] ${error.response?._method}`)
-    console.log(`[URL] ${error.response?._url}`)
+    console.log(`[METHOD] ${error.response?.request?._method}`)
+    console.log(`[URL] ${error.response?.request?._url}`)
     console.log(`[STATUS] ${error.response?.status}`);
     console.log(`[ERROR] \n${JSON.stringify(error.response?.data || error.message, null, 4)}`);
     console.log('==========================================');
