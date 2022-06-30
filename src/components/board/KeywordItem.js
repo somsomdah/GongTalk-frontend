@@ -5,7 +5,7 @@ import { SemiHeadline3, SemiHeadline4 } from "../_common/Typography";
 import { View } from "react-native";
 import AlarmTypeModal from "./AlarmTypeModal";
 import { useState } from "react";
-import { getBoardKeywordSubscribes, getBoardSubscribes, getCommonKeywordSubscribes } from "api/user/user";
+import { getBoardKeywordSubscribes, getBoardSubscribes, getCommonKeywordSubscribes } from "api/user/subscribes/get";
 import { useQuery } from "react-query";
 
 

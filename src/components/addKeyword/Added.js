@@ -5,7 +5,7 @@ import { Pressable, TouchableOpacity } from 'react-native';
 import { useRef, useState } from 'react';
 import { ButtonMediumW } from '../_common/Typography';
 import { useMutation, useQueryClient } from 'react-query';
-import { deleteCommonKeywordSubscribe, deleteBoardKeywordSubscribe } from 'api/user/user';
+import { deleteCommonKeywordSubscribe, deleteBoardKeywordSubscribe } from 'api/user/subscribes/delete';
 
 const Chip = styled.View`
     padding: 6.5px 14px;

@@ -5,7 +5,8 @@ import { SemiHeadline3, SmallBody1 } from '../components/_common/Typography';
 import { color } from '../common/colors';
 import { ScrollView } from 'react-native';
 import { useQuery } from 'react-query'
-import { getCommonKeywordSubscribes, getUserBoards } from 'api/user/user';
+import { getUserBoards } from 'api/user/user';
+import { getCommonKeywordSubscribes } from 'api/user/subscribes/get'
 
 const Container = styled.View`
     flex: 1;

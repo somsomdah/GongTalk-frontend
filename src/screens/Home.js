@@ -5,7 +5,8 @@ import Roundup from '../components/home/Roundup'
 import Board from '../components/home/Board';
 import styled from 'styled-components/native';
 import { color } from '../common/colors';
-import { getCommonKeywordSubscribes, getUserBoards } from 'api/user/user';
+import { getCommonKeywordSubscribes } from 'api/user/subscribes/get';
+import { getUserBoards } from 'api/user/user';
 import { useQuery } from 'react-query';
 
 

@@ -36,3 +36,12 @@ export const deleteBoardKeywordSubscribe = async (boardId, keywordId) => {
         }
     })
 }
+
+export const deleteSubscribe = async (subscribeId) => {
+
+    const response = await _query({
+        method: 'DELETE',
+        url: `user/subscribe/${subscribeId}`,
+    })
+
+}

@@ -9,7 +9,9 @@ import Added from "../components/addKeyword/Added";
 import { ScrollView } from "react-native";
 import AlertModal from "../components/_common/AlertModal";
 import { useQuery, useMutation, useQueryClient } from 'react-query'
-import { getBoardKeywordSubscribes, getCommonKeywordSubscribes, createBoardKeywordSubscribe, createCommonKeywordSubscribe } from "api/user/user";
+import { getBoardKeywordSubscribes, getCommonKeywordSubscribes } from "api/user/subscribes/get";
+import { createBoardKeywordSubscribe, createCommonKeywordSubscribe } from "api/user/subscribes/post";
+
 
 const Container = styled.View`
     flex: 1;

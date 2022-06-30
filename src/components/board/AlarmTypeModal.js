@@ -6,7 +6,7 @@ import Modal from 'react-native-modal';
 import { Pressable } from "react-native";
 import { useState } from "react";
 import { QueryClient, useMutation, useQuery, useQueryClient } from "react-query";
-import { createBoardSubscribe, deleteBoardSubscribe } from "api/user/user";
+import { createBoardSubscribe, deleteBoardSubscribe } from "api/user/subscribes/delete";
 
 
 

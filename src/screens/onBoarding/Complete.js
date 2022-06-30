@@ -7,9 +7,9 @@ import { ReturnButton, NextButton, ButtonContainer } from "./Start";
 import { useContext } from "react";
 import { useMutation } from 'react-query';
 import { login } from "api/_query";
-import { createUser } from "api/user/user";
+import { createUser, createUserBoard } from "api/user/user";
 import OnboardingContext from "../../contexts/Onboarding";
-import { createUserBoard, createBoardSubscribe, createCommonKeywordSubscribe } from "api/user/user";
+import { createBoardSubscribe, createCommonKeywordSubscribe } from "api/user/subscribes/post";
 
 
 const Container = styled.View`
