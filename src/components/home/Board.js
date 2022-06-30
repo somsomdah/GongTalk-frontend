@@ -4,9 +4,10 @@ import styled from "styled-components/native";
 import { color } from '../../common/colors';
 import { image } from "../../common/images";
 import { SemiHeadline3, SemiHeadline4, SemiHeadline5, SemiHeadline2_1 } from '../_common/Typography';
-import { useQuery } from 'react-query';
 import { getPostsByBoardId } from 'api/boards';
 import { dateParser } from 'utils/parser'
+import { useMutation, useQueryClient, useQuery } from 'react-query';
+import { createScrap, deleteScrap, getScrapsByPostId } from 'api/user/scraps';
 
 const Container = styled.View`
     margin-bottom: 32px;
@@ -86,8 +87,48 @@ const MoreImage = styled.Image.attrs({ source: image.common.next })`
 
 const Item = ({ post, navigation }) => {
 
+    const queryClient = useQueryClient()
+
     const [starred, setStarred] = useState(false);
-    toggleStar = () => setStarred(!starred)
+    const [scrapId, setScrapId] = useState(null)
+
+    useQuery(["scrap", "post", post.id], () => getScrapsByPostId(post.id),
+        {
+            onSuccess: (data) => {
+                if (data.length > 0) {
+                    setStarred(true)
+                    setScrapId(data[0].id)
+                } else {
+                    setStarred(false)
+                }
+            }
+        }
+    )
+
+    const createScrapMutation = useMutation(() => createScrap(post.id), {
+        onSuccess: () => {
+            queryClient.invalidateQueries('scraps')
+            queryClient.invalidateQueries(["scrap", "post", post.id])
+        }
+    })
+
+    const deleteScrapMutation = useMutation(() => deleteScrap(scrapId), {
+        onSuccess: () => {
+            queryClient.invalidateQueries('scraps')
+            queryClient.invalidateQueries(["scrap", "post", post.id])
+        }
+    })
+
+
+
+    const toggleStar = () => {
+        if (starred) {
+            deleteScrapMutation.mutate()
+        } else {
+            createScrapMutation.mutate()
+        }
+    }
+
 
     return (
         <ItemBox>

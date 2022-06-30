@@ -4,6 +4,9 @@ import { color } from '../../common/colors'
 import { image } from '../../common/images';
 import { SemiHeadline3, SemiHeadline5 } from '../_common/Typography'
 import { Pressable } from 'react-native';
+import { useMutation, useQueryClient } from 'react-query';
+import { createScrap, deleteScrap, getScrapsByPostId } from 'api/user/scraps';
+
 
 
 const ItemBox = styled.View`
@@ -51,8 +54,47 @@ const StarButton = ({ onPress, starred }) => {
 
 const Item = ({ post }) => {
 
+    const queryClient = useQueryClient()
+
     const [starred, setStarred] = useState(false);
-    toggleStar = () => setStarred(!starred)
+    const [scrapId, setScrapId] = useState(null)
+
+    useQuery(["scrap", "post", post.id], () => getScrapsByPostId(post.id),
+        {
+            onSuccess: (data) => {
+                if (data.length > 0) {
+                    setStarred(true)
+                    setScrapId(data[0].id)
+                } else {
+                    setStarred(false)
+                }
+            }
+        }
+    )
+
+    const createScrapMutation = useMutation(() => createScrap(post.id), {
+        onSuccess: () => {
+            queryClient.invalidateQueries('scraps')
+            queryClient.invalidateQueries(["scrap", "post", post.id])
+        }
+    })
+
+    const deleteScrapMutation = useMutation(() => deleteScrap(scrapId), {
+        onSuccess: () => {
+            queryClient.invalidateQueries('scraps')
+            queryClient.invalidateQueries(["scrap", "post", post.id])
+        }
+    })
+
+
+
+    const toggleStar = () => {
+        if (starred) {
+            deleteScrapMutation.mutate()
+        } else {
+            createScrapMutation.mutate()
+        }
+    }
 
     return (
         <ItemBox>
