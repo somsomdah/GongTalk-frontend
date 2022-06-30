@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
 import { color } from '../common/colors'
 import { image } from '../common/images';
 import Item from '../components/alarm/ScrapItem';
 import { postList } from '../common/data';
+import { useQuery } from 'react-query'
+import { getScraps } from 'api/user/scraps';
 
 const Container = styled.View`
     flex: 1;
@@ -16,11 +18,19 @@ const Container = styled.View`
 `;
 
 const Scraps = () => {
+    const [scraps, setScraps] = useState([])
+
+    useQuery('scraps', getScraps, {
+        onSuccess: (data) => {
+            setScraps(data)
+        }
+    })
+
     return (
         <Container>
             <FlatList showsVerticalScrollIndicator={false}
-                data={postList}
-                renderItem={({ item }) => <Item key={item.id} post={item} />}
+                data={scraps}
+                renderItem={({ item }) => <Item key={item.id} scrap={item} />}
             />
         </Container>
     )

@@ -54,19 +54,18 @@ const StarButton = ({ onPress, starred }) => {
     )
 }
 
-const Item = ({ post }) => {
+const Item = ({ scrap }) => {
+
+    const post = scrap.post
 
     const queryClient = useQueryClient()
-
     const [starred, setStarred] = useState(false);
-    const [scrapId, setScrapId] = useState(null)
 
     useQuery(["scrap", "post", post.id], () => getScrapsByPostId(post.id),
         {
             onSuccess: (data) => {
                 if (data.length > 0) {
                     setStarred(true)
-                    setScrapId(data[0].id)
                 } else {
                     setStarred(false)
                 }
@@ -81,7 +80,7 @@ const Item = ({ post }) => {
         }
     })
 
-    const deleteScrapMutation = useMutation(() => deleteScrap(scrapId), {
+    const deleteScrapMutation = useMutation(() => deleteScrap(scrap.id), {
         onSuccess: () => {
             queryClient.invalidateQueries('scraps')
             queryClient.invalidateQueries(["scrap", "post", post.id])
