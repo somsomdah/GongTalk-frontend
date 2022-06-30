@@ -1,7 +1,9 @@
 import React from 'react';
+import { Pressable, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { color } from '../../common/colors'
 import { SemiHeadline3, SmallBody1, SemiHeadline5 } from '../_common/Typography'
+import { useQueryClient, useMutation } from 'react-query';
 
 
 const ItemBox = styled.View`
@@ -41,22 +43,38 @@ const ItemInfoDivider = styled.View`
     border-left-width: 1px;
 `;
 
-const Item = ({ post }) => {
+const Item = ({ alarm, navigation }) => {
+    const post = alarm.post
+
+    // const queryClient = useQueryClient()
+
+    // const setAlarmReadMutation = useMutation(setAlarmRead, {
+    //     onSuccess: () => {
+    //         queryClient.invalidateQueries('alarms')
+    //     }
+    // })
+
     return (
         <ItemBox>
-            <ItemImage source={post.board.school.image} />
+            <ItemImage source={{ uri: post.board.school.image }} />
             <ItemTextContainer>
-                <SemiHeadline3
-                    ellipsizeMode='tail'
-                    numberOfs={2}
-                    style={{ marginBottom: 6 }}>{post.title}</SemiHeadline3>
-                <ItemInfoContainer>
-                    <SemiHeadline5>{`${post.board.school.name} ${post.board.name}`}</SemiHeadline5>
-                    <ItemInfoDivider />
-                    <SemiHeadline5>{post.writer}</SemiHeadline5>
-                    <ItemInfoDivider />
-                    <SemiHeadline5 style={{ color: color.gray5 }}>{post.date}</SemiHeadline5>
-                </ItemInfoContainer>
+                <TouchableOpacity onPress={() => {
+
+                    navigation.navigate('postDetail', { post: post })
+                }}>
+                    <SemiHeadline3
+                        ellipsizeMode='tail'
+                        numberOfs={2}
+                        style={{ marginBottom: 6 }}>{post.title}
+                    </SemiHeadline3>
+                    <ItemInfoContainer>
+                        <SemiHeadline5>{`${post.board.school.name} ${post.board.name}`}</SemiHeadline5>
+                        <ItemInfoDivider />
+                        <SemiHeadline5>{post.writer}</SemiHeadline5>
+                        <ItemInfoDivider />
+                        <SemiHeadline5 style={{ color: color.gray5 }}>{post.date}</SemiHeadline5>
+                    </ItemInfoContainer>
+                </TouchableOpacity>
             </ItemTextContainer>
         </ItemBox>
     )
