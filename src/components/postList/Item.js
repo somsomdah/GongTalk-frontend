@@ -6,6 +6,7 @@ import { SemiHeadline3, SemiHeadline5 } from '../_common/Typography'
 import { Pressable } from 'react-native';
 import { useMutation, useQueryClient } from 'react-query';
 import { createScrap, deleteScrap, getScrapsByPostId } from 'api/user/scraps';
+import { useQuery } from 'react-query';
 
 
 

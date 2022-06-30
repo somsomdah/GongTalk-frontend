@@ -6,6 +6,7 @@ import { SemiHeadline3, SemiHeadline5 } from '../_common/Typography'
 import { Pressable } from 'react-native';
 import { useMutation, useQueryClient, useQuery } from 'react-query';
 import { createScrap, deleteScrap, getScrapsByPostId } from 'api/user/scraps';
+import { TouchableOpacity } from 'react-native';
 
 
 const ItemBox = styled.View`
@@ -54,7 +55,7 @@ const StarButton = ({ onPress, starred }) => {
     )
 }
 
-const Item = ({ scrap }) => {
+const Item = ({ scrap, navigation }) => {
 
     const post = scrap.post
 
@@ -99,18 +100,20 @@ const Item = ({ scrap }) => {
 
     return (
         <ItemBox>
-            <SemiHeadline3
-                ellipsizeMode='tail'
-                numberOfLines={2}
-                style={{ marginBottom: 6 }}>{post.title}</SemiHeadline3>
-            <ItemInfoContainer>
-                <SemiHeadline5>{`${post.board.school.name} ${post.board.name}`}</SemiHeadline5>
-                <ItemInfoDivider />
-                <SemiHeadline5>{post.writer}</SemiHeadline5>
-                <ItemInfoDivider />
-                <SemiHeadline5 style={{ color: color.gray5 }}>{post.date}</SemiHeadline5>
-                <StarButton id={post.id} onPress={toggleStar} starred={starred} />
-            </ItemInfoContainer>
+            <TouchableOpacity onPress={() => navigation.navigate('postDetail', { post: post })}>
+                <SemiHeadline3
+                    ellipsizeMode='tail'
+                    numberOfLines={2}
+                    style={{ marginBottom: 6 }}>{post.title}</SemiHeadline3>
+                <ItemInfoContainer>
+                    <SemiHeadline5>{`${post.board.school.name} ${post.board.name}`}</SemiHeadline5>
+                    <ItemInfoDivider />
+                    <SemiHeadline5>{post.writer}</SemiHeadline5>
+                    <ItemInfoDivider />
+                    <SemiHeadline5 style={{ color: color.gray5 }}>{post.date}</SemiHeadline5>
+                    <StarButton id={post.id} onPress={toggleStar} starred={starred} />
+                </ItemInfoContainer>
+            </TouchableOpacity>
         </ItemBox>
     )
 }

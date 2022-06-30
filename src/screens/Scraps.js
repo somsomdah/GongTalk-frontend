@@ -17,7 +17,7 @@ const Container = styled.View`
     padding: 0px 24px;
 `;
 
-const Scraps = () => {
+const Scraps = ({ navigation }) => {
     const [scraps, setScraps] = useState([])
 
     useQuery('scraps', getScraps, {
@@ -30,7 +30,7 @@ const Scraps = () => {
         <Container>
             <FlatList showsVerticalScrollIndicator={false}
                 data={scraps}
-                renderItem={({ item }) => <Item key={item.id} scrap={item} />}
+                renderItem={({ item }) => <Item key={item.id} scrap={item} navigation={navigation} />}
             />
         </Container>
     )
