@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { StatusBar } from 'react-native';
 import { useFonts } from "expo-font";
-import { useQueryClient, QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { color } from './common/colors';
 import { font } from "./common/fonts";
 import OnboardingNavigation from "./navigations/OnboardingStack";
@@ -23,7 +23,7 @@ const App = () => {
     const tryLogin = async () => {
         try {
             await login()
-            setInitialRouteName('main')
+            setInitialRouteName('app')
         } catch (e) {
             setInitialRouteName('onboarding')
         }
