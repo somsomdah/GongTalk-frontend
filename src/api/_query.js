@@ -64,7 +64,7 @@ const _query = async ({ method, url, params = null, body = null, auth = true, ur
 
 
 
-const printResponse = (response) => {
+export const printResponse = (response) => {
     console.log('==========================================')
     console.log(`[METHOD] ${response.request._method}`)
     console.log(`[URL] ${response.request._url}`)
@@ -73,7 +73,7 @@ const printResponse = (response) => {
     console.log('==========================================');
 }
 
-const printError = (error) => {
+export const printError = (error) => {
     console.log('==========================================');
     console.log(`[METHOD] ${error.response?.request?._method}`)
     console.log(`[URL] ${error.response?.request?._url}`)
