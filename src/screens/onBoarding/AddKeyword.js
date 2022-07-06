@@ -11,19 +11,29 @@ import { getRecommendedKeywords } from "../../api/keywords";
 
 const AddKeyword = ({ navigation }) => {
 
-    const [recommendedKeywordList, setRecommendedKeywordList] = useState([])
-
-    useQuery('keywords_recommended', getRecommendedKeywords,
-        {
-            onSuccess: (data) => setRecommendedKeywordList(data)
-        }
-    )
+    const { setKeywordList } = useContext(OnboardingContext)
 
 
-    const { keywordList, setKeywordList } = useContext(OnboardingContext)
+    const [myKeywords, setMyKeywords] = useState([])
     const [alertModalVisible, setAlertModalVisible] = useState(false);
 
-    const nextButtonDisabled = keywordList.length > 0 ? false : true
+    const _addKeyword = (keywordContent) => {
+        const includes = myKeywords.find(myKeyword => myKeyword.content === keywordContent)
+        if (includes) {
+            setAlertModalVisible(true)
+            return
+        }
+
+        setMyKeywords((prevKeywords) => [...prevKeywords, {
+            id: keywordContent,
+            content: keywordContent
+        }])
+
+        setKeywordList((prevKeywords) => [...prevKeywords, { content: keywordContent }])
+
+    };
+
+    const nextButtonDisabled = myKeywords.length > 0 ? false : true
     const height = Dimensions.get('window').height
 
     return (
@@ -39,26 +49,22 @@ const AddKeyword = ({ navigation }) => {
 
                     <Title value={'키워드 입력하기'} />
                     <Input
-                        keywordList={keywordList}
-                        setKeywordList={setKeywordList}
-                        setAlertModalVisible={setAlertModalVisible}
+                        addKeyword={_addKeyword}
                     />
-
-                    <Title value={`추천 키워드`} />
+                    <Title value={'추천 키워드'} />
                     <Recommend
-                        keywordList={recommendedKeywordList}
-                        myKeywordList={keywordList}
-                        setMyKeywordList={setKeywordList}
-                        setAlertModalVisible={setAlertModalVisible}
+                        addKeyword={_addKeyword}
                     />
                 </UpperContainer>
-
-                <LowerContainer >
-                    <Title value={`내 키워드`} />
-                    <ScrollView>
-                        <Added keywordList={keywordList} setKeywordList={setKeywordList} />
+                <LowerContainer>
+                    <Title value={'내 키워드'} />
+                    <ScrollView showsVerticalScrollIndicator={false}>
+                        <Added
+                            keywordList={myKeywords}
+                        />
                     </ScrollView>
                 </LowerContainer>
+
 
                 <ButtonContainer>
                     <ReturnButton value={'이전'} onPress={() => navigation.navigate('addBoard')} />
@@ -68,7 +74,7 @@ const AddKeyword = ({ navigation }) => {
                 <AlertModal
                     isVisible={alertModalVisible}
                     setIsVisible={setAlertModalVisible}
-                    value={'동일한 키워드를 여러 번 추가할 수 없습니다.'}
+                    value={'동일한 키워드를 여러번 추가할 수 없습니다.'}
                 />
 
             </Container>
